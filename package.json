@@ -1,0 +1,12 @@
+{
+  "name": "rift-academy",
+  "private": true,
+  "description": "Rift Academy: League of Legends tips and guides (static site). The site itself needs no build; tools/build-pages.js pre-renders pages for search engines and link previews.",
+  "scripts": {
+    "check": "node tools/check-content.js",
+    "pages": "node tools/build-pages.js"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}

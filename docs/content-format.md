@@ -157,3 +157,50 @@ RA.champPicks["Swain:support"] = { blind, into, avoid, teammates, teamNeeds, qui
 ```
 
 Builds for every champion+role live in `builds.js` under `"Id:role"`.
+
+## Map quiz — `js/data/map-quiz.js`
+
+`RA.mapQuiz` is a list of questions answered by clicking Riot's minimap (Data Dragon `img/map/map11.png`).
+Coordinates are fractions of the image: `x` from the left, `y` from the top, both 0 to 1. The blue base is bottom-left.
+Landmark coordinates (camps, pits, scuttles) are defined once at the top of the file; reuse them.
+
+```js
+{ level: "intermediate",            // beginner | intermediate | advanced
+  topic: "Vision",                  // short label shown above the question
+  side: "blue",                     // optional: blue | red, shown as "You're on the … team"
+  q: "Where should your first ward go?",
+  zones: [{ x: 0.42, y: 0.42, r: 0.08 }],   // a click inside any circle is correct (r 0.02-0.15)
+  marks: [{ x: 0.48, y: 0.27, label: "Seen at 0:55", color: "red" }],  // optional points drawn before answering
+  explain: "Why. May use {{tokens}}." }
+```
+
+## Patch changes — `js/data/patch-changes.js`
+
+`RA.patchChanges` feeds the "What changed this patch" page (`/patch/`) and the patch note box on champion pages.
+Rewrite it every patch from the official notes. `patch` must equal `RA.patch.number`, or the box is hidden and
+`check-content` warns.
+
+```js
+RA.patchChanges = {
+  patch: "26.22", released: "2026-11-04", source: "https://www.leagueoflegends.com/…",
+  highlights: ["3-6 plain-English bullets"],
+  champions: [{ id: "Viktor", change: "buff", summary: "One plain sentence.", details: ["Health growth: 100 → 105"] }],
+  items: [{ name: "Doran's Bow", change: "nerf", summary: "…", details: ["Attack damage: 8 → 7"] }],
+  runes: [],                        // same shape as items
+  systems: [{ title: "Jungle", summary: "…", details: ["…"] }]
+};
+```
+`change` is `buff`, `nerf`, `adjust` (mixed) or `new` (rework). Champion ids, item and rune names use Data Dragon
+spelling.
+
+## Learning path and progress
+
+The learning path (`/path/`) is defined in `LEARN_PATH` in `js/app.js`: three stages of step keys
+(`guide:<id>`, `tool:<id>`, `role`, `patch`). Progress is stored only in the visitor's browser (`localStorage`
+key `ra-progress`). When you add a guide, add its key to the right stage.
+
+## Pages and links
+
+Write internal links as `#/route` (or use `{{guide:id}}` / `{{champ:Id}}` tokens). On the web the app turns them into
+real paths (`/rift-academy/guide/id/`); from disk they stay as `#/route`. A champion's main role is
+`#/champion/Id`; other roles are `#/champion/Id/role`. After changing content, run `node tools/build-pages.js`.

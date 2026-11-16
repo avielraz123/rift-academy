@@ -149,5 +149,41 @@ for (const [key, p] of Object.entries(RA.champPicks || {})) {
 console.log("Glossary:", (RA.glossary || []).length);
 (RA.glossary || []).forEach(g => checkText("glossary " + g.term, g.def));
 
+console.log("Map quiz:", (RA.mapQuiz || []).length);
+(RA.mapQuiz || []).forEach((q, i) => {
+  const w = "map quiz " + i + " (" + String(q.q).slice(0, 40) + "…)";
+  if (!["beginner", "intermediate", "advanced"].includes(q.level)) err(w + ": bad level");
+  if (!q.q || !q.explain) err(w + ": needs q and explain");
+  if (q.side && !["blue", "red"].includes(q.side)) err(w + ": side must be blue or red");
+  if (!q.zones || !q.zones.length) err(w + ": no zones");
+  (q.zones || []).forEach((z) => {
+    if (!(z.x >= 0 && z.x <= 1 && z.y >= 0 && z.y <= 1)) err(w + ": zone outside the map");
+    if (!(z.r > 0.02 && z.r <= 0.15)) err(w + ": zone radius should be 0.02-0.15");
+  });
+  (q.marks || []).forEach((m) => { if (!(m.x >= 0 && m.x <= 1 && m.y >= 0 && m.y <= 1) || !m.label) err(w + ": bad mark"); });
+  checkText(w, q.explain);
+});
+
+const pc = RA.patchChanges;
+if (pc) {
+  console.log("Patch changes:", pc.patch, (pc.champions || []).length, "champions,", (pc.items || []).length, "items");
+  if (pc.patch !== RA.patch.number) warn(`patch-changes.js is for patch ${pc.patch} but the site is on ${RA.patch.number}: the "What changed" page will be out of date`);
+  if (!pc.source) err("patch changes: missing source URL");
+  const CH = ["buff", "nerf", "adjust", "new"];
+  (pc.champions || []).forEach((c) => {
+    if (!dd.champions[c.id]) err(`patch changes: unknown champion id "${c.id}"`);
+    if (!CH.includes(c.change)) err(`patch changes ${c.id}: change must be one of ${CH.join("/")}`);
+    if (!c.summary) err(`patch changes ${c.id}: missing summary`);
+  });
+  (pc.items || []).forEach((x) => { if (!dd.items[x.name]) warn(`patch changes: item "${x.name}" not in Data Dragon (no icon)`); if (!CH.includes(x.change)) err(`patch changes ${x.name}: bad change`); });
+  (pc.runes || []).forEach((x) => { if (!dd.runes[x.name]) warn(`patch changes: rune "${x.name}" not in Data Dragon (no icon)`); if (!CH.includes(x.change)) err(`patch changes ${x.name}: bad change`); });
+}
+
+// Pre-rendered pages (tools/build-pages.js) should exist for every guide and champion.
+const missingPages = [];
+(RA.guides || []).forEach((g) => { if (!fs.existsSync(path.join(root, "guide", g.id, "index.html"))) missingPages.push("guide/" + g.id); });
+(RA.champs || []).forEach((c) => c.roles.forEach((r, i) => { const p = "champion/" + c.id + (i ? "/" + r : ""); if (!fs.existsSync(path.join(root, p, "index.html"))) missingPages.push(p); }));
+if (missingPages.length) warn(`${missingPages.length} pages not pre-rendered yet (run node tools/build-pages.js): ${missingPages.slice(0, 5).join(", ")}${missingPages.length > 5 ? "…" : ""}`);
+
 console.log(`\n${errors} error(s), ${warnings} warning(s)`);
 if (errors) process.exitCode = 1;

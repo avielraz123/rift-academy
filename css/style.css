@@ -414,3 +414,91 @@ select, input[type="number"], input[type="text"] {
 .footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 24px 16px; display: grid; gap: 10px; }
 .footer-inner .legal { max-width: 860px; }
 .champ-hero .ic { color: #fff; }
+
+/* ---------- learning path & progress ---------- */
+.linklike { background: none; border: 0; padding: 0; color: var(--gold-2); font: 600 .9rem var(--font); cursor: pointer; text-decoration: underline; }
+.btn.done { background: color-mix(in srgb, var(--green) 18%, var(--panel)); border-color: var(--green); color: var(--green); }
+.read-box { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 2em 0 0; padding-top: 1.2em; border-top: 1px solid var(--line); }
+.read-box span { color: var(--faint); font-size: .88rem; }
+.path-banner { margin-bottom: 20px; color: var(--muted); }
+.path-banner span { color: var(--gold-2); font-weight: 700; }
+.path-summary .progress { margin: 12px 0 16px; height: 8px; }
+.path-summary-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.path-summary-head h3 { margin: 0; }
+.path-stage-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+.path-stage-head h2 { margin: 0 0 4px; }
+.path-stage-head p { margin: 0; color: var(--muted); }
+.path-num { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 700 1.1rem var(--display); color: var(--c); border: 2px solid var(--c); }
+.path-stage .progress i { background: var(--c); }
+.path-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.path-steps li { display: flex; gap: 12px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; }
+.path-steps li.done a { color: var(--muted); }
+.path-steps li > div { min-width: 0; }
+.path-steps a { font-weight: 600; }
+.path-meta { color: var(--faint); font-size: .82rem; }
+.path-check { flex: none; width: 28px; height: 28px; border-radius: 8px; border: 2px solid var(--line); background: var(--panel-2); color: #1a1408; font-weight: 800; cursor: pointer; }
+.path-check:hover:not(:disabled) { border-color: var(--c, var(--gold)); }
+.path-check[aria-pressed="true"] { background: var(--c, var(--green)); border-color: var(--c, var(--green)); }
+.path-check:disabled { cursor: default; }
+
+/* ---------- patch changes ---------- */
+a.patch-pill:hover { text-decoration: none; border-color: var(--gold); }
+.badge.chg-buff { color: var(--green); border-color: color-mix(in srgb, var(--green) 45%, transparent); }
+.badge.chg-nerf { color: var(--red); border-color: color-mix(in srgb, var(--red) 45%, transparent); }
+.badge.chg-adjust { color: var(--intermediate); border-color: color-mix(in srgb, var(--intermediate) 45%, transparent); }
+.badge.chg-new { color: var(--blue); border-color: color-mix(in srgb, var(--blue) 45%, transparent); }
+.change-head { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+.change-head h3 { margin: 0 0 4px; }
+.change-icon { width: 48px; height: 48px; border-radius: 10px; flex: none; }
+.change-card p { margin-bottom: 8px; }
+.change-list { margin: 6px 0 0; padding-left: 1.2em; font-size: .9rem; color: var(--muted); }
+.change-list li { margin: 2px 0; }
+.change-card details summary { cursor: pointer; color: var(--gold-2); font-weight: 600; font-size: .9rem; }
+.change-note { margin-bottom: 16px; border-left: 4px solid var(--gold); }
+.change-note a { display: inline-block; margin-top: 8px; font-size: .9rem; font-weight: 600; }
+
+/* ---------- matchup lookup ---------- */
+.mu-picker { display: grid; gap: 14px; }
+.mu-picker label { display: grid; gap: 6px; font-weight: 700; }
+.mu-picker label span { font-size: .85rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.mu-picker select { width: 100%; max-width: 420px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); font: 600 1rem var(--font); }
+.mu-picker .chips { margin: 0; }
+.mu-picker .btn { justify-self: start; }
+#muResult { margin-top: 16px; }
+.mu-vs { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; margin-bottom: 16px; }
+.mu-vs > a, .mu-vs > div { display: grid; justify-items: center; gap: 6px; font-weight: 700; color: var(--text); }
+.mu-vs img { width: 72px; height: 72px; border-radius: 14px; border: 2px solid var(--line); }
+.mu-vs span { font: 700 1.3rem var(--display); color: var(--gold); }
+.mu-verdict { text-align: center; margin-bottom: 8px; }
+.mu-verdict .badge { font-size: .9rem; padding: 4px 14px; }
+.mu-verdict p { margin: 8px auto 0; max-width: 560px; }
+.mu-tip { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+.mu-tip p { color: var(--text); margin: 0; }
+.mu-tip ul { margin: 4px 0 0; }
+.mu-from { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--gold-2); margin-bottom: 4px; }
+.mu-kit { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.mu-kit li { display: flex; gap: 10px; align-items: center; }
+.mu-kit img { width: 40px; height: 40px; border-radius: 8px; flex: none; }
+.mu-kit b { display: block; font-size: .92rem; }
+.mu-kit .cd { color: var(--muted); font-size: .82rem; }
+
+/* ---------- map quiz ---------- */
+.mq-top { display: flex; justify-content: space-between; gap: 10px; color: var(--faint); font-size: .85rem; margin-bottom: 8px; }
+.mq-side { display: inline-block; font-weight: 700; font-size: .85rem; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; border: 1px solid; }
+.mq-side.blue { color: var(--blue); border-color: color-mix(in srgb, var(--blue) 50%, transparent); }
+.mq-side.red { color: var(--red); border-color: color-mix(in srgb, var(--red) 50%, transparent); }
+.mq-map { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1; margin: 0 auto; border-radius: 12px; overflow: hidden; cursor: crosshair; background: #000; touch-action: manipulation; user-select: none; }
+.mq-map.answered { cursor: default; }
+.mq-map img { width: 100%; height: 100%; display: block; }
+.mq-zone { position: absolute; border-radius: 50%; background: rgba(79, 209, 139, .35); border: 2px solid #4fd18b; pointer-events: none; }
+.mq-click { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; border: 3px solid #fff; pointer-events: none; box-shadow: 0 0 0 2px rgba(0, 0, 0, .6); }
+.mq-click.good { background: #4fd18b; }
+.mq-click.bad { background: #ff5c6c; }
+.mq-mark { position: absolute; pointer-events: none; }
+.mq-mark i { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; border: 2px solid #fff; background: #ff5c6c; box-shadow: 0 0 0 2px rgba(0, 0, 0, .6); }
+.mq-mark.blue i { background: #4a9eff; }
+.mq-mark b { position: absolute; left: 12px; top: -10px; white-space: nowrap; font-size: .78rem; color: #fff; background: rgba(0, 0, 0, .75); padding: 1px 6px; border-radius: 6px; }
+#mqFeedback { margin-top: 14px; }
+#mqFeedback .btn { margin-top: 12px; }
+.quiz-explain.good { border-left: 4px solid var(--green); }
+.quiz-explain.bad { border-left: 4px solid var(--red); }

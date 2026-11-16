@@ -6,51 +6,96 @@
 <iframe id="f" src="../index.html" style="width:375px;height:800px"></iframe>
 <script>
 /* Visits every route in an iframe and reports pages that throw errors, render "Page not found", render nearly empty,
-   or contain unexpanded {{tokens}} / broken champion images. Run: msedge --headless=new --dump-dom tests/smoke.html */
+   contain unexpanded {{tokens}}, undefined/NaN, or overflow sideways at phone width.
+   From disk:  msedge --headless=new --allow-file-access-from-files --dump-dom tests/smoke.html
+   On a web server (live site, or `python -m http.server` in the folder above the project) it also opens every
+   pre-rendered page from sitemap.xml directly and checks its links use real paths. */
 var f = document.getElementById("f"), out = document.getElementById("out");
+var HTTP = /^https?:$/.test(location.protocol);
+var problems = [], total = 0;
+
+function check(w, label, errors) {
+  var main = w.document.getElementById("app");
+  var text = main.textContent;
+  if (errors.length) problems.push(label + ": JS error " + errors.join("; "));
+  if (/Page not found/.test(text)) problems.push(label + ": not found");
+  if (text.trim().length < 200) problems.push(label + ": nearly empty (" + text.trim().length + " chars)");
+  var m = main.innerHTML.match(/\{\{[^}]*\}\}/);
+  if (m) problems.push(label + ": unexpanded token " + m[0]);
+  if (/undefined|\bNaN\b/.test(text)) problems.push(label + ": contains undefined/NaN");
+  var sw = w.document.documentElement.scrollWidth;
+  if (sw > w.innerWidth + 1) {
+    var wide = Array.prototype.filter.call(main.querySelectorAll("*"), function (el) { return el.getBoundingClientRect().right > w.innerWidth + 1; })
+      .slice(-1).map(function (el) { return el.tagName.toLowerCase() + "." + String(el.className).split(" ")[0]; });
+    problems.push(label + ": horizontal overflow at phone width (" + sw + "px > " + w.innerWidth + "px) " + wide.join(","));
+  }
+  if (HTTP) {
+    var bad = w.document.querySelector('a[href^="#/"]');
+    if (bad) problems.push(label + ": link not converted to a real path: " + bad.getAttribute("href"));
+  }
+}
+function done() {
+  out.textContent = "SMOKE " + (problems.length ? "FAIL" : "PASS") + ": " + total + " checks\n" + problems.join("\n");
+}
+
 f.onload = function () {
+  f.onload = null;
   var w = f.contentWindow, RA = w.RA, errors = [];
   w.addEventListener("error", function (e) { errors.push(e.message); });
-  var routes = ["", "guides", "guides?level=beginner", "roles", "champions", "champions?role=bot", "tierlist", "tierlist?role=bot", "tools", "glossary", "search?q=wave", "search?q=ziggs"];
+  var routes = ["", "guides", "guides?level=beginner", "roles", "champions", "champions?role=bot", "tierlist", "tierlist?role=bot", "tools", "glossary", "search?q=wave", "search?q=ziggs",
+    "path", "patch", "tools/matchup?you=Ziggs&vs=Yasuo", "tools/matchup?you=Ahri&vs=Katarina", "tools/matchup?you=Sylas&role=support&vs=Thresh", "tools/matchup?you=Caitlyn&vs=Garen"];
   RA.guides.forEach(function (g) { routes.push("guide/" + g.id); });
   RA.roles.forEach(function (r) { routes.push("role/" + r.id); });
   RA.champs.forEach(function (c) {
     c.roles.forEach(function (role) {
       var tabs = ["overview", "abilities", "play", "build", "matchups"];
-      if (RA.champPicks && RA.champPicks[c.id] && RA.champPicks[c.id].quiz) tabs.push("quiz");
+      var pk = RA.champPicks[c.id + ":" + role] || (RA.champRoles[c.id + ":" + role] ? null : RA.champPicks[c.id]);
+      if (pk && pk.quiz) tabs.push("quiz");
       tabs.forEach(function (t) { routes.push("champion/" + c.id + "?role=" + role + "&tab=" + t); });
+      if (role !== c.roles[0]) routes.push("champion/" + c.id + "/" + role);
     });
   });
   Object.keys(RA.tools).forEach(function (k) { routes.push("tools/" + k); });
-  var problems = [], i = 0;
+  var i = 0;
   function next() {
-    if (i >= routes.length) {
-      out.textContent = "SMOKE " + (problems.length ? "FAIL" : "PASS") + ": " + routes.length + " routes\n" + problems.join("\n");
-      return;
-    }
+    if (i >= routes.length) return HTTP ? pages() : done();
     var r = routes[i++];
     errors.length = 0;
+    total++;
     w.location.hash = "#/" + r;
-    setTimeout(function () {
-      var main = w.document.getElementById("app");
-      var text = main.textContent;
-      if (errors.length) problems.push(r + ": JS error " + errors.join("; "));
-      if (/Page not found/.test(text)) problems.push(r + ": not found");
-      if (text.trim().length < 200) problems.push(r + ": nearly empty (" + text.trim().length + " chars)");
-      var m = main.innerHTML.match(/\{\{[^}]*\}\}/);
-      if (m) problems.push(r + ": unexpanded token " + m[0]);
-      if (/undefined|\bNaN\b/.test(text)) problems.push(r + ": contains undefined/NaN");
-      var sw = w.document.documentElement.scrollWidth;
-      if (sw > w.innerWidth + 1) {
-        var wide = Array.prototype.filter.call(main.querySelectorAll("*"), function (el) { return el.getBoundingClientRect().right > w.innerWidth + 1; })
-          .slice(-1).map(function (el) { return el.tagName.toLowerCase() + "." + String(el.className).split(" ")[0]; });
-        problems.push(r + ": horizontal overflow at phone width (" + sw + "px > " + w.innerWidth + "px) " + wide.join(","));
-      }
-      next();
-    }, 60);
+    setTimeout(function () { check(w, r, errors); next(); }, 60);
   }
   next();
 };
+
+// Web only: load each pre-rendered page from sitemap.xml directly.
+function pages() {
+  var root = location.href.replace(/tests\/smoke\.html.*$/, "");
+  fetch(root + "sitemap.xml").then(function (r) { return r.text(); }).then(function (xml) {
+    var urls = (xml.match(/<loc>[^<]+<\/loc>/g) || []).map(function (l) {
+      return root + l.replace(/<\/?loc>/g, "").replace(/^https?:\/\/[^/]+\/[^/]+\//, "");
+    });
+    if (!urls.length) { problems.push("sitemap.xml has no URLs"); return done(); }
+    var j = 0;
+    function load() {
+      if (j >= urls.length) return done();
+      var u = urls[j++], errors = [];
+      total++;
+      f.onload = function () {
+        var w = f.contentWindow;
+        w.addEventListener("error", function (e) { errors.push(e.message); });
+        setTimeout(function () {
+          var label = "page " + u.slice(root.length || 0);
+          if (!w.RA || !w.RA.meta || !w.RA.meta.title) problems.push(label + ": app did not start");
+          else check(w, label, errors);
+          load();
+        }, 150);
+      };
+      f.src = u;
+    }
+    load();
+  }).catch(function (e) { problems.push("could not read sitemap.xml: " + e); done(); });
+}
 </script>
 </body>
 </html>
