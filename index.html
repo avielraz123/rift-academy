@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rift Academy: League of Legends Guides</title>
+  <meta name="description" content="League of Legends tips and guides for every level: fundamentals, role guides, mid and bot champion guides with current-patch builds, and practice tools.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 29 9.5v13L16 30 3 22.5v-13z' fill='%230a1018' stroke='%23c8aa6e' stroke-width='2'/%3E%3Cpath d='M16 8 22 19H10z' fill='%23c8aa6e'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;600;700;800&display=swap">
+  <link rel="preconnect" href="https://ddragon.leagueoflegends.com">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    try { var t = localStorage.getItem("ra-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="#/" aria-label="Rift Academy home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 29 9.5v13L16 30 3 22.5v-13z" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--gold)"/><path d="M16 8 22 19H10z" fill="var(--gold)"/><path d="M10 22h12" stroke="var(--gold)" stroke-width="1.6"/></svg>
+        <span>Rift <b>Academy</b></span>
+      </a>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="main-nav" id="mainNav">
+        <a href="#/guides" data-nav="guides">Guides</a>
+        <a href="#/roles" data-nav="roles">Roles</a>
+        <a href="#/champions" data-nav="champions">Champions</a>
+        <a href="#/tierlist" data-nav="tierlist">Tier List</a>
+        <a href="#/tools" data-nav="tools">Tools</a>
+        <a href="#/glossary" data-nav="glossary">Glossary</a>
+        <form class="search-form" id="searchForm" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="searchInput" placeholder="Search…" aria-label="Search the site">
+        </form>
+        <button class="icon-btn" id="themeBtn" aria-label="Switch light or dark theme" title="Switch theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div id="footerPatch"></div>
+      <div class="legal">Rift Academy isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</div>
+    </div>
+  </footer>
+
+  <!-- data -->
+  <script src="js/data/dd.js"></script>
+  <script src="js/data/patch.js"></script>
+  <script src="js/data/guides-beginner.js"></script>
+  <script src="js/data/guides-intermediate.js"></script>
+  <script src="js/data/guides-advanced.js"></script>
+  <script src="js/data/roles.js"></script>
+  <script src="js/data/champs-mid.js"></script>
+  <script src="js/data/champs-bot.js"></script>
+  <script src="js/data/builds.js"></script>
+  <script src="js/data/glossary.js"></script>
+  <!-- app -->
+  <script src="js/app.js"></script>
+  <script src="js/tools/cs-trainer.js"></script>
+  <script src="js/tools/timers.js"></script>
+  <script src="js/tools/quiz.js"></script>
+  <script src="js/tools/role-picker.js"></script>
+  <script>RA.start();</script>
+</body>
+</html>

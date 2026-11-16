@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Rift Academy smoke test</title></head>
+<body>
+<pre id="out">running…</pre>
+<iframe id="f" src="../index.html" style="width:375px;height:800px"></iframe>
+<script>
+/* Visits every route in an iframe and reports pages that throw errors, render "Page not found", render nearly empty,
+   or contain unexpanded {{tokens}} / broken champion images. Run: msedge --headless=new --dump-dom tests/smoke.html */
+var f = document.getElementById("f"), out = document.getElementById("out");
+f.onload = function () {
+  var w = f.contentWindow, RA = w.RA, errors = [];
+  w.addEventListener("error", function (e) { errors.push(e.message); });
+  var routes = ["", "guides", "guides?level=beginner", "roles", "champions", "champions?role=bot", "tierlist", "tierlist?role=bot", "tools", "glossary", "search?q=wave", "search?q=ziggs"];
+  RA.guides.forEach(function (g) { routes.push("guide/" + g.id); });
+  RA.roles.forEach(function (r) { routes.push("role/" + r.id); });
+  RA.champs.forEach(function (c) {
+    c.roles.forEach(function (role) {
+      ["overview", "abilities", "play", "build", "matchups"].forEach(function (t) { routes.push("champion/" + c.id + "?role=" + role + "&tab=" + t); });
+    });
+  });
+  Object.keys(RA.tools).forEach(function (k) { routes.push("tools/" + k); });
+  var problems = [], i = 0;
+  function next() {
+    if (i >= routes.length) {
+      out.textContent = "SMOKE " + (problems.length ? "FAIL" : "PASS") + ": " + routes.length + " routes\n" + problems.join("\n");
+      return;
+    }
+    var r = routes[i++];
+    errors.length = 0;
+    w.location.hash = "#/" + r;
+    setTimeout(function () {
+      var main = w.document.getElementById("app");
+      var text = main.textContent;
+      if (errors.length) problems.push(r + ": JS error " + errors.join("; "));
+      if (/Page not found/.test(text)) problems.push(r + ": not found");
+      if (text.trim().length < 200) problems.push(r + ": nearly empty (" + text.trim().length + " chars)");
+      var m = main.innerHTML.match(/\{\{[^}]*\}\}/);
+      if (m) problems.push(r + ": unexpanded token " + m[0]);
+      if (/undefined|\bNaN\b/.test(text)) problems.push(r + ": contains undefined/NaN");
+      var sw = w.document.documentElement.scrollWidth;
+      if (sw > w.innerWidth + 1) {
+        var wide = Array.prototype.filter.call(main.querySelectorAll("*"), function (el) { return el.getBoundingClientRect().right > w.innerWidth + 1; })
+          .slice(-1).map(function (el) { return el.tagName.toLowerCase() + "." + String(el.className).split(" ")[0]; });
+        problems.push(r + ": horizontal overflow at phone width (" + sw + "px > " + w.innerWidth + "px) " + wide.join(","));
+      }
+      next();
+    }, 60);
+  }
+  next();
+};
+</script>
+</body>
+</html>
