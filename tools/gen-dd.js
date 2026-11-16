@@ -14,8 +14,9 @@ const V = champs.version;
 const strip = (s) => String(s || "").replace(/<br\s*\/?>/g, " ").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 
 const all = {};
-// [name, title, classes, attack 0-10, magic 0-10, defense 0-10] (Riot's rough ratings, used to guess AD vs AP and tankiness)
-for (const c of Object.values(champs.data)) all[c.id] = [c.name, c.title, c.tags.join("/"), c.info.attack, c.info.magic, c.info.defense];
+// [name, title, classes, attack 0-10, magic 0-10, defense 0-10, attack range] (Riot's rough ratings, used to guess AD vs AP,
+// tankiness and melee vs ranged)
+for (const c of Object.values(champs.data)) all[c.id] = [c.name, c.title, c.tags.join("/"), c.info.attack, c.info.magic, c.info.defense, c.stats.attackrange];
 
 const kits = {};
 for (const f of fs.readdirSync(dir).filter(f => /^champ_\w+\.json$/.test(f)).sort()) {
@@ -88,4 +89,16 @@ const out = path.join(__dirname, "..", "js/data/dd.js");
 const js = "// Generated from Riot Data Dragon " + V + " by tools/gen-dd.js. Do not edit by hand.\nwindow.RA=window.RA||{};\nRA.dd=" +
   JSON.stringify({ version: V, champions: all, kits, items, itemInfo, runes, runeInfo, trees, summoners: sums }) + ";\n";
 fs.writeFileSync(out, js);
+
+// Every champion's ability names and icons (ability icon quiz). Loaded only by that tool.
+if (fs.existsSync(path.join(dir, "championFull.json"))) {
+  const full = read("championFull.json").data;
+  const abil = {};
+  for (const c of Object.values(full)) abil[c.id] = [[c.passive.name, c.passive.image.full]].concat(c.spells.map((s) => [s.name, s.image.full]));
+  const out2 = path.join(__dirname, "..", "js/data/abilities-all.js");
+  fs.writeFileSync(out2, "// Generated from Riot Data Dragon " + V + " by tools/gen-dd.js. Do not edit by hand.\n" +
+    "// [passive, Q, W, E, R] as [name, icon file] for every champion. Loaded on demand by the ability quiz.\n" +
+    "window.RA=window.RA||{};\nRA.abilitiesAll=" + JSON.stringify(abil) + ";\n");
+  console.log("wrote", out2, Object.keys(abil).length, "champions");
+} else console.log("championFull.json not found: skipped js/data/abilities-all.js");
 console.log("wrote", out, (js.length / 1024).toFixed(0) + "KB,", Object.keys(kits).length, "kits, version", V);

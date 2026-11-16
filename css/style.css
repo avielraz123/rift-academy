@@ -541,9 +541,9 @@ a.ic:hover { text-decoration: none; color: var(--gold-2); }
 .adapt-tip { margin: 8px 0 0; font-size: .88rem; color: var(--gold-2); }
 
 /* ---------- game plan builder ---------- */
-.gp-picker label { display: grid; gap: 6px; font-weight: 700; }
-.gp-picker label span { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
-.gp-picker select { width: 100%; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); font: 600 .95rem var(--font); }
+.gp-picker label, .pb-picker label { display: grid; gap: 6px; font-weight: 700; }
+.gp-picker label span, .pb-picker label span { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.gp-picker select, .pb-picker select { width: 100%; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); font: 600 .95rem var(--font); }
 .gp-you { display: grid; gap: 10px; max-width: 420px; }
 .gp-you .chips { margin: 0; }
 .gp-enemies { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
@@ -598,3 +598,45 @@ a.ic:hover { text-decoration: none; color: var(--gold-2); }
 .item-hero h1 { overflow-wrap: anywhere; }
 @media (max-width: 520px) { .item-hero img { width: 60px; height: 60px; } .item-hero { gap: 12px; } }
 @media (max-width: 520px) { .ws-label { font-size: 2.6px; } }
+
+/* ---------- ability quiz ---------- */
+.quiz-img { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 4px 0 14px; }
+.quiz-img img { width: 96px; height: 96px; border-radius: 14px; border: 2px solid var(--gold); background: var(--bg-2); }
+.quiz-img span { font-weight: 700; color: var(--gold-2); }
+.quiz-opts.quiz-keys { grid-template-columns: repeat(5, 1fr); }
+.quiz-opts.quiz-keys .quiz-opt { text-align: center; padding-left: 4px; padding-right: 4px; font-weight: 800; }
+.search-thumb { display: flex; gap: 14px; align-items: flex-start; }
+.search-thumb > img { width: 48px; height: 48px; border-radius: 9px; border: 1px solid var(--line); flex: none; background: var(--bg-2); }
+.search-thumb > img.round { border: none; background: none; border-radius: 50%; }
+.search-thumb > div { min-width: 0; }
+
+/* ---------- glossary pop-ups ---------- */
+abbr.gloss { text-decoration: underline dotted color-mix(in srgb, var(--gold) 70%, transparent); text-underline-offset: 3px; cursor: help; }
+abbr.gloss:hover, abbr.gloss:focus { color: var(--gold-2); outline: none; }
+.gloss-pop { position: absolute; z-index: 50; background: var(--panel); border: 1px solid var(--gold); border-radius: var(--radius-sm); padding: 12px 14px; box-shadow: var(--shadow); font-size: .92rem; color: var(--muted); }
+.gloss-pop b { display: block; color: var(--text); margin-bottom: 4px; padding-right: 20px; }
+.gloss-pop a { display: inline-block; margin-top: 8px; font-weight: 600; }
+.gloss-x { position: absolute; top: 6px; right: 8px; background: none; border: 0; color: var(--muted); font-size: 1.2rem; cursor: pointer; }
+
+/* ---------- pool builder ---------- */
+.pb-picker h3 { margin: 6px 0 8px; }
+.pb-picker .chips { margin-bottom: 14px; }
+.pb-note { color: var(--faint); font-size: .85rem; margin: 10px 0 0; }
+#pbResult { margin-top: 16px; }
+.pb-weak { padding: 12px 0; border-top: 1px solid var(--line); }
+.pb-weak:first-of-type { border-top: 0; padding-top: 4px; }
+.pb-weak-head { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+.pb-weak-head img { width: 36px; height: 36px; border-radius: 8px; }
+.pb-weak p { margin: 4px 0; }
+.pb-weak-text { color: var(--muted); font-size: .9rem; }
+.pb-threats { display: flex; flex-wrap: wrap; gap: 6px; }
+.pb-threat { display: inline-flex; gap: 6px; align-items: center; padding: 3px 10px 3px 3px; border-radius: 999px; background: var(--panel-2); border: 1px solid color-mix(in srgb, var(--red) 40%, var(--line)); font-weight: 600; font-size: .88rem; }
+.pb-threat img { width: 24px; height: 24px; border-radius: 50%; }
+.pb-threat.covered { border-color: color-mix(in srgb, var(--green) 50%, var(--line)); }
+.pb-threat small { color: var(--green); font-weight: 700; }
+.pb-cand.top { border-color: var(--gold); }
+.pb-cand-head { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+.pb-cand-head img { width: 56px; height: 56px; border-radius: 12px; flex: none; }
+.pb-cand-head h3 { display: inline; margin: 0; }
+.pb-sub { display: block; color: var(--faint); font-size: .82rem; margin-top: 2px; }
+.pb-cand ul { margin: 0; }

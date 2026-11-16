@@ -8,7 +8,7 @@ V="${2:-$(curl -fsS https://ddragon.leagueoflegends.com/api/versions.json | node
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 mkdir -p "$DIR"
 BASE="https://ddragon.leagueoflegends.com/cdn/$V/data/en_US"
-for f in item runesReforged champion summoner; do curl -fsS -o "$DIR/$f.json" "$BASE/$f.json"; done
+for f in item runesReforged champion championFull summoner; do curl -fsS -o "$DIR/$f.json" "$BASE/$f.json"; done
 IDS=$(grep -ohE 'RA\.champs\.push\(\{\s*id: "[A-Za-z]+"|^\s*id: "[A-Za-z]+",' "$ROOT"/js/data/champs-*.js | grep -oE '"[A-Za-z]+"' | tr -d '"' | sort -u)
 for id in $IDS; do curl -fsS -o "$DIR/champ_$id.json" "$BASE/champion/$id.json"; done
 echo "Downloaded Data Dragon $V ($(echo "$IDS" | wc -w) champion kits) to $DIR"

@@ -201,6 +201,7 @@
   var cleanup = null;
   function render() {
     if (cleanup) { try { cleanup(); } catch (e) { console.error(e); } cleanup = null; }
+    if (typeof closeGloss === "function") closeGloss();
     if (HTTP && /^#\//.test(location.hash)) history.replaceState(null, "", routeUrl(location.hash.slice(2)));
     var loc = parseRoute(currentRoute());
     var app = $("#app");
@@ -369,6 +370,7 @@
         (next ? '<p style="margin-top:2em"><a class="btn" href="#/guide/' + next.id + '">Next: ' + esc(next.title) + " →</a></p>" : "") +
         (related.length ? '<section class="section"><h2>Related guides</h2><div class="grid cols-2">' + related.map(guideCard).join("") + "</div></section>" : "") +
       "</article>" + toc(g.sections, g.quiz ? '<a href="#s-check" data-anchor>Check yourself</a>' : "") + "</div>";
+    glossify($("article.prose", app));
     wireAnchors(app);
     wireReadButtons(app);
     if (g.quiz) wireMiniQuiz(app, g.quiz);
@@ -392,12 +394,12 @@
   var LEARN_PATH = [
     { title: "Your first games", level: "beginner", blurb: "How a game works, the map, farming, shopping and staying alive. Enough to enjoy your first games and stop feeding.",
       steps: ["guide:how-league-works", "guide:the-map", "tool:role-picker", "role", "guide:last-hitting", "tool:cs-trainer", "guide:items-and-gold", "guide:summoners-and-runes",
-        "guide:vision-basics", "guide:staying-alive", "tool:map-quiz", "guide:reading-the-scoreboard", "guide:teamwork-and-pings", "guide:champ-select-basics", "guide:climbing-low-elo", "tool:quiz"] },
+        "guide:vision-basics", "guide:staying-alive", "tool:map-quiz", "tool:ability-quiz", "guide:reading-the-scoreboard", "guide:teamwork-and-pings", "guide:champ-select-basics", "guide:climbing-low-elo", "tool:quiz"] },
     { title: "Winning your lane", level: "intermediate", blurb: "Control the wave, trade well, time your recalls and turn a lead into dragons and towers.",
       steps: ["guide:wave-management", "tool:wave-sim", "guide:trading", "guide:melee-vs-ranged", "guide:recall-timing", "guide:jungle-tracking", "guide:objectives-and-dragons", "tool:timers", "guide:roaming",
         "guide:teamfighting", "guide:reading-the-enemy-team", "guide:team-synergy", "tool:matchup", "tool:game-plan", "tool:draft-practice"] },
     { title: "Climbing ranked", level: "advanced", blurb: "Power spikes, lane priority, vision control, side lanes, win conditions and the mental game.",
-      steps: ["guide:power-spikes", "guide:matchups-and-cooldowns", "guide:counter-picking", "guide:vision-control", "guide:side-lanes", "guide:win-conditions", "guide:mental-game", "patch"] }
+      steps: ["guide:power-spikes", "guide:matchups-and-cooldowns", "guide:counter-picking", "tool:pool-builder", "guide:vision-control", "guide:side-lanes", "guide:win-conditions", "guide:mental-game", "patch"] }
   ];
   // What a step key points to: {key, title, href, kind, minutes}
   function stepInfo(key) {
@@ -467,6 +469,122 @@
     draw();
   });
 
+  /* ---------- glossary pop-ups in guides ---------- */
+  // Everyday words that also have a League meaning: not underlined (too many false hits).
+  var GLOSS_SKIP = ["B", "Back", "Bot", "Wave", "Tank", "Support", "Mana", "Armor", "Recall", "Utility", "Farm", "Nexus", "Baron", "Smite", "Flash",
+    "Teleport", "Trinket", "Dragon", "Drake", "Soul", "Jungler", "Counter", "Bait", "Carry", "Push", "Trade", "Bounty", "Red buff", "Blue buff",
+    "Elder Dragon", "Summoner spells", "Assassin", "Magic resist", "Cooldown", "Execute", "Missing", "Burst", "Meta", "Comp", "Macro", "Micro", "Engage", "a wave"];
+  var glossIndex = null;
+  function buildGlossIndex() {
+    var aliases = [], byAlias = {};
+    RA.glossary.forEach(function (g) {
+      String(g.term).split(/\s*\/\s*|\s*\(|\)\s*/).map(function (s) { return s.trim(); }).filter(Boolean).forEach(function (a) {
+        if (GLOSS_SKIP.indexOf(a) >= 0 || a.length < 2) return;
+        aliases.push(a);
+        byAlias[a.toLowerCase()] = g;
+      });
+    });
+    aliases.sort(function (a, b) { return b.length - a.length; });
+    var acr = function (a) { return a.length <= 4 && a === a.toUpperCase() || /^[A-Z][a-z][A-Z]$/.test(a); }; // CS, ADC, AoE
+    var parts = aliases.map(function (a) {
+      var e = a.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      if (acr(a)) return e;
+      return /e$/i.test(a) ? e.slice(0, -1) + "(?:e|es|ed|ing)" : e + "(?:s|es|ed|ing)?";
+    });
+    // JS has no inline case flags: match acronyms case-sensitively in a second regex.
+    var words = [], acrs = [];
+    aliases.forEach(function (a, i) { (acr(a) ? acrs : words).push(acr(a) ? a.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") : parts[i]); });
+    glossIndex = {
+      words: words.length ? new RegExp("\\b(" + words.join("|") + ")\\b", "gi") : null,
+      acrs: acrs.length ? new RegExp("\\b(" + acrs.join("|") + ")\\b", "g") : null,
+      find: function (txt) {
+        var low = txt.toLowerCase();
+        if (byAlias[low]) return byAlias[low];
+        for (var k in byAlias) if (low.indexOf(k.replace(/e$/, "")) === 0) return byAlias[k];
+        return null;
+      }
+    };
+  }
+  // Underline the first use of each glossary term inside the article text.
+  function glossify(container) {
+    if (!container || !RA.glossary.length || !document.createTreeWalker) return;
+    if (!glossIndex) buildGlossIndex();
+    var used = {};
+    var walker = document.createTreeWalker(container, 4 /* text */, {
+      acceptNode: function (n) {
+        for (var p = n.parentNode; p && p !== container; p = p.parentNode) {
+          if (/^(A|H1|H2|H3|H4|BUTTON|ABBR|KBD|CODE|LABEL)$/.test(p.nodeName) || (p.classList && (p.classList.contains("ic") || p.classList.contains("badge") || p.classList.contains("toc") || p.classList.contains("label") || p.hasAttribute("data-miniquiz")))) return 2;
+        }
+        return 1;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (node) {
+      var text = node.nodeValue, hits = [];
+      [glossIndex.acrs, glossIndex.words].forEach(function (re) {
+        if (!re) return;
+        re.lastIndex = 0;
+        var m;
+        while ((m = re.exec(text))) hits.push({ i: m.index, s: m[0] });
+      });
+      hits.sort(function (a, b) { return a.i - b.i; });
+      var out = [], pos = 0;
+      hits.forEach(function (h) {
+        if (h.i < pos) return;
+        var g = glossIndex.find(h.s);
+        if (!g || used[g.term]) return;
+        used[g.term] = true;
+        out.push({ i: h.i, s: h.s, g: g });
+        pos = h.i + h.s.length;
+      });
+      if (!out.length) return;
+      var frag = document.createDocumentFragment(), at = 0;
+      out.forEach(function (h) {
+        if (h.i > at) frag.appendChild(document.createTextNode(text.slice(at, h.i)));
+        var ab = document.createElement("abbr");
+        ab.className = "gloss";
+        ab.setAttribute("tabindex", "0");
+        ab.setAttribute("role", "button");
+        ab.setAttribute("data-term", h.g.term);
+        ab.setAttribute("title", textOf(h.g.def).replace(/\s+/g, " ").trim());
+        ab.textContent = h.s;
+        frag.appendChild(ab);
+        at = h.i + h.s.length;
+      });
+      if (at < text.length) frag.appendChild(document.createTextNode(text.slice(at)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+  var glossPop = null;
+  function closeGloss() { if (glossPop) { glossPop.remove(); glossPop = null; } }
+  function openGloss(ab) {
+    closeGloss();
+    var g = RA.glossary.filter(function (x) { return x.term === ab.getAttribute("data-term"); })[0];
+    if (!g) return;
+    glossPop = document.createElement("div");
+    glossPop.className = "gloss-pop";
+    glossPop.setAttribute("role", "dialog");
+    glossPop.innerHTML = '<button class="gloss-x" aria-label="Close">×</button><b>' + esc(g.term) + "</b><div>" + rich(g.def) + '</div><a href="#/glossary?term=' + encodeURIComponent(g.term) + '">Full glossary →</a>';
+    document.body.appendChild(glossPop);
+    fixLinks(glossPop);
+    var r = ab.getBoundingClientRect(), w = Math.min(320, window.innerWidth - 24);
+    glossPop.style.width = w + "px";
+    glossPop.style.left = Math.max(12, Math.min(window.innerWidth - w - 12, r.left + window.scrollX + r.width / 2 - w / 2)) + "px";
+    glossPop.style.top = (r.bottom + window.scrollY + 8) + "px";
+    glossPop.querySelector(".gloss-x").addEventListener("click", closeGloss);
+  }
+  document.addEventListener("click", function (e) {
+    var ab = e.target.closest && e.target.closest("abbr.gloss");
+    if (ab) { e.preventDefault(); openGloss(ab); return; }
+    if (glossPop && !glossPop.contains(e.target)) closeGloss();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeGloss();
+    var ab = e.target.closest && e.target.closest("abbr.gloss");
+    if (ab && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openGloss(ab); }
+  });
+
   /* ---------- roles ---------- */
   route("roles", function (app) {
     RA.setTitle("Roles", "Guides for all five League of Legends roles: top, jungle, mid, bot and support. What each role does, how to play it, beginner champions and common mistakes.");
@@ -497,6 +615,7 @@
         (r.youLikeThisIf ? '<div class="takeaways" style="margin-top:0"><h3>You\'ll enjoy this role if…</h3>' + list(r.youLikeThisIf) + "</div>" : "") +
         articleBody(sections) + miniQuiz(r.quiz) + readButton("role:" + r.id) +
       "</article>" + toc(sections, r.quiz ? '<a href="#s-check" data-anchor>Check yourself</a>' : "") + "</div>";
+    glossify($("article.prose", app));
     wireAnchors(app);
     wireReadButtons(app);
     if (r.quiz) wireMiniQuiz(app, r.quiz);
@@ -1009,6 +1128,23 @@
         if (g.term.toLowerCase().indexOf(t) >= 0 || textOf(g.def).toLowerCase().indexOf(t) >= 0) {
           results.push({ score: g.term.toLowerCase() === t ? 15 : 3, html: '<a class="card" href="#/glossary?term=' + encodeURIComponent(g.term) + '"><div class="meta"><span class="badge">Glossary</span></div><h3>' + esc(g.term) + "</h3><p>" + esc(textOf(g.def)) + "</p></a>" });
         }
+      });
+      Object.keys(RA.tools).forEach(function (k) {
+        var tl = RA.tools[k], hay = (tl.title + " " + tl.summary + " " + (tl.intro || "")).toLowerCase();
+        var score = (tl.title.toLowerCase().indexOf(t) >= 0 ? 16 : 0) + (hay.indexOf(t) >= 0 ? 4 : 0);
+        if (score) results.push({ score: score, html: '<a class="card" href="#/tools/' + k + '"><div class="meta"><span class="badge">Practice tool</span></div><h3>' + tl.emoji + " " + esc(tl.title) + "</h3><p>" + esc(tl.summary) + "</p></a>" });
+      });
+      Object.keys(DD.itemInfo || {}).forEach(function (n) {
+        var g = (RA.itemGuide || {})[n] || {}, it = DD.itemInfo[n];
+        var hay = (n + " " + it.plain + " " + it.effects.map(function (e) { return e.name + " " + e.text; }).join(" ") + " " + textOf(g.what) + " " + textOf(g.buyWhen)).toLowerCase();
+        var score = (n.toLowerCase().indexOf(t) >= 0 ? 18 : 0) + (hay.indexOf(t) >= 0 ? 2 : 0);
+        if (score) results.push({ score: score, html: '<a class="card search-thumb" href="' + itemLink(n) + '"><img src="' + img.item(n) + '" alt="" loading="lazy"><div><div class="meta"><span class="badge">Item</span><span class="badge">' + it.gold + "g</span></div><h3>" + esc(n) + "</h3><p>" + esc(textOf(g.what || it.plain)) + "</p></div></a>" });
+      });
+      Object.keys(DD.runeInfo || {}).forEach(function (n) {
+        var g = (RA.runeGuide || {})[n] || {};
+        var hay = (n + " " + DD.runeInfo[n].desc + " " + textOf(g.what) + " " + textOf(g.takeWhen)).toLowerCase();
+        var score = (n.toLowerCase().indexOf(t) >= 0 ? 18 : 0) + (hay.indexOf(t) >= 0 ? 2 : 0);
+        if (score) results.push({ score: score, html: '<a class="card search-thumb" href="' + runeLink(n) + '"><img src="' + img.rune(n) + '" alt="" loading="lazy" class="round"><div><div class="meta"><span class="badge">Rune</span><span class="badge">' + esc(DD.runes[n][1]) + "</span></div><h3>" + esc(n) + "</h3><p>" + esc(textOf(g.what || DD.runes[n][2])) + "</p></div></a>" });
       });
       results.sort(function (a, b) { return b.score - a.score; });
     }

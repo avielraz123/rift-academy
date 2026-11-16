@@ -15,9 +15,9 @@
     opts = opts || {};
     // shuffle options per question, keeping track of the right answer
     var qs = questions.map(function (x) {
-      var order = shuffle(x.options.map(function (_, i) { return i; }));
+      var order = x.fixedOrder ? x.options.map(function (_, i) { return i; }) : shuffle(x.options.map(function (_, i) { return i; }));
       return { q: x.q, options: order.map(function (i) { return x.options[i]; }), answer: order.indexOf(x.answer), explain: x.explain, source: x.source,
-        ally: x.ally, enemy: x.enemy, role: x.role, optionChamps: x.optionChamps };
+        ally: x.ally, enemy: x.enemy, role: x.role, optionChamps: x.optionChamps, image: x.image, imageLabel: x.imageLabel, fixedOrder: x.fixedOrder };
     });
     function team(label, ids, color) {
       if (!ids || !ids.length) return "";
@@ -44,8 +44,9 @@
         '<div class="progress"><i style="width:' + (i / qs.length * 100) + '%"></i></div>' +
         '<div style="color:var(--faint);font-size:.85rem;margin-bottom:6px">Question ' + (i + 1) + " of " + qs.length + (opts.compact ? "" : " · Score " + score) + "</div>" +
         draftBox(x) +
+        (x.image ? '<div class="quiz-img"><img src="' + esc(x.image) + '" alt="' + esc(x.imageLabel || "") + '">' + (x.imageLabel ? "<span>" + esc(x.imageLabel) + "</span>" : "") + "</div>" : "") +
         '<div class="quiz-q">' + esc(x.q) + "</div>" +
-        '<div class="quiz-opts">' + x.options.map(function (o, k) { return '<button class="quiz-opt" data-k="' + k + '">' + optLabel(x, o) + "</button>"; }).join("") + "</div>" +
+        '<div class="quiz-opts' + (x.fixedOrder && x.options.length === 5 ? " quiz-keys" : "") + '">' + x.options.map(function (o, k) { return '<button class="quiz-opt" data-k="' + k + '">' + optLabel(x, o) + "</button>"; }).join("") + "</div>" +
         '<div id="qExplain"></div>';
       Array.prototype.forEach.call(el.querySelectorAll(".quiz-opt"), function (b) {
         b.addEventListener("click", function () { pick(Number(b.dataset.k)); });
@@ -71,6 +72,7 @@
       el.querySelector("#qNext").focus();
     }
     function finish() {
+      if (opts.onScore) opts.onScore(score, qs.length);
       var pct = Math.round(score / qs.length * 100);
       var msg = pct === 100 ? "Perfect! You really know this." : pct >= 70 ? "Nice work! Review the ones you missed." : pct >= 40 ? "Good start. Re-read the guides and try again." : "Keep learning. The guides will get you there.";
       el.innerHTML = '<div style="text-align:center;padding:10px 0"><div class="score-big">' + score + " / " + qs.length + '</div><p style="color:var(--muted)">' + msg + '</p><div class="btn-row" style="justify-content:center"><button class="btn" id="qAgain">Try again</button>' + (opts.onDone ? '<button class="btn ghost" id="qMenu">Change quiz</button>' : "") + "</div></div>";
