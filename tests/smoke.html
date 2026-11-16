@@ -43,7 +43,9 @@ f.onload = function () {
   var w = f.contentWindow, RA = w.RA, errors = [];
   w.addEventListener("error", function (e) { errors.push(e.message); });
   var routes = ["", "guides", "guides?level=beginner", "roles", "champions", "champions?role=bot", "tierlist", "tierlist?role=bot", "tools", "glossary", "search?q=wave", "search?q=ziggs",
-    "path", "patch", "tools/matchup?you=Ziggs&vs=Yasuo", "tools/matchup?you=Ahri&vs=Katarina", "tools/matchup?you=Sylas&role=support&vs=Thresh", "tools/matchup?you=Caitlyn&vs=Garen"];
+    "path", "patch", "items", "items?cat=mage", "items?cat=support", "runes",
+    "tools/game-plan?you=Ziggs&role=mid&e=Malphite,Sejuani,Ahri,Jinx,Soraka", "tools/game-plan?you=Draven&e=Zed,LeeSin,Leblanc,Caitlyn,Leona", "tools/game-plan?you=Sylas&role=support&e=Garen",
+    "tools/matchup?you=Ziggs&vs=Yasuo", "tools/matchup?you=Ahri&vs=Katarina", "tools/matchup?you=Sylas&role=support&vs=Thresh", "tools/matchup?you=Caitlyn&vs=Garen"];
   RA.guides.forEach(function (g) { routes.push("guide/" + g.id); });
   RA.roles.forEach(function (r) { routes.push("role/" + r.id); });
   RA.champs.forEach(function (c) {
@@ -56,6 +58,9 @@ f.onload = function () {
     });
   });
   Object.keys(RA.tools).forEach(function (k) { routes.push("tools/" + k); });
+  var slug = function (s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); };
+  Object.keys(RA.dd.itemInfo || {}).forEach(function (n) { routes.push("item/" + slug(n)); });
+  Object.keys(RA.dd.runeInfo || {}).forEach(function (n) { routes.push("rune/" + slug(n)); });
   var i = 0;
   function next() {
     if (i >= routes.length) return HTTP ? pages() : done();

@@ -64,6 +64,30 @@
     return (lines || []).filter(function (l) { return re.test(l); });
   }
 
+  function roleOfChamp(id, want) {
+    var c = RA.champs.filter(function (x) { return x.id === id; })[0];
+    return c && c.roles.indexOf(want) >= 0 ? want : (c ? c.roles[0] : "mid");
+  }
+  // What our guides say about you (in role) vs an enemy: {verdict: hard|easy|none, tips, into, avoid, theirs}
+  RA.matchupVerdict = function (you, role, vs) {
+    var mine = RA.champFor(you, role);
+    var yn = esc(RA.champName(you)), en = esc(RA.champName(vs));
+    var verdict = null, tips = [];
+    var h = find(mine && mine.matchups && mine.matchups.hard, vs), e = find(mine && mine.matchups && mine.matchups.easy, vs);
+    if (h) { verdict = "hard"; tips.push({ from: "From the " + yn + " guide", html: RA.rich(h.tip) }); }
+    if (e) { verdict = "easy"; tips.push({ from: "From the " + yn + " guide", html: RA.rich(e.tip) }); }
+    var theirs = RA.hasGuide(vs) ? RA.champFor(vs, roleOfChamp(vs, role)) : null;
+    if (theirs) {
+      var th = find(theirs.matchups && theirs.matchups.hard, you), te = find(theirs.matchups && theirs.matchups.easy, you);
+      if (th) { verdict = verdict || "easy"; tips.push({ from: "From the " + en + " guide (their side: " + yn + " is a tough matchup for them)", html: RA.rich(th.tip) }); }
+      if (te) { verdict = verdict || "hard"; tips.push({ from: "From the " + en + " guide (their side: they like this matchup)", html: RA.rich(te.tip) }); }
+    }
+    var pk = RA.champPicks[you + ":" + role] || (RA.champRoles[you + ":" + role] ? null : RA.champPicks[you]);
+    var into = mentions(pk && pk.into, vs), avoid = mentions(pk && pk.avoid, vs);
+    return { verdict: verdict || (avoid.length ? "hard" : into.length ? "easy" : "none"), tips: tips, into: into, avoid: avoid, theirs: theirs };
+  };
+  RA.classTips = CLASS_TIPS;
+
   RA.tools.matchup = {
     title: "Matchup Lookup",
     emoji: "⚔️",
@@ -104,28 +128,14 @@
       }
 
       function result() {
-        var mine = RA.champFor(you, role);
         var yn = esc(RA.champName(you)), en = esc(RA.champName(vs));
-        var verdict = null, tips = [];
-        // 1. Our own guide's matchup list
-        var h = find(mine.matchups && mine.matchups.hard, vs), e = find(mine.matchups && mine.matchups.easy, vs);
-        if (h) { verdict = "hard"; tips.push({ from: "From the " + yn + " guide", html: RA.rich(h.tip) }); }
-        if (e) { verdict = "easy"; tips.push({ from: "From the " + yn + " guide", html: RA.rich(e.tip) }); }
-        // 2. The enemy's guide, seen from their side
-        var theirs = RA.hasGuide(vs) ? RA.champFor(vs, roleOf(vs, role)) : null;
-        if (theirs) {
-          var th = find(theirs.matchups && theirs.matchups.hard, you), te = find(theirs.matchups && theirs.matchups.easy, you);
-          if (th) { verdict = verdict || "easy"; tips.push({ from: "From the " + en + " guide (their side: " + yn + " is a tough matchup for them)", html: RA.rich(th.tip) }); }
-          if (te) { verdict = verdict || "hard"; tips.push({ from: "From the " + en + " guide (their side: they like this matchup)", html: RA.rich(te.tip) }); }
-        }
-        // 3. "When to pick" notes that name the enemy
-        var pk = RA.champPicks[you + ":" + role] || (RA.champRoles[you + ":" + role] ? null : RA.champPicks[you]);
-        var into = mentions(pk && pk.into, vs), avoid = mentions(pk && pk.avoid, vs);
+        var mv = RA.matchupVerdict(you, role, vs);
+        var verdict = mv.verdict, tips = mv.tips, into = mv.into, avoid = mv.avoid, theirs = mv.theirs;
         var head = {
           hard: ['<span class="badge hard">Tough matchup</span>', yn + " is not favored here. Play safe early and look for the windows below."],
           easy: ['<span class="badge easy">Favorable matchup</span>', yn + " is favored here. Use the tips below to press your advantage."],
           none: ['<span class="badge">No rating yet</span>', "Our guides don't rate this pair yet, so it's mostly about skill and the general plan below."]
-        }[verdict || (avoid.length ? "hard" : into.length ? "easy" : "none")];
+        }[verdict];
 
         var tags = (RA.dd.champions[vs][2] || "").split("/");
         var cls = CLASS_TIPS[tags[0]];

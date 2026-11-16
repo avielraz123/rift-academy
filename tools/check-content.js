@@ -179,6 +179,49 @@ if (pc) {
   (pc.runes || []).forEach((x) => { if (!dd.runes[x.name]) warn(`patch changes: rune "${x.name}" not in Data Dragon (no icon)`); if (!CH.includes(x.change)) err(`patch changes ${x.name}: bad change`); });
 }
 
+// Item and rune advice (item/rune pages)
+const tokensIn = (w, obj) => checkText(w, JSON.stringify(obj).replace(/\\"/g, '"'));
+const champList = (w, ids) => (ids || []).forEach((id) => { if (!dd.champions[id]) err(`${w}: unknown champion id "${id}"`); });
+if (dd.itemInfo) {
+  const ig = RA.itemGuide || {};
+  console.log("Item pages:", Object.keys(dd.itemInfo).length, "items,", Object.keys(ig).length, "with advice");
+  for (const n of Object.keys(dd.itemInfo)) if (!ig[n]) warn(`item "${n}" has no buying advice in item-guide.js`);
+  for (const [n, g] of Object.entries(ig)) {
+    if (!dd.itemInfo[n]) { warn(`item-guide.js: "${n}" is not a finished item this patch (removed or renamed?)`); continue; }
+    if (!g.what || !g.buyWhen) err(`item-guide ${n}: needs what and buyWhen`);
+    champList("item-guide " + n, g.goodOn); tokensIn("item-guide " + n, g);
+  }
+}
+if (dd.runeInfo) {
+  const rg = RA.runeGuide || {};
+  console.log("Rune pages:", Object.keys(dd.runeInfo).length, "runes,", Object.keys(rg).length, "with advice");
+  for (const n of Object.keys(dd.runeInfo)) if (!rg[n]) warn(`rune "${n}" has no advice in rune-guide.js`);
+  for (const [n, g] of Object.entries(rg)) {
+    if (!dd.runeInfo[n]) { warn(`rune-guide.js: "${n}" is not a rune this patch`); continue; }
+    if (!g.what || !g.takeWhen) err(`rune-guide ${n}: needs what and takeWhen`);
+    champList("rune-guide " + n, g.goodOn); tokensIn("rune-guide " + n, g);
+  }
+}
+// Adapt your build (item swaps by enemy team)
+const SITS = ["tanky", "squishy", "ad", "ap", "healing", "cc"];
+console.log("Adapt your build:", Object.keys(RA.champAdapt || {}).length, "of", Object.keys(RA.builds || {}).length, "builds");
+for (const key of Object.keys(RA.builds || {})) if (!(RA.champAdapt || {})[key]) warn(`build ${key}: no "Adapt your build" entry`);
+for (const [key, a] of Object.entries(RA.champAdapt || {})) {
+  const b = (RA.builds || {})[key];
+  if (!b) { err(`adapt ${key}: no build with this key`); continue; }
+  const base = [].concat(b.core || [], [b.boots], (b.situational || []).map((s) => s.item), b.starter || []);
+  for (const s of SITS) {
+    if (!a[s] || !a[s].items || !a[s].items.length) { err(`adapt ${key}: missing ${s}`); continue; }
+    for (const x of a[s].items) {
+      if (!dd.itemInfo || !dd.itemInfo[x.item]) err(`adapt ${key} ${s}: "${x.item}" is not a finished item`);
+      if (x.replaces && base.indexOf(x.replaces) < 0) warn(`adapt ${key} ${s}: replaces "${x.replaces}", which is no longer in the build`);
+      if (!x.why) err(`adapt ${key} ${s}: missing why`);
+    }
+  }
+  tokensIn("adapt " + key, a);
+}
+for (const k of ["healing", "cc"]) champList("comp-tags " + k, (RA.compTags || {})[k]);
+
 // Pre-rendered pages (tools/build-pages.js) should exist for every guide and champion.
 const missingPages = [];
 (RA.guides || []).forEach((g) => { if (!fs.existsSync(path.join(root, "guide", g.id, "index.html"))) missingPages.push("guide/" + g.id); });

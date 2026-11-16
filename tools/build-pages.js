@@ -35,12 +35,15 @@ const RA = window.RA;
 RA.start();
 
 // Every page we publish. Query-string variants (filters, tabs) share their page's file.
-const routes = ["", "guides", "roles", "champions", "tierlist", "tools", "glossary", "search", "path"];
+const routes = ["", "guides", "roles", "champions", "tierlist", "tools", "glossary", "search", "path", "items", "runes"];
+const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); // same as js/app.js
 if (RA.patchChanges) routes.push("patch");
 RA.guides.forEach((g) => routes.push("guide/" + g.id));
 RA.roles.forEach((r) => routes.push("role/" + r.id));
 RA.champs.forEach((c) => c.roles.forEach((role, i) => routes.push("champion/" + c.id + (i ? "/" + role : ""))));
 Object.keys(RA.tools).forEach((k) => routes.push("tools/" + k));
+Object.keys(RA.dd.itemInfo || {}).forEach((n) => routes.push("item/" + slug(n)));
+Object.keys(RA.dd.runeInfo || {}).forEach((n) => routes.push("rune/" + slug(n)));
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -86,7 +89,7 @@ function write(rel, html) {
 }
 
 // Remove pages from a previous run whose route no longer exists (e.g. a renamed guide).
-const sections = ["guide", "role", "champion", "tools", "guides", "roles", "champions", "tierlist", "glossary", "search", "path", "patch"];
+const sections = ["guide", "role", "champion", "tools", "guides", "roles", "champions", "tierlist", "glossary", "search", "path", "patch", "items", "item", "runes", "rune"];
 const keep = new Set(routes.map((r) => path.join(ROOT, r, "index.html")));
 for (const s of sections) {
   const dir = path.join(ROOT, s);

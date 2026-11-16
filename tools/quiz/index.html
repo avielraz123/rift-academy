@@ -38,6 +38,7 @@
         <a href="/rift-academy/roles/" data-nav="roles" data-r="roles" class="">Roles</a>
         <a href="/rift-academy/champions/" data-nav="champions" data-r="champions" class="">Champions</a>
         <a href="/rift-academy/tierlist/" data-nav="tierlist" data-r="tierlist" class="">Tier List</a>
+        <a href="/rift-academy/items/" data-nav="items" data-r="items" class="">Items</a>
         <a href="/rift-academy/tools/" data-nav="tools" data-r="tools" class="active">Tools</a>
         <a href="/rift-academy/glossary/" data-nav="glossary" data-r="glossary" class="">Glossary</a>
         <form class="search-form" id="searchForm" role="search">
@@ -51,7 +52,7 @@
     </div>
   </header>
 
-  <main id="app" tabindex="-1"><div class="crumbs"><a href="/rift-academy/tools/" data-r="tools">Tools</a></div><div class="page-head"><h1>League Knowledge Quiz</h1><p>Test what you've learned. Every question links back to the guide it came from, so you can read more about anything you miss.</p></div><div id="toolRoot"><div class="tool-panel"><h3>Level</h3><div class="chips"><button class="chip active" data-level="all">All levels</button><button class="chip" data-level="beginner">Beginner</button><button class="chip" data-level="intermediate">Intermediate</button><button class="chip" data-level="advanced">Advanced</button></div><h3>Topic</h3><div class="chips"><button class="chip active" data-topic="all">Everything</button><button class="chip" data-topic="basics">Basics</button><button class="chip" data-topic="laning">Laning</button><button class="chip" data-topic="macro">Macro</button><button class="chip" data-topic="vision">Vision</button><button class="chip" data-topic="teamfighting">Teamfighting</button><button class="chip" data-topic="mental">Mental</button><button class="chip" data-topic="roles">Roles</button></div><p style="color:var(--muted)">90 questions available.</p><button class="btn" id="qStart">Start quiz (10 questions)</button></div></div></main>
+  <main id="app" tabindex="-1"><div class="crumbs"><a href="/rift-academy/tools/" data-r="tools">Tools</a></div><div class="page-head"><h1>League Knowledge Quiz</h1><p>Test what you've learned. Every question links back to the guide it came from, so you can read more about anything you miss.</p></div><div id="toolRoot"><div class="tool-panel"><h3>Level</h3><div class="chips"><button class="chip active" data-level="all">All levels</button><button class="chip" data-level="beginner">Beginner</button><button class="chip" data-level="intermediate">Intermediate</button><button class="chip" data-level="advanced">Advanced</button></div><h3>Topic</h3><div class="chips"><button class="chip active" data-topic="all">Everything</button><button class="chip" data-topic="basics">Basics</button><button class="chip" data-topic="laning">Laning</button><button class="chip" data-topic="macro">Macro</button><button class="chip" data-topic="vision">Vision</button><button class="chip" data-topic="teamfighting">Teamfighting</button><button class="chip" data-topic="mental">Mental</button><button class="chip" data-topic="roles">Roles</button></div><p style="color:var(--muted)">102 questions available.</p><button class="btn" id="qStart">Start quiz (10 questions)</button></div></div></main>
 
   <footer class="site-footer">
     <div class="footer-inner">
@@ -67,6 +68,7 @@
   <script src="/rift-academy/js/data/guides-intermediate.js"></script>
   <script src="/rift-academy/js/data/guides-advanced.js"></script>
   <script src="/rift-academy/js/data/guides-draft.js"></script>
+  <script src="/rift-academy/js/data/guides-extra.js"></script>
   <script src="/rift-academy/js/data/roles.js"></script>
   <script src="/rift-academy/js/data/champs-mid.js"></script>
   <script src="/rift-academy/js/data/champs-bot.js"></script>
@@ -83,6 +85,12 @@
   <script src="/rift-academy/js/data/champ-picks.js"></script>
   <script src="/rift-academy/js/data/patch-changes.js"></script>
   <script src="/rift-academy/js/data/map-quiz.js"></script>
+  <script src="/rift-academy/js/data/item-guide.js"></script>
+  <script src="/rift-academy/js/data/rune-guide.js"></script>
+  <script src="/rift-academy/js/data/champ-adapt-1.js"></script>
+  <script src="/rift-academy/js/data/champ-adapt-2.js"></script>
+  <script src="/rift-academy/js/data/champ-adapt-3.js"></script>
+  <script src="/rift-academy/js/data/comp-tags.js"></script>
   <!-- app -->
   <script src="/rift-academy/js/app.js"></script>
   <script src="/rift-academy/js/tools/cs-trainer.js"></script>
@@ -92,6 +100,8 @@
   <script src="/rift-academy/js/tools/draft-practice.js"></script>
   <script src="/rift-academy/js/tools/map-quiz.js"></script>
   <script src="/rift-academy/js/tools/matchup.js"></script>
+  <script src="/rift-academy/js/tools/game-plan.js"></script>
+  <script src="/rift-academy/js/tools/wave-sim.js"></script>
   <script>RA.start();</script>
 
 
