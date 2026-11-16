@@ -16,7 +16,9 @@ f.onload = function () {
   RA.roles.forEach(function (r) { routes.push("role/" + r.id); });
   RA.champs.forEach(function (c) {
     c.roles.forEach(function (role) {
-      ["overview", "abilities", "play", "build", "matchups"].forEach(function (t) { routes.push("champion/" + c.id + "?role=" + role + "&tab=" + t); });
+      var tabs = ["overview", "abilities", "play", "build", "matchups"];
+      if (RA.champPicks && RA.champPicks[c.id] && RA.champPicks[c.id].quiz) tabs.push("quiz");
+      tabs.forEach(function (t) { routes.push("champion/" + c.id + "?role=" + role + "&tab=" + t); });
     });
   });
   Object.keys(RA.tools).forEach(function (k) { routes.push("tools/" + k); });

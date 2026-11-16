@@ -8,7 +8,7 @@ const root = path.join(__dirname, "..");
 const ctx = { window: {} };
 ctx.window = ctx;
 vm.createContext(ctx);
-const files = ["dd", "patch", "guides-beginner", "guides-intermediate", "guides-advanced", "roles", "champs-mid", "champs-bot", "builds", "glossary"];
+const files = ["dd", "patch", "guides-beginner", "guides-intermediate", "guides-advanced", "guides-draft", "roles", "champs-mid", "champs-bot", "builds", "glossary", "draft-scenarios", "champ-picks"];
 for (const f of files) {
   const p = path.join(root, "js/data", f + ".js");
   if (!fs.existsSync(p)) { console.log("missing file", f); continue; }
@@ -63,7 +63,7 @@ for (const g of RA.guides || []) {
   if (seen.has(g.id)) err(w + ": duplicate id"); seen.add(g.id);
   for (const k of ["id", "title", "level", "category", "minutes", "summary", "sections", "takeaways", "quiz"]) if (g[k] == null) err(`${w}: missing ${k}`);
   if (!["beginner", "intermediate", "advanced"].includes(g.level)) err(w + ": bad level");
-  if (!["basics", "laning", "macro", "vision", "teamfighting", "mental"].includes(g.category)) err(w + ": bad category");
+  if (!["basics", "laning", "macro", "vision", "teamfighting", "draft", "mental"].includes(g.category)) err(w + ": bad category");
   (g.related || []).forEach(r => { if (!guideIds.has(r)) err(`${w}: related guide "${r}" not found`); });
   checkQuiz(w, g.quiz);
   deepText(w, g);
@@ -99,6 +99,34 @@ for (const [key, b] of Object.entries(RA.builds || {})) {
   (b.summoners || []).forEach(s => { if (!dd.summoners[s]) err(`${w}: unknown summoner "${s}"`); });
 }
 for (const role of ["mid", "bot"]) ((RA.patch.tierList || {})[role] || []).forEach(t => { if (!dd.champions[t.id]) err(`tierList ${role}: unknown champ ${t.id}`); });
+function checkDraftIds(where, q) {
+  [...(q.ally || []), ...(q.enemy || [])].forEach(id => { if (!dd.champions[id]) err(`${where}: unknown draft champ ${id}`); });
+  if (q.optionChamps) (q.options || []).forEach(o => { if (!dd.champions[o]) err(`${where}: option "${o}" is not a champion id`); });
+  if (q.role && !["top", "jungle", "mid", "bot", "support"].includes(q.role)) err(`${where}: bad role ${q.role}`);
+}
+console.log("Draft scenarios:", (RA.draftScenarios || []).length);
+const scen = new Set();
+(RA.draftScenarios || []).forEach((s, i) => {
+  const w = "scenario " + (s.id || i);
+  if (scen.has(s.id)) err(w + ": duplicate id"); scen.add(s.id);
+  if (!["beginner", "intermediate", "advanced"].includes(s.level)) err(w + ": bad level");
+  if (!s.enemy || !s.enemy.length) err(w + ": no enemy champions");
+  checkQuiz(w, [s, s, s]);
+  checkDraftIds(w, s);
+  deepText(w, s);
+});
+console.log("Champion picks:", Object.keys(RA.champPicks || {}).length);
+for (const c of RA.champs || []) if (!(RA.champPicks || {})[c.id]) warn(`champ ${c.id}: no "when to pick" entry`);
+for (const [id, p] of Object.entries(RA.champPicks || {})) {
+  const w = "picks " + id;
+  if (!dd.champions[id]) err(w + ": unknown champion");
+  if (!p.blind || typeof p.blind.safe !== "boolean") err(w + ": blind.safe missing");
+  for (const k of ["into", "avoid", "teammates", "teamNeeds"]) if (!p[k]) err(`${w}: missing ${k}`);
+  (p.teammates || []).forEach(t => { if (!dd.champions[t.id]) err(`${w}: unknown teammate ${t.id}`); });
+  checkQuiz(w, p.quiz);
+  (p.quiz || []).forEach((q, i) => checkDraftIds(`${w}.quiz[${i}]`, q));
+  deepText(w, p);
+}
 console.log("Glossary:", (RA.glossary || []).length);
 (RA.glossary || []).forEach(g => checkText("glossary " + g.term, g.def));
 

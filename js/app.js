@@ -14,7 +14,9 @@
   var CDN = "https://ddragon.leagueoflegends.com/cdn/";
   var LEVELS = ["beginner", "intermediate", "advanced"];
   var LEVEL_NAMES = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
-  var CATEGORY_NAMES = { basics: "Basics", laning: "Laning", macro: "Macro", vision: "Vision", teamfighting: "Teamfighting", mental: "Mental" };
+  var CATEGORY_NAMES = { basics: "Basics", laning: "Laning", macro: "Macro", vision: "Vision", teamfighting: "Teamfighting", draft: "Champion picks", mental: "Mental" };
+  RA.champPicks = RA.champPicks || {};
+  RA.draftScenarios = RA.draftScenarios || [];
   var ROLE_NAMES = { top: "Top", jungle: "Jungle", mid: "Mid", bot: "Bot", support: "Support" };
 
   /* ---------- helpers ---------- */
@@ -188,6 +190,10 @@
         '<div class="btn-row"><a class="btn" href="#/guides?level=beginner">I\'m new: start here</a><a class="btn ghost" href="#/tools/role-picker">Find my role</a></div>' +
       "</section>" +
       '<section class="section"><div class="section-head"><h2>Pick your level</h2><a href="#/guides">All guides →</a></div><div class="grid cols-3">' + paths + "</div></section>" +
+      (RA.guides.some(function (g) { return g.category === "draft"; }) ?
+        '<section class="section"><div class="section-head"><h2>Champion picks</h2><a href="#/tools/draft-practice">Practice drafting →</a></div>' +
+        '<p style="color:var(--muted);margin-top:-6px">Which champion should you pick against the enemy team? Learn champ select, counter-picking and team building.</p>' +
+        '<div class="grid cols-4">' + RA.guides.filter(function (g) { return g.category === "draft"; }).map(guideCard).join("") + "</div></section>" : "") +
       '<section class="section"><div class="section-head"><h2>Role guides</h2><a href="#/roles">All roles →</a></div><div class="grid cols-5">' + roleCards + "</div></section>" +
       '<section class="section"><div class="section-head"><h2>Featured champions</h2><a href="#/champions">All champion guides →</a></div><div class="grid cols-5">' + champCards + "</div></section>" +
       '<section class="section"><div class="section-head"><h2>Practice tools</h2><a href="#/tools">All tools →</a></div><div class="grid cols-4">' + tools + "</div></section>";
@@ -416,11 +422,24 @@
       }).join("");
     }
 
+    var pk = RA.champPicks[c.id];
+    var pickBox = pk ? '<div class="card pick-box" style="margin-bottom:16px">' +
+        '<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px"><h3 style="margin:0">When to pick ' + esc(champName(c.id)) + "</h3>" +
+        (pk.blind ? '<span class="badge ' + (pk.blind.safe ? "easy" : "hard") + '">' + (pk.blind.safe ? "✓ Safe blind pick" : "✗ Better as a counter-pick") + "</span>" : "") + "</div>" +
+        (pk.blind && pk.blind.why ? '<p style="color:var(--muted);margin:0 0 14px">' + rich(pk.blind.why) + "</p>" : "") +
+        '<div class="two-col"><div><h4 style="color:var(--green)">Pick into</h4>' + list(pk.into, "list-good") + '</div><div><h4 style="color:var(--red)">Avoid into</h4>' + list(pk.avoid, "list-bad") + "</div></div>" +
+        (pk.teammates && pk.teammates.length ? '<h4 style="margin-top:6px">Great teammates</h4><div class="grid cols-3" style="gap:4px 16px">' + mu(pk.teammates.map(function (t) { return { id: t.id, tip: t.why }; })) + "</div>" : "") +
+        (pk.teamNeeds ? '<p style="margin:12px 0 0"><strong>Your team needs:</strong> <span style="color:var(--muted)">' + rich(pk.teamNeeds) + "</span></p>" : "") +
+        '<p style="margin:12px 0 0;font-size:.9rem"><a href="#/guide/reading-the-enemy-team">How to read the enemy team →</a> · <a href="#/tools/draft-practice">Practice drafting →</a></p>' +
+      "</div>" : "";
+
     var tabs = [
       ["overview", "Overview"], ["abilities", "Abilities & combos"], ["play", "How to play"], ["build", "Build"], ["matchups", "Matchups"]
     ];
+    if (pk && pk.quiz && pk.quiz.length) tabs.push(["quiz", "Quiz"]);
     var panels = {
-      overview:
+      quiz: '<div class="tool-panel" id="champQuiz"></div>',
+      overview: pickBox +
         '<div class="two-col"><div class="card"><h3>Strengths</h3>' + list(c.strengths, "list-good") + '</div><div class="card"><h3>Weaknesses</h3>' + list(c.weaknesses, "list-bad") + "</div></div>" +
         '<div class="two-col" style="margin-top:16px"><div class="card"><h3>Power spikes</h3>' + list(c.spikes) + '</div><div class="card"><h3>Top tips</h3>' + list(c.tips) + "</div></div>",
       abilities: '<div class="card">' + abilities + '</div><div class="card" style="margin-top:16px"><h3>Combos</h3>' + combos + "</div>",
@@ -447,6 +466,7 @@
 
     function show(t) {
       $("#tabPanel").innerHTML = panels[t] || "";
+      if (t === "quiz" && RA.mountQuiz) RA.mountQuiz($("#champQuiz"), pk.quiz, { compact: true });
       $all(".tabs button").forEach(function (bt) { bt.classList.toggle("active", bt.dataset.tab === t); });
       history.replaceState(null, "", "#/champion/" + c.id + "?role=" + role + (t !== "overview" ? "&tab=" + t : ""));
     }

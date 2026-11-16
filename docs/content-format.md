@@ -98,3 +98,39 @@ RA.builds["Ahri:mid"] = {
   note: "patch note or empty"
 };
 ```
+
+## Champion picks guides — `js/data/guides-draft.js`
+
+Same shape as other guides, with `category: "draft"` (shown as "Champion picks").
+
+## Draft scenarios — `js/data/draft-scenarios.js`
+
+```js
+RA.draftScenarios = RA.draftScenarios || [];
+RA.draftScenarios.push({
+  id: "assassin-heavy",            // unique
+  level: "beginner",               // beginner | intermediate | advanced
+  role: "mid",                     // the role YOU are picking for: top | jungle | mid | bot | support
+  ally: ["Malphite", "LeeSin"],    // champions your team already picked (Data Dragon ids, 0-4)
+  enemy: ["Zed", "Talon", "Kassadin"], // enemy picks shown so far (1-5)
+  q: "The enemy team has three assassins. Which mid pick helps your team most?",
+  options: ["Malzahar", "Kassadin", "Yasuo", "Veigar"],  // 3-4 options; may be champion ids or short text
+  optionChamps: true,              // true if every option is a champion id (shows icons)
+  answer: 0,
+  explain: "Why, in 2-3 sentences. May use {{champ:}} tokens."
+});
+```
+
+## Per-champion picks — `js/data/champ-picks.js`
+
+```js
+RA.champPicks = RA.champPicks || {};
+RA.champPicks.Ahri = {
+  blind: { safe: true, why: "One sentence: is she safe to pick first, before you see your opponent?" },
+  into: ["3-4 bullets: enemy champions / team types she's great against, with {{champ:}} examples"],
+  avoid: ["3-4 bullets: what makes her a bad pick"],
+  teammates: [ { id: "Vi", why: "short reason" } ],   // 2-3 allies (any role) she pairs well with
+  teamNeeds: "One sentence: what the rest of your team should have when you pick her.",
+  quiz: [ /* 3 questions, guide quiz shape; may add enemy: [ids] / ally: [ids] to show a draft */ ]
+};
+```

@@ -16,8 +16,24 @@
     // shuffle options per question, keeping track of the right answer
     var qs = questions.map(function (x) {
       var order = shuffle(x.options.map(function (_, i) { return i; }));
-      return { q: x.q, options: order.map(function (i) { return x.options[i]; }), answer: order.indexOf(x.answer), explain: x.explain, source: x.source };
+      return { q: x.q, options: order.map(function (i) { return x.options[i]; }), answer: order.indexOf(x.answer), explain: x.explain, source: x.source,
+        ally: x.ally, enemy: x.enemy, role: x.role, optionChamps: x.optionChamps };
     });
+    function team(label, ids, color) {
+      if (!ids || !ids.length) return "";
+      return '<div class="draft-team"><span style="color:' + color + '">' + label + "</span>" + ids.map(function (id) {
+        return '<span class="draft-champ"><img src="' + RA.img.champ(id) + '" alt="" loading="lazy">' + esc(RA.champName(id)) + "</span>";
+      }).join("") + "</div>";
+    }
+    function draftBox(x) {
+      if (!x.ally && !x.enemy) return "";
+      return '<div class="draft-box">' + (x.role ? '<div class="draft-team"><span>You pick</span><strong>' + esc({ top: "Top", jungle: "Jungle", mid: "Mid", bot: "Bot", support: "Support" }[x.role] || x.role) + "</strong></div>" : "") +
+        team("Your team", x.ally, "var(--blue)") + team("Enemy team", x.enemy, "var(--red)") + "</div>";
+    }
+    function optLabel(x, o) {
+      if (x.optionChamps && RA.dd.champions[o]) return '<img src="' + RA.img.champ(o) + '" alt="" loading="lazy" style="width:30px;height:30px;border-radius:6px;vertical-align:middle;margin-right:10px">' + esc(RA.champName(o));
+      return esc(o);
+    }
     var i = 0, score = 0, answered = false;
 
     function draw() {
@@ -27,8 +43,9 @@
       el.innerHTML =
         '<div class="progress"><i style="width:' + (i / qs.length * 100) + '%"></i></div>' +
         '<div style="color:var(--faint);font-size:.85rem;margin-bottom:6px">Question ' + (i + 1) + " of " + qs.length + (opts.compact ? "" : " · Score " + score) + "</div>" +
+        draftBox(x) +
         '<div class="quiz-q">' + esc(x.q) + "</div>" +
-        '<div class="quiz-opts">' + x.options.map(function (o, k) { return '<button class="quiz-opt" data-k="' + k + '">' + esc(o) + "</button>"; }).join("") + "</div>" +
+        '<div class="quiz-opts">' + x.options.map(function (o, k) { return '<button class="quiz-opt" data-k="' + k + '">' + optLabel(x, o) + "</button>"; }).join("") + "</div>" +
         '<div id="qExplain"></div>';
       Array.prototype.forEach.call(el.querySelectorAll(".quiz-opt"), function (b) {
         b.addEventListener("click", function () { pick(Number(b.dataset.k)); });
@@ -47,7 +64,7 @@
         else if (bk === k) b.classList.add("wrong");
       });
       el.querySelector("#qExplain").innerHTML =
-        '<div class="quiz-explain"><strong style="color:' + (right ? "var(--green)" : "var(--red)") + '">' + (right ? "Correct!" : "Not quite.") + "</strong> " + esc(x.explain || "") +
+        '<div class="quiz-explain"><strong style="color:' + (right ? "var(--green)" : "var(--red)") + '">' + (right ? "Correct!" : "Not quite.") + "</strong> " + RA.rich(esc(x.explain || "")) +
         (x.source ? ' <a href="' + x.source.href + '">Read: ' + esc(x.source.title) + "</a>" : "") + "</div>" +
         '<div style="margin-top:14px"><button class="btn" id="qNext">' + (i + 1 < qs.length ? "Next question →" : "See results") + "</button></div>";
       el.querySelector("#qNext").addEventListener("click", function () { i++; draw(); });
