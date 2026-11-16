@@ -21,13 +21,14 @@ Plain HTML, CSS and JavaScript. No build step: open `index.html` in a browser, o
 
 ## Updating for a new patch
 
-1. Get the new Data Dragon version from `https://ddragon.leagueoflegends.com/api/versions.json`, download
-   `item.json`, `runesReforged.json`, `champion.json`, `summoner.json` and `champion/<Id>.json` for the guided
-   champions into a folder next to a copy of `tools/gen-dd.js`, and run it to rebuild `js/data/dd.js`.
-2. Research the new builds and tier list, save them as JSON (see `tools/gen-builds.js` for the shape), and run
-   `node tools/gen-builds.js mid.json bot.json`.
-3. Update `js/data/patch.js` (patch number, timers, facts) if anything changed.
-4. Run `node tools/check-content.js` and fix any errors (for example items that were removed).
+1. `bash tools/download-dd.sh /tmp/dd` downloads the latest Data Dragon data (and the ability kits of every guided
+   champion), then `node tools/gen-dd.js /tmp/dd` rebuilds `js/data/dd.js`.
+2. Research the new builds for every champion+role that has a guide (keys of `RA.builds`) and the mid/bot tier
+   lists, and update the JSON files in `research/` (shape documented at the top of `tools/gen-builds.js`).
+   Then run `node tools/gen-builds.js research/research-*.json`.
+3. Update `js/data/patch.js` (patch number, `updated`, timers, facts) if anything changed.
+4. Run `node tools/check-content.js` and fix any errors (for example removed items). Optionally open
+   `tests/smoke.html` in a browser (or headless Chrome/Edge with `--dump-dom`) to check every page.
 
 ## Legal
 

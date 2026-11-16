@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "patch": "26.22 (live Nov 2026)",
+    "researched": "2026-11-16",
+    "notes": "Season 2026 systems were set in 26.1 (Jan 2026). Patches 26.2-26.22 mostly tuned role quests, bounties, trinket, minions and bug fixes. No objective timer changes found after 26.1. Items marked (unconfirmed) could not be verified from a 2026 source.",
+    "key_sources": {
+      "patch_26_1": "https://www.leagueoflegends.com/en-us/news/game-updates/patch-26-1-notes/",
+      "season_one_preview": "https://www.leagueoflegends.com/news/dev/dev-2026-season-one-gameplay-preview/",
+      "patch_26_9": "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-9-notes/",
+      "wiki_role_quests": "https://wiki.leagueoflegends.com/en-us/Role_Quests"
+    }
+  },
+
+  "jungle_camps": {
+    "Blue Sentinel": { "first_spawn": "0:55", "respawn": "5:00", "buff": "Crest of Insight: mana/energy regen + ability haste, about 2 min (duration unconfirmed for 26.x)", "source": "https://wiki.leagueoflegends.com/en-us/Blue_Sentinel" },
+    "Red Brambleback": { "first_spawn": "0:55", "respawn": "5:00", "buff": "Crest of Cinders: out-of-combat health regen, attacks slow + true-damage burn, about 2 min (duration unconfirmed for 26.x)", "source": "https://wiki.leagueoflegends.com/en-us/Red_Brambleback" },
+    "Gromp": { "first_spawn": "1:07", "respawn": "2:15", "source": "https://wiki.leagueoflegends.com/en-us/Gromp" },
+    "Murk Wolves": { "first_spawn": "0:55", "respawn": "2:15", "source": "https://www.leagueoflegends.com/en-us/news/game-updates/patch-26-1-notes/", "note": "respawn 2:15 inferred from the other small camps (unconfirmed)" },
+    "Raptors": { "first_spawn": "0:55", "respawn": "2:15", "source": "https://wiki.leagueoflegends.com/en-us/Crimson_Raptor" },
+    "Krugs": { "first_spawn": "1:07", "respawn": "2:15", "source": "https://wiki.leagueoflegends.com/en-us/Ancient_Krug" },
+    "Rift Scuttler": { "first_spawn": "2:55", "respawn": "2:30", "reward": "55-121 gold, 100-150 XP, makes a Speed Shrine (vision + move speed) in that river for 90s", "source": "https://wiki.leagueoflegends.com/en-us/Rift_Scuttler" },
+    "general_26_1_changes": [
+      "All first spawns moved 35s earlier in 26.1 (buffs/wolves/raptors 1:30 -> 0:55, Gromp/Krugs 1:42 -> 1:07, Scuttle 3:30 -> 2:55).",
+      "Junglers take 50% damage from non-epic monsters; large monster kills restore 15 energy.",
+      "Red/Blue no longer get Void-corrupted (global buff) after Baron spawns; a second buff drops after the Elemental Rift transformation.",
+      "Jungle pet needs 35 stacks (was 40); Smite damage 600/1000/1400."
+    ],
+    "general_source": "https://www.leagueoflegends.com/en-us/news/game-updates/patch-26-1-notes/"
+  },
+
+  "epic_monsters": {
+    "Dragons": {
+      "first_spawn": "5:00",
+      "respawn": "5:00 after the previous drake dies",
+      "drake_types": ["Infernal", "Mountain", "Ocean", "Cloud", "Hextech", "Chemtech"],
+      "elemental_rift": "Map transforms after the 2nd drake dies; it takes the element of the 3rd drake, and every drake after that is that element.",
+      "soul_rules": "First team to 4 drakes gets the Dragon Soul matching the rift element. Each drake also gives a stacking Dragon Slayer buff by type.",
+      "soul_effects_brief": {
+        "Infernal": "bonus adaptive damage burst on attacks/abilities",
+        "Mountain": "shield after not taking damage for a few seconds",
+        "Ocean": "heal/mana restore after dealing damage",
+        "Cloud": "bonus move speed, more after ults",
+        "Hextech": "chain lightning that slows",
+        "Chemtech": "tenacity + heal/shield power when below 50% HP",
+        "note": "brief summaries from previous seasons, exact 26.x numbers unconfirmed"
+      },
+      "dragon_retribution": "Ancient Grudge: drakes take 15% less damage per Dragon Slayer stack from the team holding stacks (max 60%), up from 7%/28% in 26.1",
+      "rewards_26_1": "Kill gold 75 (was 25), local XP 160-400; comeback XP up to 2x at a 4-level deficit",
+      "elder_dragon": {
+        "spawn": "Replaces the next drake once a team has 4 drakes (soul); spawns 6:00 after the soul drake",
+        "respawn": "6:00",
+        "buff": "Aspect of the Dragon, 150s, lost on death: attacks/abilities burn for 75-225 true damage, and hitting a champion below 20% max HP executes them",
+        "rewards_26_1": "100 kill gold + 150 global gold, 650 global XP; min level 13"
+      },
+      "source": "https://wiki.leagueoflegends.com/en-us/Dragon",
+      "elder_source": "https://wiki.leagueoflegends.com/en-us/Aspect_of_the_Dragon"
+    },
+    "Void_Grubs": {
+      "spawn": "8:00, top-side pit",
+      "count": "3 grubs, one wave only (no respawn since 25.09)",
+      "despawn": "14:45 (14:55 if in combat)",
+      "rewards": "30 gold + 65 XP each (XP shared within 2000 range)",
+      "buff": "Each grub = 1 team stack of Touch of the Void (attacks on structures apply a true-damage burn). At 3 stacks: Hunger of the Void, which summons 1 allied Voidmite every 15s while fighting enemy structures (Voidmite HP buffed to 100% of a melee minion in 26.11).",
+      "notes_26_1": "Level-scaled stats (min level 7), +50% damage to non-champions, no longer heals the killer.",
+      "source": "https://wiki.leagueoflegends.com/en-us/Voidgrub",
+      "buff_source": "https://wiki.leagueoflegends.com/en-us/Hunger_of_the_Void"
+    },
+    "Rift_Herald": {
+      "spawn": "15:00 (same pit as grubs)",
+      "despawn": "19:45 (19:55 if in combat); Baron takes the pit at 20:00",
+      "what_it_does": "Killing her drops the Eye of the Herald for 20s. The holder summons a Herald mercenary that walks down the nearest lane. A player can ride her (Rodeo) and charge a turret for 3000 true damage (less for later charges); the charge knocks up enemies in its path.",
+      "rewards": "100 gold to killer + 240 XP (2000 range)",
+      "source": "https://wiki.leagueoflegends.com/en-us/Rift_Herald"
+    },
+    "Atakhan": {
+      "status": "REMOVED in patch 26.1 (with Blood Roses/Petals). Not brought back as of 26.22.",
+      "history_2025": "Spawned at 20:00 (later changed) in a river pit on the side with more action. Voracious form (low-action games): gave gold and a once-per-buff 'cheat death' revive. Ruinous form (high-action games): spawned Blood Roses and gave Bloody Petals (permanent stat stacks from roses). In 25.09 he was locked to one form (Thornbound).",
+      "source": "https://www.leagueoflegends.com/en-us/news/game-updates/patch-26-1-notes/",
+      "history_source": "https://www.leagueoflegends.com/en-us/news/dev/dev-season-2-gameplay-changes-preview/",
+      "history_note": "2025 form details are from memory and older articles (unconfirmed)"
+    },
+    "Baron_Nashor": {
+      "spawn": "20:00 (back from 25:00 in 26.1)",
+      "respawn": "6:00",
+      "buff": "Hand of Baron, 180s, lost on death: bonus AD and AP that scale with game time (wiki: 12-48 AD, 20-80 AP), Empowered Recall at half channel time, extra homeguard speed, and an aura that greatly empowers nearby minions (more range, damage reduction vs champions, more siege range/damage).",
+      "rewards_26_1": "100 kill gold + 150 global gold, 650 global XP; losing team gets +25% XP per level behind (max 2x). Baron shreds 0.5 armor/MR per second to nearby enemies.",
+      "source": "https://wiki.leagueoflegends.com/en-us/Baron_Nashor",
+      "buff_source": "https://wiki.leagueoflegends.com/en-us/Hand_of_Baron"
+    },
+    "other_map_features": {
+      "Faelights": "New in 26.1. Rings of glowing mushrooms. A ward placed on one becomes a superward: +25% sight radius and vision of a bigger nearby area for 45s (the enemy only knows if they see it). 8 at game start (4 at base gates, 2 in river-end pixel brushes, 2 in river brush across from Baron/Dragon pits), +4 near the side lanes after the Elemental Rift (12 total). Source: https://wiki.leagueoflegends.com/en-us/Faelights",
+      "Crystalline_Overgrowth": "New in 26.1. After 1:30, lane turrets grow crystals; the next enemy champion attack on it pops the crystal for bonus true damage (2-3.3% of turret max HP at level 1, 8.8-18.9% at level 18). Damage stays low for 60s, ramps over 240s, then stays at max. Does not work on backdoor-protected turrets. Source: https://wiki.leagueoflegends.com/en-us/Turret",
+      "Plants": "Blast Cone, Honeyfruit, Scryer's Bloom. Bloom respawn now 200-260s; at 15:00 (or Elemental Rift) extra Bloom spots open (river coasts, behind side inner turrets, base rocks) with 90-120s respawn. Source: https://wiki.leagueoflegends.com/en-us/Jungle_plants",
+      "Dandelions": "Announced in the Season One preview as an escape/mobility plant, but not listed on the wiki's jungle plants page (unconfirmed whether it shipped).",
+      "Map_theme": "Demacia-themed visual update of Summoner's Rift in 26.1; Classic Rift visuals refreshed in 26.17 (League Classic mode).",
+      "Elemental_Rift_and_Scuttle_shrine": "Unchanged core idea: elemental terrain after the 2nd drake; Scuttle kill gives a 90s Speed Shrine."
+    }
+  },
+
+  "systems": {
+    "role_quests": {
+      "how_it_works": "Each player gets the quest for their assigned position. Points come from minions, plates, turrets, epic monsters, takedowns and passive time in your own lane. Since 26.9, being anywhere in your lane counts, recalling pauses passive points for 12s, and after level 3 you bank up to 60s of roaming without penalty.",
+      "Top": "1200 pts. Reward: Unleashed Teleport as a bonus summoner spell (390s cooldown; if you already have Teleport it gets a 35% max HP shield for 10s and 30s less cooldown), +600 XP, +11% XP from all sources, +80 XP per takedown, level cap 20.",
+      "Jungle": "35 points. Reward: Unleashed Smite -> Primal Smite, +10 gold and +10 XP per large camp, +4% move speed in jungle/river (8% out of combat).",
+      "Mid": "1350 pts. Reward: +8% bonus AD and +8% AP (since 26.11; replaced Empowered Recall in 26.9), and Tier 2 boots upgrade free to exclusive Tier 3 boots.",
+      "Bot": "1350 pts. Reward: +300 gold, +2 gold per minion kill, +40 gold per takedown, and boots move to the quest slot (frees a 7th item slot effectively).",
+      "Support": "800 pts (World Atlas -> Runic Compass). Reward: Runic Compass upgrades into Bounty of Worlds, which can be upgraded free into Bloodsong, Celestial Opposition, Dream Maker, Solstice Sleigh or Zaz'Zak's Realmspike; Control Wards cost 40g. Control Wards are stored in the quest slot (up to 2) from the start of the match (26.3).",
+      "off_lane_penalty": "Minion gold/XP reduced 25% outside your assigned lane until level 3 (support: -33% outside bot until level 5, since 26.16). Jungle exempt.",
+      "source": "https://wiki.leagueoflegends.com/en-us/Role_Quests"
+    },
+    "feats_of_strength": {
+      "status": "REMOVED in 26.1. First Blood (+100g) and first turret (+300g) bonuses came back instead.",
+      "history_2025": "Team race to 2 of 3 feats (first blood / first to 3 kills, first turret, first 3 epic monsters); reward was free Tier 3 boot upgrades for the team (unconfirmed detail).",
+      "source": "https://www.leagueoflegends.com/en-us/news/game-updates/patch-26-1-notes/"
+    },
+    "first_blood": "+100 bonus gold to the killer (re-added in 26.1). Source: https://wiki.leagueoflegends.com/en-us/Champion_gold_bounties",
+    "turret_plating": {
+      "plates": "5 plates on every outer, inner and inhibitor turret (inner/inhibitor plates are new in 26.1). Plates break at 10/25/45/70/100% missing HP.",
+      "falls_off": "Plates NO LONGER fall off at 14:00 - they are permanent all game (26.1).",
+      "gold": "Outer turret: 120g per plate (shared by nearby champions), dropping by 10g per minute from 11:00 (min 80g from 15:00). Outer turret itself gives 0 local gold. Inner and inhibitor turrets: 600g spread across 5 plates (120 each).",
+      "source": "https://www.leagueoflegends.com/en-us/news/game-updates/patch-26-1-notes/"
+    },
+    "first_turret": "+300 gold shared among nearby players (re-added in 26.1). Each turret also gives 50 global gold.",
+    "bounties": "Base kill gold 300 (levels 1-6), +10 per level up to 420 at level 18. Assists: half of the kill value, split. Shutdown bounties up to +700. After 6:00 shutdowns shrink for the team that is ahead. Objective bounties still exist for the losing team. Source: https://wiki.leagueoflegends.com/en-us/Champion_gold_bounties",
+    "minion_waves": {
+      "first_wave": "0:30 (was 1:05 before 26.1)",
+      "interval": "Every 30s until 14:00, every 25s from 14:00, every 20s from 30:00",
+      "cannon_cadence": "First cannon on wave 3 (1:30). One cannon every 3rd wave until 14:00, every 2nd wave 14:00-25:00, every wave after 25:00. Waves with a cannon after 14:00 have one fewer melee minion; 30:00+ waves have one fewer caster. Super minions replace cannons (every wave) once an inhibitor is down.",
+      "source": "https://wiki.leagueoflegends.com/en-us/Minion_(League_of_Legends)"
+    },
+    "starting_gold": "500 (standard Summoner's Rift; Swiftplay starts with 1400 at level 3). Source: https://www.leagueoflegends.com/en-us/news/game-updates/patch-26-1-notes/",
+    "level_cap": "18 (20 for a Top laner who finished the Top quest)",
+    "death_timer": "10s at level 1 to 52.5s at level 18; from 15:00 timers grow with game time, up to +50% (max 78.75s at 55:00). Source: https://wiki.leagueoflegends.com/en-us/Death",
+    "ward_limits": "Each player: 3 Stealth Wards on the map at once, 1 Control Ward on the map at once. Control Wards: carry up to 2, cost 75g (40g after Support quest). Farsight Wards: no limit. Source: https://wiki.leagueoflegends.com/en-us/Ward",
+    "trinkets": "Stealth Ward (2 charges, 210-90s recharge by level, wards last 90-120s), Oracle Lens (sweeper; duration 8s since 26.1), Farsight Alteration (blue trinket, permanent visible ward). Source: https://wiki.leagueoflegends.com/en-us/Stealth_Ward",
+    "other": [
+      "Crit damage back to 200% base for all champions (26.1).",
+      "Demolish rune: bonus damage on the 3rd attack against a tower, 30s cooldown (26.1).",
+      "Melee champions deal 20% more damage to turrets (26.1).",
+      "Homeguard speed now lasts until you reach your lane (later: furthest minion) or enter combat/jungle (26.1).",
+      "Remake window 0:55-2:25 (26.1)."
+    ]
+  },
+
+  "laning_gold_xp": {
+    "gold_per_minion": {
+      "melee": "20 (was 21)",
+      "caster": "14",
+      "cannon": "50 at start, +1 every 90s (was 60 +3/90s)",
+      "super": "50 +1 every 90s (per wiki infobox)"
+    },
+    "xp_per_minion_solo": {
+      "melee": "62 (was 65)",
+      "caster": "31 (was 32)",
+      "cannon": "75 (was 100)",
+      "super": "75 (was 100)"
+    },
+    "xp_sharing": "Minion XP split among enemy champions within 1500 units of the death spot. Share per champion by count nearby: 100% / 65% / 43.3% / 32.5% / 26% / 21.7% (raised from 95/62/41.3% etc. in 26.1).",
+    "out_of_range": "If you are more than about 1500 units away when the minion dies, you get 0 XP from it - you lose the whole share, not part of it.",
+    "changes_2026": [
+      "26.1: melee 21->20g, cannon 60->50g, cannon/super XP 100->75, melee XP 65->62, caster XP 32->31.",
+      "26.1: XP share for solo/duo lanes increased (solo now gets 100%).",
+      "26.1: -25% minion gold/XP outside assigned lane until level 3 (support -33% until level 5 from 26.16).",
+      "26.9: melee minion HP 430 (+35 every 90s); minion-vs-minion bonus damage lowered."
+    ],
+    "leash_xp": "No specific 2026 'leash XP' change found (unconfirmed).",
+    "source": "https://wiki.leagueoflegends.com/en-us/Melee_minion"
+  },
+
+  "big_2026_changes_for_returning_players": [
+    "Atakhan, Blood Roses and Feats of Strength are gone; Baron is back at 20:00.",
+    "Everything starts sooner: minions at 0:30, buffs/wolves/raptors at 0:55, Gromp/Krugs at 1:07, Scuttle at 2:55.",
+    "Turret plates no longer fall at 14:00 - outer, inner and inhibitor turrets all have 5 permanent plates (outer plate gold drops after 11:00).",
+    "New Crystalline Overgrowth gives bonus true damage to turrets, and melee champions deal +20% to turrets: pushing and split-pushing pay off more.",
+    "Role quests are automatic per assigned role, with big rewards: Top lvl 20 + Unleashed Teleport, Mid free Tier 3 boots + 8% AD/AP, Bot extra gold + boots slot, Support free item upgrade + 40g Control Wards, Jungle Primal Smite + speed.",
+    "Faelights: special ward spots that give extra vision for 45s.",
+    "Waves come faster mid/late game (25s from 14:00, 20s from 30:00) and cannons come every 2nd wave from 14:00.",
+    "First Blood (+100g) and first turret (+300g) bonuses are back; dragons/Baron give stronger comeback XP for the losing team.",
+    "Crit damage is back to 200%; cannon and melee minions give a bit less gold.",
+    "Grubs: one set of 3 at 8:00, Herald at 15:00, Baron at 20:00 in the same pit."
+  ],
+
+  "unconfirmed": [
+    "Murk Wolves respawn 2:15 (inferred from other small camps; first spawn 0:55 confirmed).",
+    "Exact Hand of Baron AD/AP values at 20 min (wiki lists 12-48 AD / 20-80 AP range).",
+    "Exact Dragon Soul effect numbers for 26.x (brief effects from previous seasons).",
+    "Buff durations for Red/Blue (assumed ~2 min).",
+    "Whether Dandelions (announced in the Season One preview) shipped on live Rift.",
+    "2025 Atakhan form details and the Feats of Strength reward (historical, from memory/older sources).",
+    "Super minion gold (wiki shows the same 50 + 1/90s as cannon)."
+  ]
+}

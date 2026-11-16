@@ -1,0 +1,1094 @@
+{
+  "patch": "26.22",
+  "dataNote": "Builds from op.gg (Ranked Solo/Duo, Emerald+, all regions, patch 26.22 / client 16.22). Tiers and second win rate from lolalytics (Emerald+, 26.22). lolalytics win rates run about 1.5-2 points higher than op.gg because its baseline differs.",
+  "statShards": {
+    "offense": [
+      "Adaptive Force",
+      "Attack Speed",
+      "Ability Haste"
+    ],
+    "flex": [
+      "Adaptive Force",
+      "Move Speed",
+      "Health Scaling"
+    ],
+    "defense": [
+      "Health",
+      "Tenacity and Slow Resist",
+      "Health Scaling"
+    ]
+  },
+  "tierList": [
+    {
+      "id": "Zeri",
+      "tier": "S",
+      "note": "Top bot laner on lolalytics (S+, 53.1% win rate) and a common hard matchup for Ezreal, Kai'Sa and Ashe.",
+      "sources": [
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.op.gg/lol/champions?position=adc"
+      ]
+    },
+    {
+      "id": "Kaisa",
+      "tier": "S",
+      "note": "Most picked ADC (about 24%) and still S tier; the Kraken Slayer + Guinsoo's hybrid build beats most of the lane.",
+      "sources": [
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.op.gg/lol/champions/kaisa/build/adc"
+      ]
+    },
+    {
+      "id": "Twitch",
+      "tier": "S",
+      "note": "53.3% win rate on lolalytics (S-); counters Jinx, Ashe, Smolder and Jhin in lane.",
+      "sources": [
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.op.gg/lol/champions?position=adc"
+      ]
+    },
+    {
+      "id": "Jinx",
+      "tier": "A",
+      "note": "Still 51-53% win rate after the 26.21 base-stat nerf, with a strong Hexoptics + Runaan's + IE build.",
+      "sources": [
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.op.gg/lol/champions/jinx/build/adc",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes"
+      ]
+    },
+    {
+      "id": "Jhin",
+      "tier": "A",
+      "note": "Second most picked ADC (about 20%) with a 52% win rate; beats Caitlyn and Ezreal in lane.",
+      "sources": [
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.op.gg/lol/champions/jhin/build/adc",
+        "https://axeetech.com/lol-tier-list/"
+      ]
+    },
+    {
+      "id": "Xayah",
+      "tier": "A",
+      "note": "Ranked #1 ADC on op.gg (51.9%) and the best counter to the very popular Kai'Sa.",
+      "sources": [
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.op.gg/lol/champions?position=adc"
+      ]
+    },
+    {
+      "id": "KogMaw",
+      "tier": "A",
+      "note": "54.5% win rate on lolalytics and shows up as a hard matchup for almost every ADC.",
+      "sources": [
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.op.gg/lol/champions?position=adc"
+      ]
+    },
+    {
+      "id": "Smolder",
+      "tier": "A",
+      "note": "Buffed in 26.20 (passive, R heal) and 26.22 (W damage); 53.2% win rate on lolalytics.",
+      "sources": [
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    }
+  ],
+  "tierListNote": "Off-role mages that also rate highly in bot this patch (Katarina, Hwei, Viktor, Syndra, Karthus, Swain, Vel'Koz) are left out of the ADC list because their pick rates are low (around 1% or less).",
+  "champions": [
+    {
+      "id": "Ashe",
+      "tier": "B",
+      "winRate": "49.92% (op.gg, Emerald+ global, 26.22) / 51.97% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Presence of Mind",
+          "Legend: Alacrity",
+          "Cut Down"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Biscuit Delivery",
+          "Approach Velocity"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Press the Attack",
+        "when": "Rare (about 3% of games); for an all-in lane with a hard-engage support"
+      },
+      "skillMax": "W > Q > E",
+      "firstThree": "W, Q, E",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion"
+      ],
+      "core": [
+        "Hexoptics C44",
+        "Phantom Dancer",
+        "Infinity Edge"
+      ],
+      "boots": "Berserker's Greaves",
+      "situational": [
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs armor stackers / tanky frontline"
+        },
+        {
+          "item": "Immortal Shieldbow",
+          "when": "vs assassins and divers"
+        },
+        {
+          "item": "Bloodthirster",
+          "when": "more sustain and a shield late game"
+        },
+        {
+          "item": "Mortal Reminder",
+          "when": "vs heavy healing"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "last item for late-game safety"
+        }
+      ],
+      "hardMatchups": [
+        "Twitch",
+        "KogMaw",
+        "Zeri"
+      ],
+      "easyMatchups": [
+        "Ezreal",
+        "Lucian",
+        "Yunara"
+      ],
+      "bestSupports": [
+        "Seraphine",
+        "Milio",
+        "Senna"
+      ],
+      "patchNote": "26.20: AD growth per level 3.5 -> 3 (nerf). Item context: 26.22 Doran's Bow AD 8 -> 7.",
+      "sources": [
+        "https://www.op.gg/lol/champions/ashe/build/adc",
+        "https://www.op.gg/lol/champions/ashe/counters/adc",
+        "https://www.op.gg/lol/champions/ashe/synergies/adc",
+        "https://lolalytics.com/lol/ashe/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Caitlyn",
+      "tier": "C",
+      "winRate": "48.33% (op.gg, Emerald+ global, 26.22) / 50.41% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Presence of Mind",
+          "Legend: Bloodline",
+          "Coup de Grace"
+        ],
+        "secondaryTree": "Sorcery",
+        "secondary": [
+          "Absolute Focus",
+          "Gathering Storm"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Fleet Footwork",
+        "when": "Safer lanes vs poke or dive (about 8% of games); First Strike is another niche option"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Hexoptics C44",
+        "Infinity Edge",
+        "Lord Dominik's Regards"
+      ],
+      "boots": "Berserker's Greaves",
+      "situational": [
+        {
+          "item": "The Collector",
+          "when": "first-item alternative for early lethality and execute"
+        },
+        {
+          "item": "Rapid Firecannon",
+          "when": "extra range for sieging and poke"
+        },
+        {
+          "item": "Bloodthirster",
+          "when": "sustain and shield for late fights"
+        },
+        {
+          "item": "Mercurial Scimitar",
+          "when": "vs suppression or hard CC"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "last item for late-game safety"
+        }
+      ],
+      "hardMatchups": [
+        "Ziggs",
+        "KogMaw",
+        "Jhin"
+      ],
+      "easyMatchups": [
+        "Yunara",
+        "Ezreal",
+        "Vayne"
+      ],
+      "bestSupports": [
+        "Nami",
+        "Blitzcrank",
+        "Thresh"
+      ],
+      "patchNote": "26.21: Headshot damage 60-100% AD -> 60-80% AD (crit scaling +1% -> +0.8%), Q base damage 50-210 -> 50-230. Still banned in about 21% of games. Item context: 26.22 Doran's Bow AD 8 -> 7.",
+      "sources": [
+        "https://www.op.gg/lol/champions/caitlyn/build/adc",
+        "https://www.op.gg/lol/champions/caitlyn/counters/adc",
+        "https://www.op.gg/lol/champions/caitlyn/synergies/adc",
+        "https://www.op.gg/lol/champions/caitlyn/runes/adc",
+        "https://lolalytics.com/lol/caitlyn/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Draven",
+      "tier": "B",
+      "winRate": "50.01% (op.gg, Emerald+ global, 26.22) / 51.83% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Presence of Mind",
+          "Legend: Alacrity",
+          "Cut Down"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Triple Tonic",
+          "Cash Back"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Press the Attack",
+        "when": "About 12% of games; for fast early kills with an engage support"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion"
+      ],
+      "core": [
+        "Bloodthirster",
+        "Hexoptics C44",
+        "Infinity Edge"
+      ],
+      "boots": "Berserker's Greaves",
+      "situational": [
+        {
+          "item": "The Collector",
+          "when": "alternative 2nd item to snowball with execute"
+        },
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs armor and tanks (top 4th item)"
+        },
+        {
+          "item": "Immortal Shieldbow",
+          "when": "vs burst and divers"
+        },
+        {
+          "item": "Mortal Reminder",
+          "when": "vs heavy healing"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "last item for late-game safety"
+        }
+      ],
+      "hardMatchups": [
+        "KogMaw",
+        "Smolder",
+        "Xayah"
+      ],
+      "easyMatchups": [
+        "Ezreal",
+        "Kalista",
+        "Yunara"
+      ],
+      "bestSupports": [
+        "Janna",
+        "Thresh",
+        "Blitzcrank"
+      ],
+      "patchNote": "No direct changes in 26.20-26.22. Item context: Doran's Bow AD 8 -> 7 (26.22); Gluttonous Greaves 1000g -> 1100g (26.21) but still the 2nd boots choice.",
+      "sources": [
+        "https://www.op.gg/lol/champions/draven/build/adc",
+        "https://www.op.gg/lol/champions/draven/counters/adc",
+        "https://www.op.gg/lol/champions/draven/synergies/adc",
+        "https://lolalytics.com/lol/draven/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Ezreal",
+      "tier": "C",
+      "winRate": "46.16% (op.gg, Emerald+ global, 26.22) / 47.84% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Presence of Mind",
+          "Legend: Bloodline",
+          "Coup de Grace"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Magical Footwear",
+          "Biscuit Delivery"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Press the Attack",
+        "when": "About 7% of games; for an aggressive lane with poke or engage support"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Trinity Force",
+        "Manamune",
+        "Spear of Shojin"
+      ],
+      "boots": "Ionian Boots of Lucidity",
+      "situational": [
+        {
+          "item": "Tear of the Goddess",
+          "when": "buy on the first back every game to start stacking Manamune"
+        },
+        {
+          "item": "Endless Hunger",
+          "when": "instead of Spear of Shojin (higher win rate on op.gg)"
+        },
+        {
+          "item": "Serylda's Grudge",
+          "when": "vs armor and for slows on Q"
+        },
+        {
+          "item": "Frozen Heart",
+          "when": "vs attack-speed or AD carries"
+        },
+        {
+          "item": "Maw of Malmortius",
+          "when": "vs AP burst"
+        }
+      ],
+      "hardMatchups": [
+        "Yasuo",
+        "Zeri",
+        "Sivir"
+      ],
+      "easyMatchups": [
+        "Caitlyn",
+        "Yunara",
+        "Corki"
+      ],
+      "bestSupports": [
+        "Leona",
+        "Senna",
+        "Nami"
+      ],
+      "patchNote": "No Summoner's Rift changes in 26.20-26.22 (26.21 Arena-only and 26.22 Classic-only changes). Lowest win rate bot laner on both sites; even his best matchups are below 50%.",
+      "sources": [
+        "https://www.op.gg/lol/champions/ezreal/build/adc",
+        "https://www.op.gg/lol/champions/ezreal/counters/adc",
+        "https://www.op.gg/lol/champions/ezreal/synergies/adc",
+        "https://lolalytics.com/lol/ezreal/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Jhin",
+      "tier": "A",
+      "winRate": "50.31% (op.gg, Emerald+ global, 26.22) / 52.01% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Fleet Footwork",
+        "primary": [
+          "Presence of Mind",
+          "Legend: Bloodline",
+          "Cut Down"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Jack Of All Trades",
+          "Cash Back"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Deathfire Touch",
+        "when": "Sorcery page (about 10% of games, higher win rate around 51.5-52.6%); for more burst. Dark Harvest is another option"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Helm",
+        "Health Potion"
+      ],
+      "core": [
+        "Hubris",
+        "Phantom Dancer",
+        "Infinity Edge"
+      ],
+      "boots": "Boots of Swiftness",
+      "situational": [
+        {
+          "item": "The Collector",
+          "when": "first-item alternative to Hubris"
+        },
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs armor and tanks (most bought 4th item)"
+        },
+        {
+          "item": "Rapid Firecannon",
+          "when": "extra range for 4th-shot picks and siege"
+        },
+        {
+          "item": "Stormrazor",
+          "when": "more burst on the opening shot"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "last item for late-game safety"
+        }
+      ],
+      "hardMatchups": [
+        "KogMaw",
+        "Yasuo",
+        "Twitch"
+      ],
+      "easyMatchups": [
+        "Ezreal",
+        "Caitlyn",
+        "Varus"
+      ],
+      "bestSupports": [
+        "Senna",
+        "Leona",
+        "Alistar"
+      ],
+      "patchNote": "No direct changes in 26.20-26.22. Item context: Hubris nerfed for ranged users in 26.21 (10 base AD, 2 per stack). Big climber into 26.22 on aggregate tier lists.",
+      "sources": [
+        "https://www.op.gg/lol/champions/jhin/build/adc",
+        "https://www.op.gg/lol/champions/jhin/counters/adc",
+        "https://www.op.gg/lol/champions/jhin/synergies/adc",
+        "https://www.op.gg/lol/champions/jhin/runes/adc",
+        "https://lolalytics.com/lol/jhin/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://axeetech.com/lol-tier-list/"
+      ]
+    },
+    {
+      "id": "Jinx",
+      "tier": "A",
+      "winRate": "51.18% (op.gg, Emerald+ global, 26.22) / 53.11% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Presence of Mind",
+          "Legend: Bloodline",
+          "Cut Down"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Triple Tonic",
+          "Cash Back"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Fleet Footwork",
+        "when": "Rare (about 1-2%); only vs heavy poke lanes for extra sustain"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion"
+      ],
+      "core": [
+        "Hexoptics C44",
+        "Runaan's Hurricane",
+        "Infinity Edge"
+      ],
+      "boots": "Berserker's Greaves",
+      "situational": [
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs armor (top 4th item, 62% win rate)"
+        },
+        {
+          "item": "Mortal Reminder",
+          "when": "vs heavy healing"
+        },
+        {
+          "item": "Bloodthirster",
+          "when": "sustain and shield late"
+        },
+        {
+          "item": "Mercurial Scimitar",
+          "when": "vs suppression or hard CC"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "last item for late-game safety"
+        }
+      ],
+      "hardMatchups": [
+        "Twitch",
+        "KogMaw",
+        "Sivir"
+      ],
+      "easyMatchups": [
+        "Ezreal",
+        "Kaisa",
+        "Caitlyn"
+      ],
+      "bestSupports": [
+        "Braum",
+        "Blitzcrank",
+        "Thresh"
+      ],
+      "patchNote": "26.21: AD growth 3.25 -> 3 per level, base HP 630 -> 610 (nerf). Item context: Runaan's Hurricane bolt damage 65% -> 60% AD (26.20), Doran's Bow AD 8 -> 7 (26.22).",
+      "sources": [
+        "https://www.op.gg/lol/champions/jinx/build/adc",
+        "https://www.op.gg/lol/champions/jinx/counters/adc",
+        "https://www.op.gg/lol/champions/jinx/synergies/adc",
+        "https://lolalytics.com/lol/jinx/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Kaisa",
+      "tier": "S",
+      "winRate": "49.56% (op.gg, Emerald+ global, 26.22) / 51.27% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Presence of Mind",
+          "Legend: Bloodline",
+          "Coup de Grace"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Magical Footwear",
+          "Biscuit Delivery"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Press the Attack",
+        "when": "Rare (about 2-4%); for burst all-ins with an engage support"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion"
+      ],
+      "core": [
+        "Kraken Slayer",
+        "Guinsoo's Rageblade",
+        "Terminus"
+      ],
+      "boots": "Berserker's Greaves",
+      "situational": [
+        {
+          "item": "Nashor's Tooth",
+          "when": "replace Terminus for the hybrid AP build and W evolve (2nd most common core)"
+        },
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "vs burst and dive after diving in with R"
+        },
+        {
+          "item": "Phantom Dancer",
+          "when": "for attack speed and kiting in long fights"
+        },
+        {
+          "item": "Shadowflame",
+          "when": "more AP burst in the hybrid build"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "last item for late-game safety"
+        }
+      ],
+      "hardMatchups": [
+        "Xayah",
+        "KogMaw",
+        "Zeri"
+      ],
+      "easyMatchups": [
+        "Ezreal",
+        "Jhin",
+        "Caitlyn"
+      ],
+      "bestSupports": [
+        "Rell",
+        "Blitzcrank",
+        "Alistar"
+      ],
+      "patchNote": "No direct changes in 26.20-26.22. Most picked bot laner (about 24% pick rate). Item context: Doran's Bow AD 8 -> 7 (26.22).",
+      "sources": [
+        "https://www.op.gg/lol/champions/kaisa/build/adc",
+        "https://www.op.gg/lol/champions/kaisa/counters/adc",
+        "https://www.op.gg/lol/champions/kaisa/synergies/adc",
+        "https://lolalytics.com/lol/kaisa/build/",
+        "https://lolalytics.com/lol/tierlist/?lane=bottom",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "MissFortune",
+      "tier": "B",
+      "winRate": "50.55% (op.gg, Emerald+ global, 26.22) / 52.77% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Press the Attack",
+        "primary": [
+          "Presence of Mind",
+          "Legend: Bloodline",
+          "Coup de Grace"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Magical Footwear",
+          "Biscuit Delivery"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "First Strike",
+        "when": "Inspiration page with Sorcery secondary (about 28% of games, slightly higher win rate); for lethality/poke builds and extra gold"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Blade",
+        "Health Potion"
+      ],
+      "core": [
+        "Bloodthirster",
+        "The Collector",
+        "Infinity Edge"
+      ],
+      "boots": "Boots of Swiftness",
+      "situational": [
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs armor (most bought 4th item)"
+        },
+        {
+          "item": "Rapid Firecannon",
+          "when": "extra range and siege"
+        },
+        {
+          "item": "Edge of Night",
+          "when": "spell shield to protect the R channel vs CC"
+        },
+        {
+          "item": "Mortal Reminder",
+          "when": "vs heavy healing"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "last item for late-game safety"
+        }
+      ],
+      "hardMatchups": [
+        "KogMaw",
+        "Jhin",
+        "Jinx"
+      ],
+      "easyMatchups": [
+        "Vayne",
+        "Ezreal",
+        "Varus"
+      ],
+      "bestSupports": [
+        "Rell",
+        "Blitzcrank",
+        "Leona"
+      ],
+      "patchNote": "26.21: E damage 70-190 -> 90-210, R crit damage 130% -> 145% (+0.45% per 1% bonus crit damage) (buff).",
+      "sources": [
+        "https://www.op.gg/lol/champions/missfortune/build/adc",
+        "https://www.op.gg/lol/champions/missfortune/counters/adc",
+        "https://www.op.gg/lol/champions/missfortune/synergies/adc",
+        "https://lolalytics.com/lol/missfortune/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes"
+      ]
+    },
+    {
+      "id": "Smolder",
+      "tier": "A",
+      "winRate": "51.10% (op.gg, Emerald+ global, 26.22) / 53.15% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Deathfire Touch",
+        "primary": [
+          "Nimbus Cloak",
+          "Celerity",
+          "Gathering Storm"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Magical Footwear",
+          "Jack Of All Trades"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Move Speed",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Arcane Comet",
+        "when": "Very rare (under 1%); the usual alternative is the same Deathfire Touch page with Precision secondary (Legend: Haste, Cut Down)"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Blade",
+        "Health Potion"
+      ],
+      "core": [
+        "Essence Reaver",
+        "Black Cleaver",
+        "Spear of Shojin"
+      ],
+      "boots": "Gluttonous Greaves",
+      "situational": [
+        {
+          "item": "Infinity Edge",
+          "when": "boosts Q passive damage (most bought 4th item)"
+        },
+        {
+          "item": "Rapid Firecannon",
+          "when": "extra range for safe stacking and siege"
+        },
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs armor and tanks"
+        },
+        {
+          "item": "Endless Hunger",
+          "when": "more sustain in long fights"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "last item for late-game safety"
+        }
+      ],
+      "hardMatchups": [
+        "Twitch",
+        "KogMaw",
+        "MissFortune"
+      ],
+      "easyMatchups": [
+        "Ezreal",
+        "Kalista",
+        "Vayne"
+      ],
+      "bestSupports": [
+        "Thresh",
+        "Leona",
+        "Nami"
+      ],
+      "patchNote": "26.22: W explosion damage 10-110 -> 25-125 (buff). 26.20: Q passive bonus magic damage up to 60% (from 55%) and R self-heal 100/135/170 -> 100/175/250 (+75% bonus AD). 26.21: Gluttonous Greaves cost 1000g -> 1100g.",
+      "sources": [
+        "https://www.op.gg/lol/champions/smolder/build/adc",
+        "https://www.op.gg/lol/champions/smolder/counters/adc",
+        "https://www.op.gg/lol/champions/smolder/synergies/adc",
+        "https://lolalytics.com/lol/smolder/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Vayne",
+      "tier": "C",
+      "winRate": "49.09% (op.gg, Emerald+ global, 26.22) / 51.32% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Barrier"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Triumph",
+          "Legend: Alacrity",
+          "Coup de Grace"
+        ],
+        "secondaryTree": "Resolve",
+        "secondary": [
+          "Conditioning",
+          "Overgrowth"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Press the Attack",
+        "when": "About 19% of games (Domination secondary); for stronger early duels"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion"
+      ],
+      "core": [
+        "Blade of The Ruined King",
+        "Guinsoo's Rageblade",
+        "Terminus"
+      ],
+      "boots": "Berserker's Greaves",
+      "situational": [
+        {
+          "item": "Jak'Sho, The Protean",
+          "when": "vs dive and heavy teamfights"
+        },
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs armor (highest win rate 4th item)"
+        },
+        {
+          "item": "Experimental Hexplate",
+          "when": "more speed and ult uptime (ranged value nerfed in 26.20)"
+        },
+        {
+          "item": "Wit's End",
+          "when": "vs AP-heavy teams"
+        },
+        {
+          "item": "Mercurial Scimitar",
+          "when": "vs suppression or hard CC"
+        }
+      ],
+      "hardMatchups": [
+        "Aphelios",
+        "MissFortune",
+        "Samira"
+      ],
+      "easyMatchups": [
+        "Ezreal",
+        "Sivir",
+        "Kalista"
+      ],
+      "bestSupports": [
+        "Soraka",
+        "Nami",
+        "Milio"
+      ],
+      "patchNote": "26.20: HP regen 4 (+0.5/lvl) -> 5.5 (+0.4/lvl), Q mana cost 46-30 -> flat 30 (buff). Experimental Hexplate ranged value cut to 50% in 26.20.",
+      "sources": [
+        "https://www.op.gg/lol/champions/vayne/build/adc",
+        "https://www.op.gg/lol/champions/vayne/counters/adc",
+        "https://www.op.gg/lol/champions/vayne/synergies/adc",
+        "https://lolalytics.com/lol/vayne/build/",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes"
+      ]
+    },
+    {
+      "id": "Ziggs",
+      "tier": "C",
+      "winRate": "50.66% (op.gg, Emerald+ global, 26.22) / 52.42% (lolalytics, Emerald+ global, 26.22)",
+      "summoners": [
+        "Flash",
+        "Teleport"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Arcane Comet",
+        "primary": [
+          "Manaflow Band",
+          "Transcendence",
+          "Scorch"
+        ],
+        "secondaryTree": "Precision",
+        "secondary": [
+          "Presence of Mind",
+          "Coup de Grace"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Deathfire Touch",
+        "when": "Rare (about 1%); the common variant keeps Arcane Comet with Inspiration secondary (Magical Footwear, Biscuit Delivery)"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Luden's Echo",
+        "Shadowflame",
+        "Rabadon's Deathcap"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "vs dive and assassins"
+        },
+        {
+          "item": "Void Staff",
+          "when": "vs magic resist"
+        },
+        {
+          "item": "Horizon Focus",
+          "when": "for long-range poke and siege"
+        },
+        {
+          "item": "Banshee's Veil",
+          "when": "vs pick and engage spells"
+        },
+        {
+          "item": "Cryptbloom",
+          "when": "alternative magic pen item (estimate: low sample)"
+        }
+      ],
+      "hardMatchups": [
+        "Kaisa",
+        "Sivir",
+        "Jinx"
+      ],
+      "easyMatchups": [
+        "Caitlyn",
+        "Aphelios",
+        "Varus"
+      ],
+      "bestSupports": [
+        "Alistar",
+        "Leona",
+        "Senna"
+      ],
+      "patchNote": "No direct changes in 26.20-26.22. Low bot pick rate (about 1.4%), so matchup and synergy samples are small.",
+      "sources": [
+        "https://www.op.gg/lol/champions/ziggs/build/adc",
+        "https://www.op.gg/lol/champions/ziggs/counters/adc",
+        "https://www.op.gg/lol/champions/ziggs/synergies/adc",
+        "https://lolalytics.com/lol/ziggs/build/"
+      ]
+    }
+  ]
+}

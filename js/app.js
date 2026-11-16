@@ -16,6 +16,13 @@
   var LEVEL_NAMES = { beginner: "Beginner", intermediate: "Intermediate", advanced: "Advanced" };
   var CATEGORY_NAMES = { basics: "Basics", laning: "Laning", macro: "Macro", vision: "Vision", teamfighting: "Teamfighting", draft: "Champion picks", mental: "Mental" };
   RA.champPicks = RA.champPicks || {};
+  RA.champRoles = RA.champRoles || {};
+  // Register extra roles from role-specific guides, e.g. "Swain:support" adds "support" to Swain's roles.
+  Object.keys(RA.champRoles).forEach(function (key) {
+    var parts = key.split(":"), ch = null;
+    for (var i = 0; i < RA.champs.length; i++) if (RA.champs[i].id === parts[0]) ch = RA.champs[i];
+    if (ch && ch.roles.indexOf(parts[1]) < 0) ch.roles.push(parts[1]);
+  });
   RA.draftScenarios = RA.draftScenarios || [];
   var ROLE_NAMES = { top: "Top", jungle: "Jungle", mid: "Mid", bot: "Bot", support: "Support" };
 
@@ -203,7 +210,7 @@
   function guideCard(g) {
     return '<a class="card" href="#/guide/' + g.id + '"><div class="meta">' + levelBadge(g.level) +
       '<span class="badge">' + esc(CATEGORY_NAMES[g.category] || g.category) + "</span>" +
-      '<span class="badge">' + g.minutes + " min</span></div><h3>" + esc(g.title) + "</h3><p>" + esc(g.summary) + "</p></a>";
+      '<span class="badge">' + g.minutes + " min</span></div><h3>" + esc(g.title) + "</h3><p>" + esc(textOf(g.summary)) + "</p></a>";
   }
   route("guides", function (app, p, q) {
     RA.setTitle("Guides");
@@ -268,7 +275,7 @@
       '<div class="crumbs"><a href="#/guides">Guides</a> › <a href="#/guides?level=' + g.level + '">' + LEVEL_NAMES[g.level] + "</a></div>" +
       '<div class="article-layout"><article class="prose">' +
         '<div class="meta" style="display:flex;gap:8px;margin-bottom:10px">' + levelBadge(g.level) + '<span class="badge">' + esc(CATEGORY_NAMES[g.category] || "") + '</span><span class="badge">' + g.minutes + " min read</span></div>" +
-        "<h1>" + esc(g.title) + '</h1><p style="color:var(--muted);font-size:1.12rem">' + esc(g.summary) + "</p>" +
+        "<h1>" + esc(g.title) + '</h1><p style="color:var(--muted);font-size:1.12rem">' + rich(g.summary) + "</p>" +
         articleBody(g.sections) +
         (g.takeaways ? '<div class="takeaways"><h3>Key takeaways</h3>' + list(g.takeaways) + "</div>" : "") +
         miniQuiz(g.quiz) +
@@ -286,7 +293,7 @@
       '<div class="page-head"><h1>Role guides</h1><p>Every team has five roles. Each guide explains what the role does, how to play it from early to late game, beginner-friendly champions, and the mistakes to avoid. Not sure which suits you? Try the <a href="#/tools/role-picker">role picker</a>.</p></div>' +
       '<div class="grid cols-2">' + RA.roles.map(function (r) {
         var champs = (r.starterChamps || []).slice(0, 5).map(function (c) { return '<img src="' + img.champ(c.id) + '" alt="' + esc(champName(c.id)) + '" title="' + esc(champName(c.id)) + '" style="width:36px;height:36px;border-radius:8px" loading="lazy">'; }).join(" ");
-        return '<a class="card" href="#/role/' + r.id + '"><div class="meta">' + diffBadge(r.difficulty) + "</div><h3>" + esc(r.name) + '</h3><p style="margin-bottom:12px">' + esc(r.summary) + '</p><div style="display:flex;gap:6px">' + champs + "</div></a>";
+        return '<a class="card" href="#/role/' + r.id + '"><div class="meta">' + diffBadge(r.difficulty) + "</div><h3>" + esc(r.name) + '</h3><p style="margin-bottom:12px">' + esc(textOf(r.summary)) + '</p><div style="display:flex;gap:6px">' + champs + "</div></a>";
       }).join("") + "</div>";
   });
 
@@ -295,7 +302,7 @@
     if (!r) return notFound(app);
     RA.setTitle(r.name + " guide");
     var guided = RA.champs.filter(function (c) { return c.roles.indexOf(r.id) >= 0; });
-    var sections = [{ h: "What this role does", html: "<p>" + esc(r.summary) + "</p>" + list(r.responsibilities) }].concat(r.sections);
+    var sections = [{ h: "What this role does", html: "<p>" + rich(r.summary) + "</p>" + list(r.responsibilities) }].concat(r.sections);
     var champs = '<div class="grid cols-2" style="margin-bottom:1em">' + (r.starterChamps || []).map(function (c) {
       return '<div class="matchup"><img src="' + img.champ(c.id) + '" alt="" loading="lazy"><div><b>' + (hasGuide(c.id) ? '<a href="' + champLink(c.id, r.id) + '">' + esc(champName(c.id)) + "</a>" : esc(champName(c.id))) + "</b><span>" + rich(c.why) + "</span></div></div>";
     }).join("") + "</div>";
@@ -338,8 +345,10 @@
       return (role === "all" || c.roles.indexOf(role) >= 0) && (diff === "all" || c.difficulty === diff);
     }).sort(function (a, b) { return champName(a.id).localeCompare(champName(b.id)); });
     app.innerHTML =
-      '<div class="page-head"><h1>Champion guides</h1><p>In-depth guides for mid and bot lane champions: how each ability works in practice, combos, power spikes, how to play every phase of the game, matchups, and builds for patch ' + esc(patchNo()) + ".</p></div>" +
-      '<div class="chips">' + chip("role", "all", "All") + chip("role", "mid", "Mid lane") + chip("role", "bot", "Bot lane") + "</div>" +
+      '<div class="page-head"><h1>Champion guides</h1><p>In-depth guides for the most popular mid lane champions and the bot lane marksmen, plus their other common roles: how each ability works in practice, combos, power spikes, how to play every phase of the game, matchups, and builds for patch ' + esc(patchNo()) + ".</p></div>" +
+      '<div class="chips">' + chip("role", "all", "All") + ["top", "jungle", "mid", "bot", "support"].filter(function (r) {
+        return RA.champs.some(function (c) { return c.roles.indexOf(r) >= 0; });
+      }).map(function (r) { return chip("role", r, ROLE_NAMES[r] + (r === "top" || r === "mid" || r === "bot" ? " lane" : "")); }).join("") + "</div>" +
       '<div class="chips">' + chip("diff", "all", "Any difficulty") + chip("diff", "Easy", "Easy") + chip("diff", "Medium", "Medium") + chip("diff", "Hard", "Hard") + "</div>" +
       '<div style="margin-bottom:18px"><input type="text" id="champFilter" placeholder="Filter by name…" style="width:100%;max-width:320px"></div>' +
       (cs.length ? '<div class="grid cols-4" id="champGrid">' + cs.map(function (c) { return champCard(c, role !== "all" ? role : null); }).join("") + "</div>" : '<p class="empty">No champions match.</p>');
@@ -397,10 +406,18 @@
   }
 
   route("champion/:id", function (app, p, q) {
-    var c = byId(RA.champs, p.id);
-    if (!c) return notFound(app);
-    var role = q.role && c.roles.indexOf(q.role) >= 0 ? q.role : c.roles[0];
+    var base = byId(RA.champs, p.id);
+    if (!base) return notFound(app);
+    var role = q.role && base.roles.indexOf(q.role) >= 0 ? q.role : base.roles[0];
     var tab = q.tab || "overview";
+    // Role-specific guide content (RA.champRoles["Id:role"]) overrides the champion's main guide.
+    var ov = RA.champRoles[base.id + ":" + role];
+    var c = ov ? Object.assign({}, base, ov, {
+      id: base.id, roles: base.roles,
+      abilities: Object.assign({}, base.abilities, ov.abilities || {}),
+      phases: Object.assign({}, base.phases, ov.phases || {})
+    }) : base;
+    if (ov && !ov.supports) c.supports = null;
     RA.setTitle(champName(c.id) + " " + ROLE_NAMES[role] + " guide");
     var kit = DD.kits[c.id];
     var b = RA.builds[c.id + ":" + role];
@@ -422,7 +439,7 @@
       }).join("");
     }
 
-    var pk = RA.champPicks[c.id];
+    var pk = RA.champPicks[c.id + ":" + role] || (ov ? null : RA.champPicks[c.id]);
     var pickBox = pk ? '<div class="card pick-box" style="margin-bottom:16px">' +
         '<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px"><h3 style="margin:0">When to pick ' + esc(champName(c.id)) + "</h3>" +
         (pk.blind ? '<span class="badge ' + (pk.blind.safe ? "easy" : "hard") + '">' + (pk.blind.safe ? "✓ Safe blind pick" : "✗ Better as a counter-pick") + "</span>" : "") + "</div>" +
@@ -449,7 +466,7 @@
         "<h2>Late game</h2>" + rich(c.phases.late) + "</div>",
       build: buildHtml(c, role),
       matchups: '<div class="two-col"><div class="card"><h3 style="color:var(--red)">Tough matchups</h3>' + mu(c.matchups && c.matchups.hard) + '</div><div class="card"><h3 style="color:var(--green)">Favorable matchups</h3>' + mu(c.matchups && c.matchups.easy) + "</div></div>" +
-        (c.supports && role === "bot" ? '<div class="card" style="margin-top:16px"><h3>Best support partners</h3>' + mu(c.supports.map(function (s) { return { id: s.id, tip: s.why }; })) + "</div>" : "")
+        (c.supports && c.supports.length && (role === "bot" || role === "support") ? '<div class="card" style="margin-top:16px"><h3>' + (role === "support" ? "Best ADC partners" : "Best support partners") + "</h3>" + mu(c.supports.map(function (s) { return { id: s.id, tip: s.why }; })) + "</div>" : "")
     };
 
     app.innerHTML =
@@ -459,7 +476,7 @@
         (b && b.tier ? '<span class="badge gold">Tier ' + esc(b.tier) + " · patch " + esc(patchNo()) + "</span>" : "") + "</div>" +
         "<h1>" + esc(champName(c.id)) + '</h1><div class="title">' + esc(champTitle(c.id)) + "</div>" +
         (c.roles.length > 1 ? '<div class="chips" style="margin:0">' + c.roles.map(function (r) { return '<a class="chip' + (r === role ? " active" : "") + '" href="#/champion/' + c.id + "?role=" + r + "&tab=" + tab + '">' + ROLE_NAMES[r] + " lane</a>"; }).join("") + "</div>" : "") +
-        "<p>" + esc(c.summary) + "</p>" +
+        "<p>" + rich(c.summary) + "</p>" +
       "</div></section>" +
       '<div class="tabs" role="tablist">' + tabs.map(function (t) { return '<button role="tab" data-tab="' + t[0] + '" class="' + (t[0] === tab ? "active" : "") + '">' + t[1] + "</button>"; }).join("") + "</div>" +
       '<div id="tabPanel"></div>';
@@ -565,7 +582,7 @@
       RA.champs.forEach(function (c) {
         var name = champName(c.id).toLowerCase();
         var score = name.indexOf(t) >= 0 ? 20 : 0;
-        if (score) results.push({ score: score, html: '<a class="card" href="' + champLink(c.id) + '"><div class="meta"><span class="badge">Champion guide</span>' + diffBadge(c.difficulty) + "</div><h3>" + esc(champName(c.id)) + "</h3><p>" + esc(c.summary) + "</p></a>" });
+        if (score) results.push({ score: score, html: '<a class="card" href="' + champLink(c.id) + '"><div class="meta"><span class="badge">Champion guide</span>' + diffBadge(c.difficulty) + "</div><h3>" + esc(champName(c.id)) + "</h3><p>" + esc(textOf(c.summary)) + "</p></a>" });
       });
       RA.glossary.forEach(function (g) {
         if (g.term.toLowerCase().indexOf(t) >= 0 || textOf(g.def).toLowerCase().indexOf(t) >= 0) {

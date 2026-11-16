@@ -134,3 +134,26 @@ RA.champPicks.Ahri = {
   quiz: [ /* 3 questions, guide quiz shape; may add enemy: [ids] / ally: [ids] to show a draft */ ]
 };
 ```
+
+## Champion guides for other roles — `js/data/champ-roles-*.js`
+
+A champion's main guide (`champs-*.js`) covers its main role. Each additional role gets an entry here; the app adds
+the role to the champion's page (role buttons) and to the champion list filters. Fields override the main guide when
+viewing that role (`abilities` and `phases` merge key by key, so you may give only the keys that differ, but full
+role-specific text is better).
+
+```js
+RA.champRoles = RA.champRoles || {};
+RA.champRoles["Swain:support"] = {
+  difficulty: "Medium", damage: "Magic", style: "Drain-tank mage support",
+  summary: "…", strengths: [], weaknesses: [],
+  abilities: { P: "…", Q: "…", W: "…", E: "…", R: "…" },
+  combos: [], spikes: [], phases: { early: "html", mid: "html", late: "html" }, tips: [],
+  matchups: { hard: [ { id, tip } ], easy: [ { id, tip } ] },
+  supports: [ { id: "Draven", why: "…" } ]   // bot: support partners; support: ADC partners; omit for other roles
+};
+// and its "When to pick" box:
+RA.champPicks["Swain:support"] = { blind, into, avoid, teammates, teamNeeds, quiz };
+```
+
+Builds for every champion+role live in `builds.js` under `"Id:role"`.

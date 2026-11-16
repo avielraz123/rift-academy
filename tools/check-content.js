@@ -8,7 +8,8 @@ const root = path.join(__dirname, "..");
 const ctx = { window: {} };
 ctx.window = ctx;
 vm.createContext(ctx);
-const files = ["dd", "patch", "guides-beginner", "guides-intermediate", "guides-advanced", "guides-draft", "roles", "champs-mid", "champs-bot", "builds", "glossary", "draft-scenarios", "champ-picks"];
+// Load data files in the same order as index.html.
+const files = [...fs.readFileSync(path.join(root, "index.html"), "utf8").matchAll(/src="js\/data\/([\w-]+)\.js"/g)].map(m => m[1]);
 for (const f of files) {
   const p = path.join(root, "js/data", f + ".js");
   if (!fs.existsSync(p)) { console.log("missing file", f); continue; }
@@ -88,6 +89,22 @@ for (const c of RA.champs || []) {
   (c.roles || []).forEach(role => { if (!RA.builds[c.id + ":" + role]) warn(`${w}: no build for ${role}`); });
   deepText(w, c);
 }
+console.log("Role guides:", Object.keys(RA.champRoles || {}).length);
+for (const [key, v] of Object.entries(RA.champRoles || {})) {
+  const w = "role guide " + key;
+  const [id, role] = key.split(":");
+  const base = (RA.champs || []).find(c => c.id === id);
+  if (!base) err(`${w}: no main guide for ${id}`);
+  if (!["top", "jungle", "mid", "bot", "support"].includes(role)) err(`${w}: bad role`);
+  if (base && base.roles.includes(role)) warn(`${w}: main guide already lists role ${role}`);
+  for (const k of ["style", "summary", "strengths", "weaknesses", "combos", "spikes", "phases", "tips", "matchups"]) if (v[k] == null) err(`${w}: missing ${k}`);
+  for (const k of ["early", "mid", "late"]) if (!v.phases || !v.phases[k]) err(`${w}: missing phase ${k}`);
+  const mus = [...((v.matchups || {}).hard || []), ...((v.matchups || {}).easy || []), ...(v.supports || [])];
+  mus.forEach(m => { if (!dd.champions[m.id]) err(`${w}: unknown champ ${m.id}`); });
+  if (!RA.builds[key]) warn(`${w}: no build`);
+  if (!(RA.champPicks || {})[key]) warn(`${w}: no "when to pick" entry`);
+  deepText(w, v);
+}
 console.log("Builds:", Object.keys(RA.builds || {}).length);
 for (const [key, b] of Object.entries(RA.builds || {})) {
   const w = "build " + key;
@@ -117,9 +134,11 @@ const scen = new Set();
 });
 console.log("Champion picks:", Object.keys(RA.champPicks || {}).length);
 for (const c of RA.champs || []) if (!(RA.champPicks || {})[c.id]) warn(`champ ${c.id}: no "when to pick" entry`);
-for (const [id, p] of Object.entries(RA.champPicks || {})) {
-  const w = "picks " + id;
+for (const [key, p] of Object.entries(RA.champPicks || {})) {
+  const w = "picks " + key;
+  const id = key.split(":")[0];
   if (!dd.champions[id]) err(w + ": unknown champion");
+  if (key.includes(":") && !(RA.champRoles || {})[key] && !((RA.champs || []).find(c => c.id === id) || { roles: [] }).roles.includes(key.split(":")[1])) warn(w + ": no guide for this role");
   if (!p.blind || typeof p.blind.safe !== "boolean") err(w + ": blind.safe missing");
   for (const k of ["into", "avoid", "teammates", "teamNeeds"]) if (!p[k]) err(`${w}: missing ${k}`);
   (p.teammates || []).forEach(t => { if (!dd.champions[t.id]) err(`${w}: unknown teammate ${t.id}`); });

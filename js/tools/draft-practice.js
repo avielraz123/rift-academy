@@ -28,7 +28,7 @@
           '<p style="color:var(--muted)">' + n + " draft scenarios." + (n ? "" : " Try another level.") + "</p>" +
           '<button class="btn" id="dpStart"' + (n ? "" : " disabled") + ">Start (" + Math.min(10, n) + " drafts)</button></div>" +
           (guides.length ? '<div class="section"><h2>Learn first</h2><div class="grid cols-2">' + guides.map(function (g) {
-            return '<a class="card" href="#/guide/' + g.id + '"><div class="meta"><span class="badge ' + g.level + '">' + g.level + "</span></div><h3>" + RA.esc(g.title) + "</h3><p>" + RA.esc(g.summary) + "</p></a>";
+            return '<a class="card" href="#/guide/' + g.id + '"><div class="meta"><span class="badge ' + g.level + '">' + g.level + "</span></div><h3>" + RA.esc(g.title) + "</h3><p>" + RA.rich(g.summary) + "</p></a>";
           }).join("") + "</div></div>" : "");
         Array.prototype.forEach.call(root.querySelectorAll("[data-level]"), function (b) {
           b.addEventListener("click", function () { level = b.dataset.level; menu(); });

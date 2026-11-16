@@ -94,7 +94,7 @@
         root.innerHTML = '<div class="tool-panel">' +
           '<div style="color:var(--faint);font-size:.85rem">Your best match</div>' +
           '<h2 style="margin:4px 0 8px">' + esc(role ? role.name : top) + "</h2>" +
-          (role ? '<p style="color:var(--muted)">' + esc(role.summary) + "</p>" : "") +
+          (role ? '<p style="color:var(--muted)">' + RA.rich(role.summary) + "</p>" : "") +
           '<div class="btn-row" style="margin-bottom:18px">' + (role ? '<a class="btn" href="#/role/' + role.id + '">Read the ' + esc(role.name) + " guide</a>" : "") +
           (guided.length ? '<a class="btn ghost" href="#/champions?role=' + top + '">' + guided.length + " champion guides</a>" : "") +
           '<button class="btn ghost" id="rpAgain">Take it again</button></div>' +

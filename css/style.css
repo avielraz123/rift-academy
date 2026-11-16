@@ -413,3 +413,4 @@ select, input[type="number"], input[type="text"] {
 .site-footer { border-top: 1px solid var(--line); background: var(--bg-2); color: var(--faint); font-size: .85rem; }
 .footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 24px 16px; display: grid; gap: 10px; }
 .footer-inner .legal { max-width: 860px; }
+.champ-hero .ic { color: #fff; }

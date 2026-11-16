@@ -1,0 +1,455 @@
+{
+  "patch": "26.22",
+  "champions": [
+    {
+      "id": "Yasuo",
+      "role": "top",
+      "tier": "C",
+      "winRate": "48.26% (op.gg, Emerald+, 16.22) / 50.14% (lolalytics, Emerald+, 16.22)",
+      "summoners": [
+        "Flash",
+        "Exhaust"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Absorb Life",
+          "Legend: Alacrity",
+          "Last Stand"
+        ],
+        "secondaryTree": "Resolve",
+        "secondary": [
+          "Second Wind",
+          "Overgrowth"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Fleet Footwork",
+        "when": "Rare (about 3%) but higher win rate; vs ranged or poke top laners for sustain and safer trades"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion"
+      ],
+      "core": [
+        "Blade of The Ruined King",
+        "Immortal Shieldbow",
+        "Infinity Edge"
+      ],
+      "boots": "Berserker's Greaves",
+      "situational": [
+        {
+          "item": "Death's Dance",
+          "when": "most common 4th item; vs AD bruisers and burst"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "late-game safety once you are the carry"
+        },
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs tanks and armor stackers"
+        },
+        {
+          "item": "Mortal Reminder",
+          "when": "vs healing (Aatrox, Sett, Darius drain)"
+        },
+        {
+          "item": "Mercurial Scimitar",
+          "when": "vs hard CC that locks you down (Malphite, Lissandra)"
+        }
+      ],
+      "hardMatchups": [
+        "Darius",
+        "Singed",
+        "Camille"
+      ],
+      "easyMatchups": [
+        "KSante",
+        "Heimerdinger",
+        "Yorick"
+      ],
+      "patchNote": "26.22: Yasuo nerfed - Q Steel Tempest ratio 105% -> 100% total AD (Riot cited rising win/ban rate from crit builds). Doran's Bow, his usual start, also lost 1 AD (8 -> 7). No Yasuo changes in 26.20-26.21.",
+      "sources": [
+        "https://op.gg/lol/champions/yasuo/build/top?tier=emerald_plus",
+        "https://op.gg/lol/champions/yasuo/counters/top?tier=emerald_plus",
+        "https://op.gg/lol/champions/yasuo/synergies/top?tier=emerald_plus",
+        "https://lolalytics.com/lol/yasuo/build/?lane=top",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Yasuo",
+      "role": "bot",
+      "tier": "A",
+      "winRate": "51.43% (op.gg, Emerald+, 16.22) / 53.02% (lolalytics, Emerald+, 16.22)",
+      "summoners": [
+        "Flash",
+        "Exhaust"
+      ],
+      "runes": {
+        "primaryTree": "Precision",
+        "keystone": "Lethal Tempo",
+        "primary": [
+          "Absorb Life",
+          "Legend: Alacrity",
+          "Last Stand"
+        ],
+        "secondaryTree": "Resolve",
+        "secondary": [
+          "Second Wind",
+          "Overgrowth"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Fleet Footwork",
+        "when": "About 7% of games; vs long-range poke lanes when you need sustain to reach your level 2-3 all-ins"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Bow",
+        "Health Potion"
+      ],
+      "core": [
+        "Immortal Shieldbow",
+        "Infinity Edge",
+        "Death's Dance"
+      ],
+      "boots": "Berserker's Greaves",
+      "situational": [
+        {
+          "item": "Blade of The Ruined King",
+          "when": "early dueling power and vs high-health frontliners"
+        },
+        {
+          "item": "Guardian Angel",
+          "when": "most common 5th/6th item for late-game safety"
+        },
+        {
+          "item": "Bloodthirster",
+          "when": "extra sustain and an overheal shield"
+        },
+        {
+          "item": "Lord Dominik's Regards",
+          "when": "vs tanks and armor stackers"
+        },
+        {
+          "item": "Wit's End",
+          "when": "vs AP-heavy teams"
+        }
+      ],
+      "hardMatchups": [
+        "Kalista",
+        "Xayah",
+        "Swain"
+      ],
+      "easyMatchups": [
+        "Ezreal",
+        "Lucian",
+        "Ashe"
+      ],
+      "partners": [
+        "Nami",
+        "Janna",
+        "Rell"
+      ],
+      "patchNote": "26.22: Yasuo nerfed - Q Steel Tempest ratio 105% -> 100% total AD (Riot cited rising win/ban rate from crit builds). Doran's Bow, his usual start, also lost 1 AD (8 -> 7). No Yasuo changes in 26.20-26.21.",
+      "sources": [
+        "https://op.gg/lol/champions/yasuo/build/adc?tier=emerald_plus",
+        "https://op.gg/lol/champions/yasuo/counters/adc?tier=emerald_plus",
+        "https://op.gg/lol/champions/yasuo/synergies/adc?tier=emerald_plus",
+        "https://lolalytics.com/lol/yasuo/build/?lane=bottom",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Lux",
+      "role": "support",
+      "tier": "B",
+      "winRate": "48.81% (op.gg, Emerald+, 16.22) / 51.26% (lolalytics, Emerald+, 16.22)",
+      "summoners": [
+        "Flash",
+        "Heal"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Arcane Comet",
+        "primary": [
+          "Manaflow Band",
+          "Transcendence",
+          "Scorch"
+        ],
+        "secondaryTree": "Domination",
+        "secondary": [
+          "Cheap Shot",
+          "Ultimate Hunter"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Dark Harvest",
+        "when": "About 17% of games; for a pick-focused, full-damage style that snowballs off takedowns"
+      },
+      "skillMax": "E > Q > W",
+      "firstThree": "E, Q, W",
+      "starter": [
+        "World Atlas",
+        "Health Potion"
+      ],
+      "core": [
+        "Luden's Echo",
+        "Stormsurge",
+        "Shadowflame"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Zaz'Zak's Realmspike",
+          "when": "default World Atlas upgrade (87%); take Celestial Opposition instead vs heavy dive"
+        },
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "vs assassins and divers"
+        },
+        {
+          "item": "Rabadon's Deathcap",
+          "when": "most common 4th item for max burst"
+        },
+        {
+          "item": "Void Staff",
+          "when": "vs magic resist stackers"
+        },
+        {
+          "item": "Morellonomicon",
+          "when": "vs heavy healing"
+        }
+      ],
+      "hardMatchups": [
+        "Blitzcrank",
+        "Velkoz",
+        "Rell"
+      ],
+      "easyMatchups": [
+        "Swain",
+        "Ashe",
+        "Senna"
+      ],
+      "partners": [
+        "Xayah",
+        "Jhin",
+        "Kaisa"
+      ],
+      "patchNote": "",
+      "sources": [
+        "https://op.gg/lol/champions/lux/build/support?tier=emerald_plus",
+        "https://op.gg/lol/champions/lux/counters/support?tier=emerald_plus",
+        "https://op.gg/lol/champions/lux/synergies/support?tier=emerald_plus",
+        "https://lolalytics.com/lol/lux/build/?lane=support",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Veigar",
+      "role": "bot",
+      "tier": "B",
+      "winRate": "52.04% (op.gg, Emerald+, 16.22) / 54.2% (lolalytics, Emerald+, 16.22)",
+      "summoners": [
+        "Flash",
+        "Teleport"
+      ],
+      "runes": {
+        "primaryTree": "Inspiration",
+        "keystone": "First Strike",
+        "primary": [
+          "Magical Footwear",
+          "Biscuit Delivery",
+          "Cosmic Insight"
+        ],
+        "secondaryTree": "Sorcery",
+        "secondary": [
+          "Manaflow Band",
+          "Transcendence"
+        ],
+        "shards": [
+          "Ability Haste",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Arcane Comet",
+        "when": "About 27% of games; more lane poke with Q/E, usually paired with Gathering Storm"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion"
+      ],
+      "core": [
+        "Luden's Echo",
+        "Stormsurge",
+        "Rabadon's Deathcap"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "most common 4th item; vs divers and assassins"
+        },
+        {
+          "item": "Void Staff",
+          "when": "vs magic resist stackers"
+        },
+        {
+          "item": "Banshee's Veil",
+          "when": "vs pick and poke comps"
+        },
+        {
+          "item": "Shadowflame",
+          "when": "more burst vs squishy carries"
+        },
+        {
+          "item": "Rod of Ages",
+          "when": "alternate scaling path: Tear of the Goddess start into Rod of Ages and Seraph's Embrace"
+        }
+      ],
+      "hardMatchups": [
+        "Sivir",
+        "Twitch",
+        "Smolder"
+      ],
+      "easyMatchups": [
+        "Lucian",
+        "Caitlyn",
+        "Ezreal"
+      ],
+      "partners": [
+        "Senna",
+        "Leona",
+        "Alistar"
+      ],
+      "patchNote": "",
+      "sources": [
+        "https://op.gg/lol/champions/veigar/build/adc?tier=emerald_plus",
+        "https://op.gg/lol/champions/veigar/counters/adc?tier=emerald_plus",
+        "https://op.gg/lol/champions/veigar/synergies/adc?tier=emerald_plus",
+        "https://lolalytics.com/lol/veigar/build/?lane=bottom",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Aurora",
+      "role": "top",
+      "tier": "B",
+      "winRate": "50.36% (op.gg, Emerald+, 16.22) / 51.87% (lolalytics, Emerald+, 16.22)",
+      "summoners": [
+        "Flash",
+        "Ignite"
+      ],
+      "runes": {
+        "primaryTree": "Domination",
+        "keystone": "Electrocute",
+        "primary": [
+          "Taste of Blood",
+          "Grisly Mementos",
+          "Ultimate Hunter"
+        ],
+        "secondaryTree": "Sorcery",
+        "secondary": [
+          "Manaflow Band",
+          "Transcendence"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Arcane Comet",
+        "when": "Rare (about 2%) but high win rate; vs ranged or tanky lanes where you poke instead of all-in"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion"
+      ],
+      "core": [
+        "Stormsurge",
+        "Shadowflame",
+        "Rabadon's Deathcap"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Luden's Echo",
+          "when": "alternate first item for more waveclear and poke"
+        },
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "vs divers and assassins"
+        },
+        {
+          "item": "Void Staff",
+          "when": "vs magic resist stackers and tanks"
+        },
+        {
+          "item": "Mejai's Soulstealer",
+          "when": "when ahead and not dying"
+        },
+        {
+          "item": "Banshee's Veil",
+          "when": "vs burst mages and pick threats"
+        }
+      ],
+      "hardMatchups": [
+        "Yasuo",
+        "Akali",
+        "Sion"
+      ],
+      "easyMatchups": [
+        "Darius",
+        "Volibear",
+        "Trundle"
+      ],
+      "patchNote": "26.22: bugfix only - Aurora's R could be blocked by Samira's W; now fixed. No balance changes in 26.20-26.22.",
+      "sources": [
+        "https://op.gg/lol/champions/aurora/build/top?tier=emerald_plus",
+        "https://op.gg/lol/champions/aurora/counters/top?tier=emerald_plus",
+        "https://op.gg/lol/champions/aurora/synergies/top?tier=emerald_plus",
+        "https://lolalytics.com/lol/aurora/build/?lane=top",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    }
+  ]
+}

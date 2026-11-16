@@ -1,0 +1,1041 @@
+{
+  "patch": "26.22",
+  "dataNote": "Builds, runes, skills and matchups come from op.gg 16.22 (patch 26.22) Ranked Solo/Duo, Emerald+, all regions (most-played options). Win rates and tiers come from both op.gg and lolalytics (Emerald+, global). Lolalytics runs about 1.5 to 2 points higher across the board (its Emerald+ average is 51.7%), so compare champions within one source.",
+  "champions": [
+    {
+      "id": "Lissandra",
+      "role": "mid",
+      "tier": "A",
+      "winRate": "50.85% (op.gg, Emerald+, 16.22, 5.5% pick) / 52.56% (lolalytics, Emerald+, 16.22, A tier #22 of 93)",
+      "summoners": [
+        "Flash",
+        "Teleport"
+      ],
+      "runes": {
+        "primaryTree": "Domination",
+        "keystone": "Electrocute",
+        "primary": [
+          "Cheap Shot",
+          "Grisly Mementos",
+          "Ultimate Hunter"
+        ],
+        "secondaryTree": "Sorcery",
+        "secondary": [
+          "Manaflow Band",
+          "Transcendence"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Arcane Comet",
+        "when": "Into ranged mages you can't walk up to (about 40% of games, 50.7% win rate vs Electrocute's 50.9%)"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Malignance",
+        "Shadowflame",
+        "Zhonya's Hourglass"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Rabadon's Deathcap",
+          "when": "Most common 4th item for more burst"
+        },
+        {
+          "item": "Void Staff",
+          "when": "When enemies stack Magic Resist"
+        },
+        {
+          "item": "Cryptbloom",
+          "when": "Magic Pen plus a team heal for skirmish-heavy games"
+        },
+        {
+          "item": "Banshee's Veil",
+          "when": "Against burst mages and pick comps"
+        },
+        {
+          "item": "Blackfire Torch",
+          "when": "Alternative first item for more damage over time and wave clear"
+        }
+      ],
+      "hardMatchups": [
+        "Hwei",
+        "Xerath",
+        "Lux"
+      ],
+      "easyMatchups": [
+        "Yasuo",
+        "Akali",
+        "Yone"
+      ],
+      "patchNote": "",
+      "sources": [
+        "https://op.gg/lol/champions/lissandra/build/mid",
+        "https://op.gg/lol/champions/lissandra/counters/mid",
+        "https://lolalytics.com/lol/lissandra/build/?lane=middle"
+      ]
+    },
+    {
+      "id": "Locke",
+      "role": "mid",
+      "tier": "C",
+      "winRate": "48.22% (op.gg, Emerald+, 16.22, 5.5% pick) / 49.87% (lolalytics, Emerald+, 16.22, B- tier #61 of 93); 29.3% ban rate on op.gg",
+      "summoners": [
+        "Flash",
+        "Ignite"
+      ],
+      "runes": {
+        "primaryTree": "Domination",
+        "keystone": "Electrocute",
+        "primary": [
+          "Sudden Impact",
+          "Sixth Sense",
+          "Ultimate Hunter"
+        ],
+        "secondaryTree": "Resolve",
+        "secondary": [
+          "Bone Plating",
+          "Revitalize"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Conqueror",
+        "when": "Rare (about 4%): for longer, extended fights against bruisers, 48.3% win rate, about the same as Electrocute"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Lich Bane",
+        "Shadowflame",
+        "Zhonya's Hourglass"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Rabadon's Deathcap",
+          "when": "Most common 4th item when you are ahead"
+        },
+        {
+          "item": "Stormsurge",
+          "when": "Alternative 2nd item for faster burst on squishy targets"
+        },
+        {
+          "item": "Void Staff",
+          "when": "When enemies stack Magic Resist"
+        },
+        {
+          "item": "Banshee's Veil",
+          "when": "Against point-and-click CC and burst mages"
+        },
+        {
+          "item": "Mejai's Soulstealer",
+          "when": "Snowball pick when you are already fed"
+        }
+      ],
+      "hardMatchups": [
+        "Katarina",
+        "Akali",
+        "Yasuo"
+      ],
+      "easyMatchups": [
+        "Orianna",
+        "Xerath",
+        "Taliyah"
+      ],
+      "patchNote": "26.22 nerf: Q (Ritual Nails) stack bonus damage 18-50 to 15-43 (max stack damage 210 to 180.6), W (Soul Ignition) duration 6s to 5s. 26.21 retune: less mana (mana growth 70 to 60, W cost +10, Q unused-charge refund 20-35% to 10-40%) but more scaling (W current-health store 150-450 to 100-500 (+60% AP), E blink damage 40-80 (+40% AP) to 40-100 (+50% AP)).",
+      "sources": [
+        "https://op.gg/lol/champions/locke/build/mid",
+        "https://op.gg/lol/champions/locke/counters/mid",
+        "https://lolalytics.com/lol/locke/build/?lane=middle",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes"
+      ]
+    },
+    {
+      "id": "Ekko",
+      "role": "mid",
+      "tier": "S",
+      "winRate": "52.23% (op.gg, Emerald+, 16.22, 5.3% pick) / 53.87% (lolalytics, Emerald+, 16.22, S+ tier #1 of 93)",
+      "summoners": [
+        "Flash",
+        "Ignite"
+      ],
+      "runes": {
+        "primaryTree": "Domination",
+        "keystone": "Hail of Blades",
+        "primary": [
+          "Sudden Impact",
+          "Grisly Mementos",
+          "Relentless Hunter"
+        ],
+        "secondaryTree": "Precision",
+        "secondary": [
+          "Legend: Haste",
+          "Cut Down"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Electrocute",
+        "when": "About 16% of games, for more burst on short trades (50.8% win rate vs Hail of Blades' 52.4%)"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Stormsurge",
+        "Dusk and Dawn",
+        "Rabadon's Deathcap"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Dark Seal",
+          "when": "Start Dark Seal + Refillable Potion instead of Doran's Ring in safe lanes (about 22% of games, 53.3% win rate)"
+        },
+        {
+          "item": "Shadowflame",
+          "when": "Alternative 2nd or 3rd item for more burst on squishies"
+        },
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "Most common 4th item, against AD assassins and dive"
+        },
+        {
+          "item": "Void Staff",
+          "when": "When enemies stack Magic Resist"
+        },
+        {
+          "item": "Mercury's Treads",
+          "when": "Swap boots against heavy CC or AP burst"
+        }
+      ],
+      "hardMatchups": [
+        "Vladimir",
+        "Fizz",
+        "Leblanc"
+      ],
+      "easyMatchups": [
+        "Orianna",
+        "Syndra",
+        "Viktor"
+      ],
+      "patchNote": "26.22: bug fix so Hail of Blades works consistently on Ekko (no number changes).",
+      "sources": [
+        "https://op.gg/lol/champions/ekko/build/mid",
+        "https://op.gg/lol/champions/ekko/counters/mid",
+        "https://lolalytics.com/lol/ekko/build/?lane=middle",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "Ekko",
+      "role": "jungle",
+      "tier": "A",
+      "winRate": "50.76% (op.gg, Emerald+, 16.22, 4.5% pick) / 52.49% (lolalytics, Emerald+, 16.22, A+ tier #10 of 78)",
+      "summoners": [
+        "Flash",
+        "Smite"
+      ],
+      "runes": {
+        "primaryTree": "Domination",
+        "keystone": "Dark Harvest",
+        "primary": [
+          "Sudden Impact",
+          "Grisly Mementos",
+          "Treasure Hunter"
+        ],
+        "secondaryTree": "Inspiration",
+        "secondary": [
+          "Magical Footwear",
+          "Cosmic Insight"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Hail of Blades",
+        "when": "For faster ganks and early skirmishes (about 9% of games, 51.6% win rate vs Dark Harvest's 50.8%)"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Scorchclaw Pup",
+        "Health Potion"
+      ],
+      "core": [
+        "Dusk and Dawn",
+        "Shadowflame",
+        "Rabadon's Deathcap"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Nashor's Tooth",
+          "when": "Alternative first item for faster clears and dueling with auto attacks"
+        },
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "Most common 4th item, against AD assassins and dive"
+        },
+        {
+          "item": "Void Staff",
+          "when": "When enemies stack Magic Resist"
+        },
+        {
+          "item": "Banshee's Veil",
+          "when": "Against pick comps and burst mages"
+        },
+        {
+          "item": "Mercury's Treads",
+          "when": "Swap boots against heavy CC (about 15% of games)"
+        }
+      ],
+      "hardMatchups": [
+        "Nidalee",
+        "Shaco",
+        "Elise"
+      ],
+      "easyMatchups": [
+        "Jayce",
+        "Zac",
+        "Qiyana"
+      ],
+      "partners": [
+        "Lissandra",
+        "Ahri",
+        "Malphite"
+      ],
+      "patchNote": "26.22: bug fix so Hail of Blades works consistently on Ekko (no number changes).",
+      "sources": [
+        "https://op.gg/lol/champions/ekko/build/jungle",
+        "https://op.gg/lol/champions/ekko/counters/jungle",
+        "https://op.gg/lol/champions/ekko/synergies/jungle",
+        "https://lolalytics.com/lol/ekko/build/?lane=jungle",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-22-notes"
+      ]
+    },
+    {
+      "id": "TwistedFate",
+      "role": "mid",
+      "tier": "A",
+      "winRate": "50.94% (op.gg, Emerald+, 16.22, 5.2% pick) / 52.50% (lolalytics, Emerald+, 16.22, S tier #6 of 93)",
+      "summoners": [
+        "Flash",
+        "Teleport"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Arcane Comet",
+        "primary": [
+          "Manaflow Band",
+          "Celerity",
+          "Scorch"
+        ],
+        "secondaryTree": "Resolve",
+        "secondary": [
+          "Bone Plating",
+          "Unflinching"
+        ],
+        "shards": [
+          "Attack Speed",
+          "Move Speed",
+          "Health"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Electrocute",
+        "when": "For Gold Card burst in kill lanes (about 13% of games, 51.1% win rate, same as Comet). Unsealed Spellbook (about 8%, 51.7%) is the scaling option"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "W, Q, E",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Rod of Ages",
+        "Lich Bane",
+        "Rapid Firecannon"
+      ],
+      "boots": "Boots of Swiftness",
+      "situational": [
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "Most common 4th item, against divers and assassins"
+        },
+        {
+          "item": "Rabadon's Deathcap",
+          "when": "More burst for picks when you are ahead"
+        },
+        {
+          "item": "Hextech Rocketbelt",
+          "when": "Alternative first item for aggressive Gold Card engages (nerfed in 26.20)"
+        },
+        {
+          "item": "Banshee's Veil",
+          "when": "Against pick and burst comps"
+        },
+        {
+          "item": "Mercury's Treads",
+          "when": "Swap boots against heavy CC"
+        }
+      ],
+      "hardMatchups": [
+        "AurelionSol",
+        "Xerath",
+        "Vladimir"
+      ],
+      "easyMatchups": [
+        "Akali",
+        "Azir",
+        "Galio"
+      ],
+      "patchNote": "26.21: R (Destiny) now reveals untargetable champions too. 26.20 Hextech Rocketbelt nerf: Ability Haste 20 to 10, active damage 100 (+10% AP) to 135 (+15% AP).",
+      "sources": [
+        "https://op.gg/lol/champions/twistedfate/build/mid",
+        "https://op.gg/lol/champions/twistedfate/counters/mid",
+        "https://lolalytics.com/lol/twistedfate/build/?lane=middle",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes"
+      ]
+    },
+    {
+      "id": "Fizz",
+      "role": "mid",
+      "tier": "A",
+      "winRate": "51.26% (op.gg, Emerald+, 16.22, 4.7% pick) / 53.40% (lolalytics, Emerald+, 16.22, A+ tier #13 of 93)",
+      "summoners": [
+        "Flash",
+        "Ignite"
+      ],
+      "runes": {
+        "primaryTree": "Domination",
+        "keystone": "Electrocute",
+        "primary": [
+          "Sudden Impact",
+          "Grisly Mementos",
+          "Treasure Hunter"
+        ],
+        "secondaryTree": "Sorcery",
+        "secondary": [
+          "Transcendence",
+          "Scorch"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Dark Harvest",
+        "when": "Rare (about 3%): for scaling burst in long games, 51.7% win rate"
+      },
+      "skillMax": "E > W > Q",
+      "firstThree": "E, W, Q",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Lich Bane",
+        "Shadowflame",
+        "Zhonya's Hourglass"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Rabadon's Deathcap",
+          "when": "Most common 4th item for one-shot burst"
+        },
+        {
+          "item": "Void Staff",
+          "when": "When enemies stack Magic Resist"
+        },
+        {
+          "item": "Stormsurge",
+          "when": "More burst against squishy teams"
+        },
+        {
+          "item": "Banshee's Veil",
+          "when": "Against point-and-click CC (Lissandra, Malzahar)"
+        },
+        {
+          "item": "Ionian Boots of Lucidity",
+          "when": "Alternative boots (about 28%) for more Ability Haste"
+        }
+      ],
+      "hardMatchups": [
+        "Diana",
+        "Lissandra",
+        "Vex"
+      ],
+      "easyMatchups": [
+        "AurelionSol",
+        "Syndra",
+        "Xerath"
+      ],
+      "patchNote": "No Summoner's Rift changes (26.20's Fizz Q/W AP-ratio nerfs were for the Classic mode only).",
+      "sources": [
+        "https://op.gg/lol/champions/fizz/build/mid",
+        "https://op.gg/lol/champions/fizz/counters/mid",
+        "https://lolalytics.com/lol/fizz/build/?lane=middle",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes"
+      ]
+    },
+    {
+      "id": "Galio",
+      "role": "mid",
+      "tier": "C",
+      "winRate": "48.84% (op.gg, Emerald+, 16.22, 4.7% pick) / 50.39% (lolalytics, Emerald+, 16.22, B tier #52 of 93)",
+      "summoners": [
+        "Flash",
+        "Teleport"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Stormraider's Surge",
+        "primary": [
+          "Manaflow Band",
+          "Transcendence",
+          "Scorch"
+        ],
+        "secondaryTree": "Resolve",
+        "secondary": [
+          "Second Wind",
+          "Unflinching"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Aftershock",
+        "when": "Tankier engage setup (about 24% of games, 49.3% win rate, higher than Stormraider's 48.5%), usually with Sorcery secondary"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Hextech Rocketbelt",
+        "Imperial Mandate",
+        "Zhonya's Hourglass"
+      ],
+      "boots": "Mercury's Treads",
+      "situational": [
+        {
+          "item": "Hollow Radiance",
+          "when": "Alternative first item into AP lanes and wave-clear mages (about 56% win rate on that path)"
+        },
+        {
+          "item": "Thornmail",
+          "when": "Against AD auto-attackers and healing"
+        },
+        {
+          "item": "Kaenic Rookern",
+          "when": "Against heavy AP teams"
+        },
+        {
+          "item": "Rabadon's Deathcap",
+          "when": "More damage when the team has enough front line"
+        },
+        {
+          "item": "Plated Steelcaps",
+          "when": "Alternative boots (about 28%) against AD teams"
+        }
+      ],
+      "hardMatchups": [
+        "Hwei",
+        "Ahri",
+        "Veigar"
+      ],
+      "easyMatchups": [
+        "Sylas",
+        "Akali",
+        "Katarina"
+      ],
+      "patchNote": "No Summoner's Rift champion changes (26.21's Galio changes were Arena only). 26.20 Hextech Rocketbelt nerf: Ability Haste 20 to 10, active damage 100 (+10% AP) to 135 (+15% AP). Rocketbelt is his most common first item.",
+      "sources": [
+        "https://op.gg/lol/champions/galio/build/mid",
+        "https://op.gg/lol/champions/galio/counters/mid",
+        "https://lolalytics.com/lol/galio/build/?lane=middle",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-20-notes"
+      ]
+    },
+    {
+      "id": "Galio",
+      "role": "support",
+      "tier": "B",
+      "winRate": "50.60% (op.gg, Emerald+, 16.22, 0.85% pick) / 52.36% (lolalytics, Emerald+, 16.22, A tier #18 of 79)",
+      "summoners": [
+        "Flash",
+        "Heal"
+      ],
+      "runes": {
+        "primaryTree": "Resolve",
+        "keystone": "Aftershock",
+        "primary": [
+          "Shield Bash",
+          "Bone Plating",
+          "Unflinching"
+        ],
+        "secondaryTree": "Sorcery",
+        "secondary": [
+          "Nimbus Cloak",
+          "Transcendence"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Glacial Augment",
+        "when": "For more peel and slows (about 10% of games, 49.7% win rate vs Aftershock's 51.3%)"
+      },
+      "skillMax": "W > E > Q",
+      "firstThree": "W, E, Q",
+      "starter": [
+        "World Atlas",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Locket of the Iron Solari",
+        "Imperial Mandate",
+        "Thornmail"
+      ],
+      "boots": "Plated Steelcaps",
+      "situational": [
+        {
+          "item": "Celestial Opposition",
+          "when": "World Atlas upgrade most players pick (about 62%). Solstice Sleigh (about 29%) wins more often (52.7%)"
+        },
+        {
+          "item": "Knight's Vow",
+          "when": "To protect a fed carry"
+        },
+        {
+          "item": "Frozen Heart",
+          "when": "Against attack-speed and AD teams"
+        },
+        {
+          "item": "Bandlepipes",
+          "when": "Team-fight utility in the late game"
+        },
+        {
+          "item": "Mercury's Treads",
+          "when": "Alternative boots (about 34%) against CC and AP teams"
+        }
+      ],
+      "hardMatchups": [
+        "Braum",
+        "Senna",
+        "Nami"
+      ],
+      "easyMatchups": [
+        "Yuumi",
+        "Karma",
+        "Blitzcrank"
+      ],
+      "partners": [
+        "Xayah",
+        "MissFortune",
+        "Tristana"
+      ],
+      "patchNote": "No Summoner's Rift champion changes (26.21's Galio changes were Arena only).",
+      "sources": [
+        "https://op.gg/lol/champions/galio/build/support",
+        "https://op.gg/lol/champions/galio/counters/support",
+        "https://op.gg/lol/champions/galio/synergies/support",
+        "https://lolalytics.com/lol/galio/build/?lane=support",
+        "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes"
+      ]
+    },
+    {
+      "id": "Vladimir",
+      "role": "mid",
+      "tier": "A",
+      "winRate": "51.51% (op.gg, Emerald+, 16.22, 4.0% pick) / 53.30% (lolalytics, Emerald+, 16.22, S- tier #8 of 93)",
+      "summoners": [
+        "Flash",
+        "Ghost"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Stormraider's Surge",
+        "primary": [
+          "Nimbus Cloak",
+          "Transcendence",
+          "Gathering Storm"
+        ],
+        "secondaryTree": "Precision",
+        "secondary": [
+          "Legend: Haste",
+          "Last Stand"
+        ],
+        "shards": [
+          "Ability Haste",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Deathfire Touch",
+        "when": "About 18% of games for more sustained damage, 52.2% win rate (higher than Stormraider's 51.4%)"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Stormsurge",
+        "Rabadon's Deathcap",
+        "Riftmaker"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "Most common 4th item, against assassins and dive"
+        },
+        {
+          "item": "Void Staff",
+          "when": "When enemies stack Magic Resist"
+        },
+        {
+          "item": "Shadowflame",
+          "when": "Alternative 3rd item for more burst on squishies"
+        },
+        {
+          "item": "Liandry's Torment",
+          "when": "Against tanky front lines"
+        },
+        {
+          "item": "Mejai's Soulstealer",
+          "when": "Snowball pick when you are already fed"
+        }
+      ],
+      "hardMatchups": [
+        "Malzahar",
+        "Aurora",
+        "Hwei"
+      ],
+      "easyMatchups": [
+        "Yasuo",
+        "Irelia",
+        "Lux"
+      ],
+      "patchNote": "",
+      "sources": [
+        "https://op.gg/lol/champions/vladimir/build/mid",
+        "https://op.gg/lol/champions/vladimir/counters/mid",
+        "https://lolalytics.com/lol/vladimir/build/?lane=middle"
+      ]
+    },
+    {
+      "id": "Vladimir",
+      "role": "top",
+      "tier": "C",
+      "winRate": "49.38% (op.gg, Emerald+, 16.22, 1.2% pick) / 51.12% (lolalytics, Emerald+, 16.22, B- tier #62 of 110)",
+      "summoners": [
+        "Flash",
+        "Ghost"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Stormraider's Surge",
+        "primary": [
+          "Nimbus Cloak",
+          "Transcendence",
+          "Gathering Storm"
+        ],
+        "secondaryTree": "Precision",
+        "secondary": [
+          "Legend: Haste",
+          "Last Stand"
+        ],
+        "shards": [
+          "Ability Haste",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "Summon Aery",
+        "when": "Safer poke into ranged or hard lanes (about 13% of games, 50.5%, the best-winning keystone). Deathfire Touch (about 25%) is the other common choice"
+      },
+      "skillMax": "Q > E > W",
+      "firstThree": "Q, E, W",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Stormsurge",
+        "Rabadon's Deathcap",
+        "Shadowflame"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Liandry's Torment",
+          "when": "Against tanky top laners and front lines"
+        },
+        {
+          "item": "Void Staff",
+          "when": "When enemies stack Magic Resist"
+        },
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "Most common 4th item, against AD divers"
+        },
+        {
+          "item": "Riftmaker",
+          "when": "More sustain for long fights"
+        },
+        {
+          "item": "Ionian Boots of Lucidity",
+          "when": "Alternative boots (about 40%) for more Ability Haste"
+        }
+      ],
+      "hardMatchups": [
+        "Nasus",
+        "Ambessa",
+        "Irelia"
+      ],
+      "easyMatchups": [
+        "Jax",
+        "Jayce",
+        "Yasuo"
+      ],
+      "patchNote": "",
+      "sources": [
+        "https://op.gg/lol/champions/vladimir/build/top",
+        "https://op.gg/lol/champions/vladimir/counters/top",
+        "https://lolalytics.com/lol/vladimir/build/?lane=top"
+      ]
+    },
+    {
+      "id": "Xerath",
+      "role": "mid",
+      "tier": "A",
+      "winRate": "51.20% (op.gg, Emerald+, 16.22, 4.0% pick) / 52.98% (lolalytics, Emerald+, 16.22, A- tier #26 of 93)",
+      "summoners": [
+        "Flash",
+        "Teleport"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Arcane Comet",
+        "primary": [
+          "Manaflow Band",
+          "Transcendence",
+          "Scorch"
+        ],
+        "secondaryTree": "Precision",
+        "secondary": [
+          "Presence of Mind",
+          "Coup de Grace"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "First Strike",
+        "when": "For gold and scaling in passive lanes (about 17% of games, 51.5% win rate)"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "Q, W, E",
+      "starter": [
+        "Doran's Ring",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Luden's Echo",
+        "Shadowflame",
+        "Rabadon's Deathcap"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Horizon Focus",
+          "when": "Alternative 2nd or 3rd item for long-range poke"
+        },
+        {
+          "item": "Void Staff",
+          "when": "When enemies stack Magic Resist"
+        },
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "Against assassins and divers"
+        },
+        {
+          "item": "Stormsurge",
+          "when": "More burst against squishy teams"
+        },
+        {
+          "item": "Mejai's Soulstealer",
+          "when": "Snowball pick when you are already fed"
+        }
+      ],
+      "hardMatchups": [
+        "Fizz",
+        "Locke",
+        "Ekko"
+      ],
+      "easyMatchups": [
+        "Azir",
+        "Viktor",
+        "Syndra"
+      ],
+      "patchNote": "",
+      "sources": [
+        "https://op.gg/lol/champions/xerath/build/mid",
+        "https://op.gg/lol/champions/xerath/counters/mid",
+        "https://lolalytics.com/lol/xerath/build/?lane=middle"
+      ]
+    },
+    {
+      "id": "Xerath",
+      "role": "support",
+      "tier": "C",
+      "winRate": "48.58% (op.gg, Emerald+, 16.22, 2.7% pick) / 50.88% (lolalytics, Emerald+, 16.22, B tier #35 of 79)",
+      "summoners": [
+        "Flash",
+        "Heal"
+      ],
+      "runes": {
+        "primaryTree": "Sorcery",
+        "keystone": "Arcane Comet",
+        "primary": [
+          "Manaflow Band",
+          "Transcendence",
+          "Scorch"
+        ],
+        "secondaryTree": "Precision",
+        "secondary": [
+          "Presence of Mind",
+          "Coup de Grace"
+        ],
+        "shards": [
+          "Adaptive Force",
+          "Adaptive Force",
+          "Health Scaling"
+        ]
+      },
+      "altKeystone": {
+        "keystone": "First Strike",
+        "when": "For extra gold in a low-income role (about 19% of games, 49.7% win rate vs Comet's 48.4%)"
+      },
+      "skillMax": "Q > W > E",
+      "firstThree": "W, Q, E",
+      "starter": [
+        "World Atlas",
+        "Health Potion",
+        "Health Potion"
+      ],
+      "core": [
+        "Luden's Echo",
+        "Horizon Focus",
+        "Shadowflame"
+      ],
+      "boots": "Sorcerer's Shoes",
+      "situational": [
+        {
+          "item": "Zaz'Zak's Realmspike",
+          "when": "World Atlas upgrade almost everyone picks (about 95%)"
+        },
+        {
+          "item": "Rabadon's Deathcap",
+          "when": "Most common 4th item for more damage"
+        },
+        {
+          "item": "Zhonya's Hourglass",
+          "when": "Against divers and assassins"
+        },
+        {
+          "item": "Stormsurge",
+          "when": "More burst against squishy teams"
+        },
+        {
+          "item": "Morellonomicon",
+          "when": "Against heavy healing"
+        }
+      ],
+      "hardMatchups": [
+        "Nami",
+        "Sona",
+        "Rell"
+      ],
+      "easyMatchups": [
+        "Lux",
+        "Swain",
+        "Seraphine"
+      ],
+      "partners": [
+        "Xayah",
+        "Jhin",
+        "Ashe"
+      ],
+      "patchNote": "",
+      "sources": [
+        "https://op.gg/lol/champions/xerath/build/support",
+        "https://op.gg/lol/champions/xerath/counters/support",
+        "https://op.gg/lol/champions/xerath/synergies/support",
+        "https://lolalytics.com/lol/xerath/build/?lane=support"
+      ]
+    }
+  ]
+}
