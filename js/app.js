@@ -222,7 +222,11 @@
     fixLinks(document);
     var top = loc.path.split("/")[0];
     var navKey = { guide: "guides", role: "roles", champion: "champions", path: "guides", patch: "tierlist", item: "items", rune: "items", runes: "items" }[top] || top;
-    $all(".main-nav a").forEach(function (a) { a.classList.toggle("active", a.dataset.nav === navKey); });
+    $all(".main-nav a").forEach(function (a) {
+      var on = a.dataset.nav === navKey;
+      a.classList.toggle("active", on);
+      if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
     $("#mainNav").classList.remove("open");
     $("#menuBtn").setAttribute("aria-expanded", "false");
     if (!loc.query.keepScroll) window.scrollTo(0, 0);
@@ -651,7 +655,7 @@
         return RA.champs.some(function (c) { return c.roles.indexOf(r) >= 0; });
       }).map(function (r) { return chip("role", r, ROLE_NAMES[r] + (r === "top" || r === "mid" || r === "bot" ? " lane" : "")); }).join("") + "</div>" +
       '<div class="chips">' + chip("diff", "all", "Any difficulty") + chip("diff", "Easy", "Easy") + chip("diff", "Medium", "Medium") + chip("diff", "Hard", "Hard") + "</div>" +
-      '<div style="margin-bottom:18px"><input type="text" id="champFilter" placeholder="Filter by name…" style="width:100%;max-width:320px"></div>' +
+      '<div style="margin-bottom:18px"><input type="text" id="champFilter" aria-label="Filter champions by name" placeholder="Filter by name…" style="width:100%;max-width:320px"></div>' +
       (cs.length ? '<div class="grid cols-4" id="champGrid">' + cs.map(function (c) { return champCard(c, role !== "all" ? role : null); }).join("") + "</div>" : '<p class="empty">No champions match.</p>');
     var f = $("#champFilter");
     if (f) f.addEventListener("input", function () {
@@ -738,6 +742,15 @@
       phases: Object.assign({}, base.phases, ov.phases || {})
     }) : base;
     if (ov && !ov.supports) c.supports = null;
+    // Extra researched matchups (js/data/matchups-extra-*.js) are added after the guide's own ones.
+    var ex = (RA.matchupsExtra || {})[base.id + ":" + role];
+    if (ex) {
+      // An off-role page with no matchups of its own (e.g. Ziggs bot) uses only its researched ones, not the main lane's.
+      var own = role !== base.roles[0] && !(ov && ov.matchups) ? {} : (c.matchups || {}), seen = {};
+      [].concat(own.hard || [], own.easy || []).forEach(function (m) { seen[m.id] = true; });
+      var more = function (list) { return (list || []).filter(function (m) { return !seen[m.id] && DD.champions[m.id]; }); };
+      c = Object.assign({}, c, { matchups: { hard: (own.hard || []).concat(more(ex.hard)), easy: (own.easy || []).concat(more(ex.easy)) }, matchupSource: ex.source });
+    }
     return c;
   }
   RA.champFor = champFor;
@@ -771,7 +784,8 @@
 
     function mu(arr) {
       return (arr || []).map(function (m) {
-        return '<div class="matchup"><img src="' + img.champ(m.id) + '" alt="" loading="lazy"><div><b>' + (hasGuide(m.id) ? '<a href="' + champLink(m.id) + '">' + esc(champName(m.id)) + "</a>" : esc(champName(m.id))) + "</b><span>" + rich(m.tip) + "</span></div></div>";
+        return '<div class="matchup"><img src="' + img.champ(m.id) + '" alt="" loading="lazy"><div><b>' + (hasGuide(m.id) ? '<a href="' + champLink(m.id) + '">' + esc(champName(m.id)) + "</a>" : esc(champName(m.id))) +
+          (m.wr ? ' <small class="mu-wr" title="' + esc(champName(c.id)) + "'s win rate in this matchup\">" + esc(m.wr) + " win rate</small>" : "") + "</b><span>" + rich(m.tip) + "</span></div></div>";
       }).join("");
     }
 
@@ -803,8 +817,9 @@
         "<h2>Mid game</h2>" + rich(c.phases.mid) +
         "<h2>Late game</h2>" + rich(c.phases.late) + "</div>",
       build: buildHtml(c, role),
-      matchups: '<div class="two-col"><div class="card"><h3 style="color:var(--red)">Tough matchups</h3>' + mu(c.matchups && c.matchups.hard) + '</div><div class="card"><h3 style="color:var(--green)">Favorable matchups</h3>' + mu(c.matchups && c.matchups.easy) + "</div></div>" +
-        (c.supports && c.supports.length && (role === "bot" || role === "support") ? '<div class="card" style="margin-top:16px"><h3>' + (role === "support" ? "Best ADC partners" : "Best support partners") + "</h3>" + mu(c.supports.map(function (s) { return { id: s.id, tip: s.why }; })) + "</div>" : "")
+      matchups: (c.matchupNote ? '<div class="callout"><strong class="label">This patch</strong>' + esc(c.matchupNote) + "</div>" : "") + '<div class="two-col"><div class="card"><h3 style="color:var(--red)">Tough matchups</h3>' + mu(c.matchups && c.matchups.hard) + '</div><div class="card"><h3 style="color:var(--green)">Favorable matchups</h3>' + mu(c.matchups && c.matchups.easy) + "</div></div>" +
+        (c.supports && c.supports.length && (role === "bot" || role === "support") ? '<div class="card" style="margin-top:16px"><h3>' + (role === "support" ? "Best ADC partners" : "Best support partners") + "</h3>" + mu(c.supports.map(function (s) { return { id: s.id, tip: s.why }; })) + "</div>" : "") +
+        (c.matchupSource ? '<p class="patch-note">Win rates are ' + esc(champName(c.id)) + "'s, from " + esc(c.matchupSource) + '. Look up any pair in the <a href="#/tools/matchup?you=' + c.id + "&role=" + role + '">Matchup Lookup</a>.</p>' : "")
     };
 
     app.innerHTML =
@@ -815,6 +830,7 @@
         "<h1>" + esc(champName(c.id)) + '</h1><div class="title">' + esc(champTitle(c.id)) + "</div>" +
         (c.roles.length > 1 ? '<div class="chips" style="margin:0">' + c.roles.map(function (r) { return '<a class="chip' + (r === role ? " active" : "") + '" href="' + champLink(c.id, r) + (tab !== "overview" ? "?tab=" + tab : "") + '">' + ROLE_NAMES[r] + " lane</a>"; }).join("") + "</div>" : "") +
         "<p>" + rich(c.summary) + "</p>" +
+        '<p class="hero-links"><a href="#/tools/compare?a=' + c.id + "&ar=" + role + '">⚖️ Compare with another champion</a> · <a href="#/tools/matchup?you=' + c.id + "&role=" + role + '">⚔️ Look up a matchup</a></p>' +
       "</div></section>" +
       '<div class="tabs" role="tablist">' + tabs.map(function (t) { return '<button role="tab" data-tab="' + t[0] + '" class="' + (t[0] === tab ? "active" : "") + '">' + t[1] + "</button>"; }).join("") + "</div>" +
       '<div id="tabPanel"></div>';
@@ -822,7 +838,7 @@
     function show(t) {
       $("#tabPanel").innerHTML = panels[t] || "";
       if (t === "quiz" && RA.mountQuiz) RA.mountQuiz($("#champQuiz"), pk.quiz, { compact: true });
-      $all(".tabs button").forEach(function (bt) { bt.classList.toggle("active", bt.dataset.tab === t); });
+      $all(".tabs button").forEach(function (bt) { bt.classList.toggle("active", bt.dataset.tab === t); bt.setAttribute("aria-selected", bt.dataset.tab === t ? "true" : "false"); });
       RA.replaceRoute(champLink(c.id, role).slice(2) + (t !== "overview" ? "?tab=" + t : ""));
     }
     $all(".tabs button").forEach(function (bt) { bt.addEventListener("click", function () { show(bt.dataset.tab); }); });
@@ -871,7 +887,8 @@
   }
   function itemTile(n) {
     var i = DD.itemInfo[n];
-    return '<a class="item-tile" href="' + itemLink(n) + '"><img src="' + img.item(n) + '" alt="" loading="lazy"><div><b>' + esc(n) + "</b><span>" + i.gold + "g" + (i.plain ? " · " + esc(i.plain) : "") + "</span></div></a>";
+    var g = (RA.itemGuide || {})[n], blurb = g && g.what ? textOf(g.what) : i.plain;
+    return '<a class="item-tile" href="' + itemLink(n) + '"><img src="' + img.item(n) + '" alt="" loading="lazy"><div><b>' + esc(n) + "</b><span>" + i.gold + "g" + (blurb ? " · " + esc(blurb) : "") + "</span></div></a>";
   }
 
   route("items", function (app, p, q) {
@@ -882,7 +899,7 @@
     app.innerHTML =
       '<div class="page-head"><h1>Items</h1><p>Every finished item for patch ' + esc(patchNo()) + ": what it does, who buys it and when. New to shopping? Read <a href=\"#/guide/items-and-gold\">Items and Gold: How to Shop</a> first. Looking for runes? See <a href=\"#/runes\">all runes</a>.</p></div>" +
       '<div class="chips">' + ITEM_CATS.map(function (c) { return '<a class="chip' + (c === cat ? " active" : "") + '" href="#/items' + (c[0] === "all" ? "" : "?cat=" + c[0]) + '">' + c[1] + "</a>"; }).join("") + "</div>" +
-      '<div style="margin-bottom:18px"><input type="text" id="itemFilter" placeholder="Filter by name…" style="width:100%;max-width:320px"></div>' +
+      '<div style="margin-bottom:18px"><input type="text" id="itemFilter" aria-label="Filter items by name" placeholder="Filter by name…" style="width:100%;max-width:320px"></div>' +
       groups.map(function (g) {
         var ns = names.filter(function (n) { return DD.itemInfo[n].kind === g[0]; });
         if (!ns.length) return "";
@@ -900,7 +917,7 @@
     var n = ITEM_SLUGS[p.id];
     if (!n) return notFound(app);
     var i = DD.itemInfo[n], g = (RA.itemGuide || {})[n] || {};
-    RA.setTitle(n, n + " (" + i.gold + " gold): " + (g.what || i.plain || "") + " " + (g.buyWhen || ""));
+    RA.setTitle(n, n + " (" + i.gold + " gold): " + textOf(g.what || i.plain || "") + " " + textOf(g.buyWhen || ""));
     var uses = buildUses(function (b) {
       if ((b.core || []).indexOf(n) >= 0) return "Core item #" + ((b.core || []).indexOf(n) + 1);
       if (b.boots === n) return "Boots";
@@ -1085,7 +1102,7 @@
     var groups = {};
     terms.forEach(function (t) { var L = /[a-z]/i.test(t.term.charAt(0)) ? t.term.charAt(0).toUpperCase() : "#"; (groups[L] = groups[L] || []).push(t); });
     app.innerHTML = '<div class="page-head"><h1>Glossary</h1><p>League has a lot of slang. Here are ' + terms.length + ' terms you\'ll hear in games, streams and guides.</p></div>' +
-      '<input type="text" id="glossFilter" placeholder="Filter terms…" style="width:100%;max-width:360px;margin-bottom:10px" value="' + esc(q.term || "") + '">' +
+      '<input type="text" id="glossFilter" aria-label="Filter glossary terms" placeholder="Filter terms…" style="width:100%;max-width:360px;margin-bottom:10px" value="' + esc(q.term || "") + '">' +
       '<div id="glossList">' + Object.keys(groups).sort().map(function (L) {
         return '<div class="gloss-group"><h3 class="letter-head">' + L + '</h3><dl class="glossary">' + groups[L].map(function (t) {
           return '<div class="gloss-item" id="term-' + slug(t.term) + '"><dt>' + esc(t.term) + "</dt><dd>" + rich(t.def) + "</dd></div>";

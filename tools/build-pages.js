@@ -78,7 +78,7 @@ function renderPage(route, opts) {
   html = html.replace(/\s*<!-- seo: generated[\s\S]*?<!-- \/seo -->/, "");
   html = html.replace(/(<meta name="description"[^>]*>)/, "$1\n  " + seoBlock(url, RA.meta, opts.noindex));
   // Pages below the root load css/js from the site root.
-  if (opts.absoluteAssets) html = html.replace(/(href|src)="(css|js)\//g, '$1="' + SITE_PATH + "$2/");
+  if (opts.absoluteAssets) html = html.replace(/(href|src)="(css|js|fonts)\//g, '$1="' + SITE_PATH + "$2/");
   return html;
 }
 

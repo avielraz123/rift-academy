@@ -50,7 +50,7 @@ RA.champAdapt["Ekko:mid"] = {
 RA.champAdapt["Galio:mid"] = {
   tanky: { items: [{ item: "Liandry's Torment", replaces: "Imperial Mandate", why: "Its burn deals a percent of max Health, so your abilities still hurt high-health tanks, and it gives you Health." }], tip: "Against tanks your main job is engage and peel, not damage." },
   squishy: { items: [{ item: "Rabadon's Deathcap", why: "Buy it as your fourth item: it raises your total Ability Power by 30%, so your abilities hit squishy targets much harder." }], tip: "Use your ultimate to join a fight where your team is already jumping on their carries." },
-  ad: { items: [{ item: "Plated Steelcaps", replaces: "Mercury's Treads", why: "Adds Armor and reduces basic attack damage by 10%, which is better than Magic Resist boots against an AD team." }, { item: "Thornmail", why: "Gives a lot of Armor and Health and hurts attackers who hit you." }] },
+  ad: { items: [{ item: "Plated Steelcaps", replaces: "Mercury's Treads", why: "Adds Armor and reduces basic attack damage by 10%, which is better than Magic Resist boots against an AD team." }, { item: "Thornmail", why: "Gives a lot of Armor, and attackers who hit you take magic damage." }] },
   ap: { items: [{ item: "Kaenic Rookern", replaces: "Zhonya's Hourglass", why: "Gives a lot of Magic Resist and Health, plus a magic shield after you go 15 seconds without taking magic damage." }], tip: "Mercury's Treads in the baseline already help, so you are a strong pick into magic damage." },
   healing: { items: [{ item: "Morellonomicon", replaces: "Imperial Mandate", why: "Your magic damage applies 40% Wounds, cutting their healing, and it adds Health." }, { item: "Thornmail", why: "If their healer attacks you, being hit applies 40% Wounds to them." }] },
   cc: { items: [{ item: "Banshee's Veil", replaces: "Zhonya's Hourglass", why: "Its Spell Shield blocks the next enemy ability, which can eat a stun that would stop your engage." }], tip: "Mercury's Treads in the baseline already shorten their crowd control, so you are well set up." }
@@ -68,8 +68,8 @@ RA.champAdapt["Hwei:mid"] = {
 RA.champAdapt["Jhin:bot"] = {
   tanky: { items: [{ item: "Lord Dominik's Regards", why: "Buy it fourth: its Armor Penetration and bonus damage against high-Health targets let you hurt tanks." }], tip: "Your fourth shot still hits hard, so aim it at whoever is closest to dying." },
   squishy: { items: [{ item: "The Collector", replaces: "Phantom Dancer", why: "Its Lethality hurts low-armor targets, it executes champions below 5% Health, and kills give bonus gold." }] },
-  ad: { items: [{ item: "Guardian Angel", why: "Gives Armor and brings you back to life once after lethal damage." }], tip: "Stay at max range and use your W root on divers before they reach you." },
-  ap: { items: [{ item: "Maw of Malmortius", why: "Gives Magic Resist and a magic damage shield when you drop low, so mages and AP assassins struggle to burst you." }, { item: "Mercury's Treads", replaces: "Boots of Swiftness", why: "Adds Magic Resist and Tenacity." }] },
+  ad: { items: [{ item: "Guardian Angel", why: "Gives Armor and brings you back to life once after lethal damage." }], tip: "Stay at max range. Your W only roots a diver you or an ally hit recently, so tag them first, then root them before they reach you." },
+  ap: { items: [{ item: "Mercurial Scimitar", why: "Gives Magic Resist, and its active removes crowd control (except knock-ups), so you can escape a mage or AP assassin who locks you down." }, { item: "Mercury's Treads", replaces: "Boots of Swiftness", why: "Adds Magic Resist and Tenacity." }] },
   healing: { items: [{ item: "Mortal Reminder", replaces: "Lord Dominik's Regards", why: "Your physical damage applies 40% Wounds, cutting their healing, and it still gives Armor Penetration and crit." }] },
   cc: { items: [{ item: "Mercurial Scimitar", why: "Its active removes all crowd control except knock-ups, so you can escape a stun or root." }, { item: "Mercury's Treads", replaces: "Boots of Swiftness", why: "Tenacity makes all their crowd control end sooner." }] }
 };
@@ -166,16 +166,16 @@ RA.champAdapt["Xerath:mid"] = {
 
 RA.champAdapt["Yasuo:mid"] = {
   tanky: { items: [{ item: "Lord Dominik's Regards", why: "Buy it third: its Armor Penetration and bonus damage against high-Health targets let you cut through tanks." }] },
-  squishy: { items: [{ item: "The Collector", why: "Buy it fourth: its Lethality hurts low-armor targets and it executes champions below 5% Health." }], tip: "The baseline crit build already kills squishy targets well." },
+  squishy: { items: [{ item: "Bloodthirster", why: "Good fourth item: big Attack Damage and life steal, and extra healing becomes a shield." }], tip: "The baseline crit build already kills squishy targets well." },
   ad: { items: [{ item: "Guardian Angel", why: "Gives Armor and brings you back to life once after lethal damage." }, { item: "Plated Steelcaps", replaces: "Berserker's Greaves", why: "Adds Armor and reduces basic attack damage by 10%." }], tip: "Death's Dance in the baseline already gives Armor." },
-  ap: { items: [{ item: "Maw of Malmortius", replaces: "Death's Dance", why: "Gives Magic Resist and a magic damage shield when you drop low." }, { item: "Mercury's Treads", replaces: "Berserker's Greaves", why: "Adds Magic Resist and Tenacity." }] },
+  ap: { items: [{ item: "Mercurial Scimitar", replaces: "Death's Dance", why: "Gives Magic Resist, and its active removes crowd control (except knock-ups) before a mage can finish their combo." }, { item: "Mercury's Treads", replaces: "Berserker's Greaves", why: "Adds Magic Resist and Tenacity." }] },
   healing: { items: [{ item: "Mortal Reminder", replaces: "Lord Dominik's Regards", why: "Your physical damage applies 40% Wounds, cutting their healing, and it still gives Armor Penetration and crit." }] },
   cc: { items: [{ item: "Mercurial Scimitar", why: "Its active removes all crowd control except knock-ups, so you can escape a stun or root." }, { item: "Mercury's Treads", replaces: "Berserker's Greaves", why: "Tenacity makes all their crowd control end sooner." }] }
 };
 
 RA.champAdapt["Yone:top"] = {
   tanky: { items: [{ item: "Lord Dominik's Regards", why: "Buy it fourth: its Armor Penetration and bonus damage against high-Health targets let you cut through tanks." }], tip: "Blade of The Ruined King in the baseline already deals damage based on current Health, which helps against tanks." },
-  squishy: { items: [{ item: "The Collector", why: "Buy it fourth: its Lethality hurts low-armor targets and it executes champions below 5% Health." }], tip: "The baseline crit build already kills squishy targets well." },
+  squishy: { items: [{ item: "Bloodthirster", why: "Good fourth item: big Attack Damage and life steal, and extra healing becomes a shield." }], tip: "The baseline crit build already kills squishy targets well." },
   ad: { items: [{ item: "Death's Dance", replaces: "Immortal Shieldbow", why: "Gives Armor and spreads part of the damage you take over 3 seconds, so burst hurts less." }, { item: "Plated Steelcaps", replaces: "Berserker's Greaves", why: "Adds Armor and reduces basic attack damage by 10%, great against AD top laners." }] },
   ap: { items: [{ item: "Wit's End", replaces: "Immortal Shieldbow", why: "Gives Magic Resist, Tenacity and Attack Speed, plus bonus magic damage on your attacks." }, { item: "Mercury's Treads", replaces: "Berserker's Greaves", why: "Adds Magic Resist and Tenacity." }] },
   healing: { items: [{ item: "Mortal Reminder", why: "Your physical damage applies 40% Wounds, cutting their healing, and it still gives crit and Armor Penetration." }], tip: "Buy it early against a healing top laner like Aatrox or Warwick." },

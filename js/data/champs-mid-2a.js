@@ -103,28 +103,28 @@ RA.champs.push({
   difficulty: "Hard",
   damage: "Magic",
   style: "Hunter / burst skirmisher",
-  summary: "Locke is a new 2026 champion: a hunter who marks targets with nails, dashes onto them and finishes them with an ultimate that can execute. He deals magic damage through his abilities and his basic attacks, and gets stronger against wounded enemies. He's popular and banned often, but he's also new and still being balanced, so expect his numbers to change from patch to patch.",
+  summary: "Locke is a new 2026 champion: a hunter who marks targets with nails, dashes onto them and finishes them with an ultimate that can execute. He deals magic damage through his abilities and the bonus damage on his basic attacks, and gets stronger against wounded enemies. He's popular and banned often, but he's also new and still being balanced, so expect his numbers to change from patch to patch.",
   strengths: [
     "Strong finishing power: his passive and ultimate get better as the enemy loses health",
     "Ashen Pursuit gives him a teleport and a dash to reach targets",
-    "Soul Ignition makes him fast and attack quickly for short all-ins",
-    "Snowballs well: his ultimate gains power when he seals away champions"
+    "Soul Ignition makes him fast and attack quickly for short all-ins, then heals back health he spent and damage he took",
+    "Snowballs well: a champion takedown resets Ashen Pursuit, and each champion Purgatory seals away permanently raises its execute threshold"
   ],
   weaknesses: [
-    "Soul Ignition costs him his own health, so a bad all-in can leave him very low",
+    "Most of his damage depends on landing Ritual Nails, so a missed Q means a much weaker trade",
     "New champion: Riot is still tuning him (nerfed in 26.22, retuned in 26.21)",
     "Struggles against fast, slippery assassins like {{champ:Katarina}} and {{champ:Akali}}",
     "Has to get close to use his attacks, which is risky against crowd control"
   ],
   abilities: {
     P: "Silver Stake adds magic damage to your attacks, and it grows the lower the enemy's health is. Look for wounded targets: you get stronger the closer they are to dying.",
-    Q: "Ritual Nails throws a set of nails that damage and mark enemies. Your attacks then consume the marks for bonus damage, so hit Q first and follow up with auto-attacks. Missing it means a much weaker trade. After the 26.22 nerf, the mark damage is lower than before.",
-    W: "Soul Ignition gives attack speed and move speed but damages you over its duration, and heals back part of that damage when it ends. Use it when you're about to win a fight, not when you're already low. In 26.22 its duration dropped to 5 seconds.",
-    E: "Ashen Pursuit teleports you to a spot, then dashes you into your next target and damages enemies you pass through. It's your engage and your gap-closer, so don't waste it on farming when a fight could happen.",
-    R: "Purgatory throws a binding artifact that damages enemies and can execute them. Use it to finish a fight, not to start one: the lower the target, the better your chances. Sealing champions away makes you stronger for the rest of the game."
+    Q: "Ritual Nails throws a nail that damages, slows and marks enemies, and you can recast it twice more within 4 seconds. Your next attack or Ashen Pursuit consumes all the marks for bonus damage, so hit Q first and then cash the marks in. Missing it means a much weaker trade. After the 26.22 nerf, the mark damage is lower than before.",
+    W: "Soul Ignition gives attack speed, move speed and Ghosted, and costs a small share of your current health while it lasts. It stores the health you spent plus damage champions deal to you (up to a cap), and heals you for that when it ends or when you recast it, which you can do even while stunned. Use it to win all-ins and to soak burst. In 26.22 its duration dropped to 5 seconds.",
+    E: "Ashen Pursuit teleports you to a spot, then dashes you into your next target and damages enemies you pass through. A champion takedown resets its cooldown. It's your engage and your gap-closer, so don't waste it on farming when a fight could happen.",
+    R: "Purgatory throws a binding artifact that damages and heavily slows enemies and marks champions for 5 seconds. Marked champions who drop below about 10-12% of their max Health are executed. Use it to finish a fight, not to start one: the lower the target, the better your chances. Pick up the artifact after it seals a champion: each sealed champion cuts its cooldown and permanently raises the execute threshold."
   },
   combos: [
-    { name: "Mark and dash", keys: "Q → E → auto → auto", note: "Mark the target with Ritual Nails, close the gap with Ashen Pursuit, then auto-attack to consume the marks." },
+    { name: "Mark and dash", keys: "Q → Q → E → auto", note: "Land two Ritual Nails for more marks and a stronger slow, then close the gap with Ashen Pursuit. Its dash attack consumes the marks; keep auto-attacking after." },
     { name: "All-in finish", keys: "Q → E → W → autos → R", note: "Turn on Soul Ignition once you're in range, auto until they're low, then throw Purgatory to finish." },
     { name: "Poke and leave", keys: "Q → auto → walk back", note: "In lane, land Ritual Nails, step up for one or two autos to cash in the marks, then back off before they trade back." }
   ],
@@ -136,17 +136,17 @@ RA.champs.push({
     "Three items ({{item:Zhonya's Hourglass}}): lets you dive in, use everything, and survive the response"
   ],
   phases: {
-    early: "<p>Start {{item:Doran's Ring}} and two potions with {{spell:Flash}} and {{spell:Ignite}}. The common runes are {{rune:Electrocute}}, {{rune:Sudden Impact}}, {{rune:Sixth Sense}} and {{rune:Ultimate Hunter}}, with {{rune:Bone Plating}} and {{rune:Revitalize}} from Resolve to survive trades. Level Q first, then E, then W.</p><p>Your lane pattern is simple: land Ritual Nails, then walk up and auto-attack to consume the marks. Don't start a long fight unless you're sure you win it, because Soul Ignition drains your health. Against mages without dashes, like {{champ:Orianna}} or {{champ:Xerath}}, Ashen Pursuit lets you reach them once they waste their main spell.</p>{{tip:Fight wounded enemies. Silver Stake and Purgatory both get stronger against low-health targets, so trade early, wait for your cooldowns, then go for the kill.}}",
-    mid: "<p>Once you have {{item:Lich Bane}} and level 6, look for skirmishes in the river and side lanes. You're best at catching one player and finishing them before help arrives. Push your wave first, then move with your jungler. See {{guide:roaming}}.</p><p>Keep track of the enemy's crowd control. Locke has to get close, and a single stun can stop your whole combo. Wait for the main crowd control spell to be used before you commit.</p>{{warn:Don't activate Soul Ignition when you're already low. It damages you first and only heals part back at the end, so it can kill you if the fight goes wrong.}}",
+    early: "<p>Start {{item:Doran's Ring}} and two potions with {{spell:Flash}} and {{spell:Ignite}}. The common runes are {{rune:Electrocute}}, {{rune:Sudden Impact}}, {{rune:Sixth Sense}} and {{rune:Ultimate Hunter}}, with {{rune:Bone Plating}} and {{rune:Revitalize}} from Resolve to survive trades. Level Q first, then E, then W.</p><p>Your lane pattern is simple: land Ritual Nails, then walk up and auto-attack to consume the marks. Don't force a trade while Ritual Nails is on cooldown, because the marks are a big part of your damage. Against mages without dashes, like {{champ:Orianna}} or {{champ:Xerath}}, Ashen Pursuit lets you reach them once they waste their main spell.</p>{{tip:Fight wounded enemies. Silver Stake and Purgatory both get stronger against low-health targets, so trade early, wait for your cooldowns, then go for the kill.}}",
+    mid: "<p>Once you have {{item:Lich Bane}} and level 6, look for skirmishes in the river and side lanes. You're best at catching one player and finishing them before help arrives. Push your wave first, then move with your jungler. See {{guide:roaming}}.</p><p>Keep track of the enemy's crowd control. Locke has to get close, and a single stun can stop your whole combo. Wait for the main crowd control spell to be used before you commit.</p>{{tip:Soul Ignition stores the health it costs plus damage champions deal to you. Recast it before you die, even while stunned, to heal that back.}}",
     late: "<p>In late teamfights, don't go first. Let your frontline and the enemy's engage happen, then use Ashen Pursuit to reach a backline carry who's already damaged. Your execute power is best on targets your team has softened up.</p><p>Hold Purgatory as a finisher. With {{item:Zhonya's Hourglass}} you can dive in, use your combo, and wait out the enemy's response. Stay with your team; Locke is not a strong split pusher. Read {{guide:teamfighting}} for target selection.</p>"
   },
   tips: [
     "Locke is new and still being balanced. Check the patch notes each patch: his Q and W were nerfed in 26.22.",
     "Always land Ritual Nails before your autos. The marks are a big part of your damage.",
-    "Ashen Pursuit can travel over walls with its teleport. Use it to surprise enemies from fog of war.",
+    "Ashen Pursuit's dash can go through a wall if your target is on the other side.",
     "Purgatory is a finisher. Throw it when the target is low, not at full health.",
-    "Watch your health bar when you use Soul Ignition. Only use it when you're winning the fight.",
-    "He's banned in about 30% of games at high ranks, so have a second champion ready."
+    "Don't let Soul Ignition run out while you're taking burst. Recast it early to cash in the heal before you die.",
+    "He's banned in about 30% of Emerald+ games (op.gg), so have a second champion ready."
   ],
   matchups: {
     hard: [
@@ -157,7 +157,7 @@ RA.champs.push({
     easy: [
       { id: "Orianna", tip: "She has no dash. Once her ball is used elsewhere, Ashen Pursuit onto her for a strong trade." },
       { id: "Xerath", tip: "He's immobile. Dodge his long-range spells and dash onto him after he uses his stun." },
-      { id: "Taliyah", tip: "She's strong at range but weak up close. Close the gap with Ashen Pursuit when her wall and E are down." }
+      { id: "Taliyah", tip: "She's strong at range but weak up close. Close the gap with Ashen Pursuit when her W and E are down." }
     ]
   }
 });

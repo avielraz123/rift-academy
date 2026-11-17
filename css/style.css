@@ -1,4 +1,7 @@
 /* Rift Academy — styles */
+/* Self-hosted fonts (SIL Open Font License, see fonts/OFL-*.txt): variable fonts, one file each, Latin subset. */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap; src: url(../fonts/inter-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Cinzel"; font-style: normal; font-weight: 600 700; font-display: swap; src: url(../fonts/cinzel-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 :root {
   --bg: #0a1018;
   --bg-2: #0f1823;
@@ -7,7 +10,7 @@
   --line: #24384d;
   --text: #e6edf4;
   --muted: #9aabbd;
-  --faint: #6c7f93;
+  --faint: #8193a6;
   --gold: #c8aa6e;
   --gold-2: #f0d595;
   --teal: #2fc4c4;
@@ -35,17 +38,17 @@
   --line: #ddd5c6;
   --text: #1a2330;
   --muted: #566475;
-  --faint: #7d8a99;
+  --faint: #5f6b78;
   --gold: #9a7a3a;
   --gold-2: #7a5d22;
-  --teal: #0f8f8f;
-  --blue: #1f6fd1;
-  --red: #d63447;
-  --green: #1d9a5b;
+  --teal: #0b7a7a;
+  --blue: #1a5fb4;
+  --red: #b82638;
+  --green: #177a48;
   --purple: #7a4fd1;
-  --beginner: #1d9a5b;
-  --intermediate: #b7790f;
-  --advanced: #cf3555;
+  --beginner: #177a48;
+  --intermediate: #8f5e0b;
+  --advanced: #b3243f;
   --shadow: 0 6px 20px rgba(60, 45, 20, .10);
   color-scheme: light;
 }
@@ -640,3 +643,41 @@ abbr.gloss:hover, abbr.gloss:focus { color: var(--gold-2); outline: none; }
 .pb-cand-head h3 { display: inline; margin: 0; }
 .pb-sub { display: block; color: var(--faint); font-size: .82rem; margin-top: 2px; }
 .pb-cand ul { margin: 0; }
+.mu-wr { font-size: .75rem; font-weight: 700; color: var(--faint); margin-left: 4px; white-space: nowrap; }
+
+/* ---------- champion comparison ---------- */
+.cmp-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+.cmp-picker label { display: grid; gap: 6px; font-weight: 700; }
+.cmp-picker label span { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.cmp-picker select { width: 100%; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); font: 600 .95rem var(--font); }
+.cmp-picker .chips { margin: 8px 0 0; }
+.cmp-picker .btn { grid-column: 1 / -1; justify-self: start; }
+#cmpResult { margin-top: 16px; }
+.cmp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.cmp-grid > div { min-width: 0; }
+.cmp-label { grid-column: 1 / -1; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--gold-2); padding-top: 14px; margin-top: 6px; border-top: 1px solid var(--line); }
+.cmp-label:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+.cmp-cell { padding: 6px 0; font-size: .92rem; }
+.cmp-cell ul { margin: 0; padding-left: 1.1em; }
+.cmp-sub { display: block; color: var(--faint); font-size: .8rem; }
+.cmp-head { margin-bottom: 14px; }
+.cmp-head > div:first-child { display: none; }
+.cmp-champ { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text); text-align: center; }
+.cmp-champ:hover { text-decoration: none; }
+.cmp-champ img { width: 72px; height: 72px; border-radius: 14px; border: 2px solid var(--line); }
+.cmp-champ span { color: var(--muted); font-size: .85rem; }
+.cmp-ic img { width: 34px; height: 34px; border-radius: 7px; border: 1px solid var(--line); margin: 0 4px 4px 0; }
+.cmp-h2h { margin-bottom: 0; }
+@media (max-width: 520px) { .cmp-grid { gap: 0 10px; } .cmp-cell { font-size: .85rem; } .cmp-ic img { width: 28px; height: 28px; } }
+.hero-links { font-size: .9rem; margin: 10px 0 0; }
+.champ-hero .hero-links a { color: var(--gold-2); font-weight: 600; }
+
+/* ---------- accessibility ---------- */
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--gold); color: #1a1408; font-weight: 700; padding: 10px 16px; border-radius: 10px; }
+.skip-link:focus { top: 12px; text-decoration: none; }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, [tabindex]:focus-visible, .chip:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.search-form input:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

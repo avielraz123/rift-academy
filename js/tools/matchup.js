@@ -74,8 +74,8 @@
     var yn = esc(RA.champName(you)), en = esc(RA.champName(vs));
     var verdict = null, tips = [];
     var h = find(mine && mine.matchups && mine.matchups.hard, vs), e = find(mine && mine.matchups && mine.matchups.easy, vs);
-    if (h) { verdict = "hard"; tips.push({ from: "From the " + yn + " guide", html: RA.rich(h.tip) }); }
-    if (e) { verdict = "easy"; tips.push({ from: "From the " + yn + " guide", html: RA.rich(e.tip) }); }
+    if (h) { verdict = "hard"; tips.push({ from: "From the " + yn + " guide" + (h.wr ? " · " + yn + " wins " + esc(h.wr) + " of games" : ""), html: RA.rich(h.tip) }); }
+    if (e) { verdict = "easy"; tips.push({ from: "From the " + yn + " guide" + (e.wr ? " · " + yn + " wins " + esc(e.wr) + " of games" : ""), html: RA.rich(e.tip) }); }
     var theirs = RA.hasGuide(vs) ? RA.champFor(vs, roleOfChamp(vs, role)) : null;
     if (theirs) {
       var th = find(theirs.matchups && theirs.matchups.hard, you), te = find(theirs.matchups && theirs.matchups.easy, you);

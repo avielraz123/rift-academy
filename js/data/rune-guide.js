@@ -11,17 +11,17 @@ RA.runeGuide = {
   "Electrocute": {
     what: "Hit an enemy champion with 3 separate attacks or abilities within 3 seconds to deal a burst of bonus damage.",
     takeWhen: "Take it on assassins and burst mages who can land a quick combo and kill a target in a few seconds. It has a 20 second cooldown, so it rewards short, sharp trades.",
-    goodOn: ["Zed", "Leblanc", "Fizz", "Syndra", "Ahri", "Talon"]
+    goodOn: ["Ahri", "Leblanc", "Fizz", "Katarina", "Akali", "Evelynn"]
   },
   "Dark Harvest": {
     what: "Damaging a champion below 50% health deals bonus damage and collects a soul, which makes Dark Harvest stronger for the rest of the game.",
     takeWhen: "Take it on champions who finish off low-health enemies and get many kills, especially in the jungle or as damage supports. It gets stronger the more souls you collect, so it suits games where you fight often.",
-    goodOn: ["Karthus", "Evelynn", "Brand", "Shaco"]
+    goodOn: ["Karthus", "Ekko", "Taliyah", "Graves", "Nidalee", "Elise"]
   },
   "Hail of Blades": {
     what: "Your next 3 attacks on an enemy champion are much faster and deal a bit of bonus true damage.",
     takeWhen: "Take it on champions who jump in and want to land several attacks right away. Attack resets add one more fast attack, so champions with attack resets get even more out of it.",
-    goodOn: ["Pyke", "Rakan", "Khazix", "Nocturne"]
+    goodOn: ["Pyke", "Ekko", "MasterYi", "Viego", "Nocturne", "Shaco"]
   },
   "Cheap Shot": {
     what: "Damaging a champion who is slowed, stunned or otherwise impaired deals a little bonus true damage.",
@@ -71,17 +71,17 @@ RA.runeGuide = {
   "Glacial Augment": {
     what: "Stunning, rooting or otherwise immobilizing an enemy creates frozen zones that slow enemies and make them deal less damage to your allies.",
     takeWhen: "Take it on supports and tanks who immobilize enemies often and want to protect their team. The damage reduction only helps your allies, not yourself.",
-    goodOn: []
+    goodOn: ["Blitzcrank", "Taric", "Thresh", "Morgana", "Ivern", "Galio"]
   },
   "Unsealed Spellbook": {
     what: "Lets you swap one of your summoner spells for a different single-use summoner spell during the game, starting at 6 minutes.",
     takeWhen: "Take it once you know summoner spells well and want to pick the right spell for each moment. It is hard to use well, so beginners should usually pick another keystone.",
-    goodOn: []
+    goodOn: ["Alistar", "Rakan", "TwistedFate", "Poppy"]
   },
   "First Strike": {
     what: "If you hit an enemy champion first when a fight starts, you deal 7% extra damage for 3 seconds and turn part of that damage into gold.",
     takeWhen: "Take it on champions who can start trades safely from range and want extra gold to reach items sooner. It does nothing if the enemy always hits you first.",
-    goodOn: []
+    goodOn: ["Veigar", "Zed", "MissFortune", "Kassadin", "Syndra", "Xerath"]
   },
   "Hextech Flashtraption": {
     what: "While Flash is on cooldown, you get Hexflash: channel for 2 seconds to blink to a new spot.",
@@ -129,19 +129,19 @@ RA.runeGuide = {
     goodOn: []
   },
   "Press the Attack": {
-    what: "Hit an enemy champion with 3 basic attacks in a row to deal bonus damage and make them take 8% more damage from you until you leave combat.",
+    what: "Hit an enemy champion with 3 basic attacks in a row to deal bonus damage. After that, all your damage is 8% higher until you leave combat with champions.",
     takeWhen: "Take it on champions who trade with quick basic attack combos and want to win short and medium fights in lane.",
-    goodOn: ["Ashe", "Lucian", "Teemo"]
+    goodOn: ["Lucian", "MissFortune", "Aphelios", "Teemo"]
   },
   "Lethal Tempo": {
     what: "Attacking enemy champions gives you stacking attack speed, and at 6 stacks your attacks deal bonus damage.",
     takeWhen: "Take it on champions who want to keep attacking in long fights and build attack speed. It is weak in very short fights, because it needs time to stack.",
-    goodOn: ["Jinx", "KogMaw", "Twitch", "Yasuo", "Yone", "Kayle"]
+    goodOn: ["Jinx", "Kaisa", "KogMaw", "Twitch", "Yasuo", "Yone"]
   },
   "Fleet Footwork": {
     what: "Moving and attacking charges up an attack that heals you and gives a short burst of move speed.",
     takeWhen: "Take it on champions who want safe lane sustain and help kiting or escaping. Healing and speed are weaker for ranged champions.",
-    goodOn: ["Kalista", "Vayne", "Quinn"]
+    goodOn: ["Jhin", "Nasus", "Talon", "Gnar", "DrMundo"]
   },
   "Conqueror": {
     what: "Damaging enemy champions builds stacks of extra damage, and at 12 stacks you heal for part of the damage you deal.",
@@ -196,7 +196,7 @@ RA.runeGuide = {
   "Grasp of the Undying": {
     what: "Every 4 seconds in combat, your next attack on a champion deals bonus damage based on your max health, heals you and gives you 5 permanent health.",
     takeWhen: "Take it on tanky top laners who can hit the enemy often in lane. It is much weaker on ranged champions.",
-    goodOn: ["Ornn", "Shen", "Sion", "Chogath", "Gragas"]
+    goodOn: ["Ornn", "Shen", "Sion", "Chogath", "DrMundo"]
   },
   "Aftershock": {
     what: "After you immobilize an enemy champion, you gain lots of armor and magic resist for 2.5 seconds, then explode for damage around you.",
@@ -206,7 +206,7 @@ RA.runeGuide = {
   "Guardian": {
     what: "Protects nearby allies and allies you target with spells, giving both of you a shield if one of you takes enough damage.",
     takeWhen: "Take it on supports who stay close to their carry and want to save them from burst damage.",
-    goodOn: ["Braum", "Taric", "Thresh"]
+    goodOn: ["Braum", "Rakan", "Renata", "Thresh", "Taric"]
   },
   "Demolish": {
     what: "Every 30 seconds, your third attack on a tower deals bonus damage based on your max health.",
@@ -266,17 +266,17 @@ RA.runeGuide = {
   "Stormraider's Surge": {
     what: "Dealing 25% of a champion's max health within 3 seconds gives you a big burst of move speed and slow resistance for 4 seconds.",
     takeWhen: "Take it on champions who deal a lot of damage quickly and then want to chase or get away. The speed is weaker on ranged champions.",
-    goodOn: []
+    goodOn: ["Vladimir", "Taliyah", "Galio", "Diana", "Orianna"]
   },
   "Deathfire Touch": {
     what: "Damaging a champion with an ability sets them on fire, and the burn gets stronger if they keep burning for 3 seconds.",
     takeWhen: "Take it on champions who hit the same target with abilities again and again. Single-target hits burn longer than area hits.",
-    goodOn: []
+    goodOn: ["Malzahar", "Smolder", "Viktor", "Hwei", "Taliyah"]
   },
   "Axiom Arcanist": {
     what: "Your ultimate deals more damage and gives more healing and shielding, and takedowns lower its current cooldown.",
     takeWhen: "Pick it when your ultimate is a big part of your damage or healing. The bonus is smaller for area damage.",
-    goodOn: []
+    goodOn: ["Garen", "Chogath", "Fiddlesticks", "Karthus", "Annie", "Twitch"]
   },
   "Manaflow Band": {
     what: "Hitting enemy champions with abilities raises your max mana by 25 at a time, up to 250, then slowly restores mana.",

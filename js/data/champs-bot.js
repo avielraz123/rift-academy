@@ -280,6 +280,7 @@ RA.champs.push(
       { id: "Corki", tip: "Both are poke champions. Land your Qs and dodge his packages and missiles." }
     ]
   },
+  matchupNote: "This patch Ezreal wins less than half his games against every common bot laner (op.gg, Emerald+), so his \"favorable\" matchups are really his closest ones. He's picked for safety and poke, not to win lane.",
   supports: [
     { id: "Leona", why: "Her engage sets up kills, so you can follow with W-Q and your ultimate." },
     { id: "Senna", why: "Both poke from range and make the lane safe." },

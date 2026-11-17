@@ -71,7 +71,7 @@ RA.champAdapt["Kaisa:bot"] = {
   ad: { items: [{ item: "Guardian Angel", why: "Gives armor and revives you once after lethal damage." }], tip: "Light attacks from {{item:Terminus}} grant armor and magic resist for a few seconds." },
   ap: { items: [{ item: "Wit's End", why: "Good fourth item: magic resist, attack speed and on-hit damage help against AP threats." }] },
   healing: { items: [{ item: "Mortal Reminder", why: "Good fourth item: your physical damage applies Grievous Wounds, cutting their healing, and it gives armor penetration." }] },
-  cc: { items: [{ item: "Mercurial Scimitar", why: "Its active removes most crowd control debuffs and gives move speed." }], tip: "Your ultimate shield helps you survive after you get caught." }
+  cc: { items: [{ item: "Mercurial Scimitar", why: "Its active removes most crowd control debuffs and gives move speed." }], tip: "Hold your ultimate: once their crowd control is used, its dash and shield can get you out." }
 };
 
 RA.champAdapt["Leblanc:mid"] = {
@@ -94,9 +94,9 @@ RA.champAdapt["Lux:mid"] = {
 
 RA.champAdapt["MissFortune:bot"] = {
   tanky: { items: [{ item: "Lord Dominik's Regards", why: "Good fourth item: armor penetration plus bonus damage against champions with lots of bonus health." }] },
-  squishy: { items: [{ item: "Axiom Arc", why: "Good fourth item: takedowns refund part of your ultimate's cooldown, so Bullet Time comes back sooner." }], tip: "{{item:The Collector}} already executes low-health targets; your build is good against squishies." },
+  squishy: { items: [{ item: "Hubris", replaces: "Bloodthirster", why: "Buy it first instead: its Lethality hits low-armor targets hard, and each takedown gives you bonus Attack Damage for 90 seconds, so you snowball off squishy teams." }], tip: "{{item:The Collector}} already executes low-health targets; your build is good against squishies." },
   ad: { items: [{ item: "Guardian Angel", why: "Gives armor and revives you once after lethal damage." }, { item: "Plated Steelcaps", replaces: "Boots of Swiftness", why: "Armor plus 10% less damage from basic attacks." }] },
-  ap: { items: [{ item: "Maw of Malmortius", why: "Good fourth item: magic resist plus a shield against magic damage when you drop low." }] },
+  ap: { items: [{ item: "Edge of Night", why: "Good fifth item: health plus a spell shield that blocks the next enemy ability, often a mage's key spell." }] },
   healing: { items: [{ item: "Mortal Reminder", replaces: "Lord Dominik's Regards", why: "Your physical damage applies Grievous Wounds, cutting their healing, and it gives armor penetration." }] },
   cc: { items: [{ item: "Edge of Night", why: "Its spell shield blocks the next enemy ability, which stops crowd control from interrupting your ultimate." }, { item: "Mercury's Treads", replaces: "Boots of Swiftness", why: "Tenacity makes crowd control end sooner." }] }
 };

@@ -65,7 +65,7 @@ RA.champs.push(
       { id: "Lissandra", tip: "Her ultimate and root stop your all-in cold. Poke with Q, don't commit while Frozen Tomb is up, and look for side-lane kills instead." }
     ],
     easy: [
-      { id: "Locke", tip: "A newer, melee-range champion: you have more range with Q. Poke him when he walks up and use smoke to dodge his engage." },
+      { id: "Locke", tip: "A newer melee champion. His Ritual Nails out-ranges your Q, so dodge it, hit him with Q when he walks up, and use smoke to dodge his engage." },
       { id: "Irelia", tip: "Out-trade her with Q at range and drop smoke when she dashes in. Don't fight her in the middle of a big wave where she resets." },
       { id: "Viktor", tip: "He's immobile and relies on his stun field. Walk out of Gravity Field, then all-in after 6 when he's used it." }
     ]
@@ -394,8 +394,7 @@ RA.champRoles["Zed:jungle"] = {
     ],
     easy: [
       { id: "Taliyah", tip: "She's squishy and immobile up close. Invade her jungle once your laners can help." },
-      { id: "Qiyana", tip: "Win skirmishes by poking with shadow Qs before she engages." },
-      { id: "Pantheon", tip: "He's strong early but falls off. Survive his early ganks and out-scale him." }
+      { id: "Qiyana", tip: "Win skirmishes by poking with shadow Qs before she engages." }
     ]
   },
   supports: null

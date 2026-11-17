@@ -222,6 +222,27 @@ for (const [key, a] of Object.entries(RA.champAdapt || {})) {
 }
 for (const k of ["healing", "cc"]) champList("comp-tags " + k, (RA.compTags || {})[k]);
 
+// Extra researched matchups (js/data/matchups-extra-*.js)
+const mx = RA.matchupsExtra || {};
+console.log("Extra matchups:", Object.keys(mx).length, "guides,", Object.values(mx).reduce((n, x) => n + (x.hard || []).length + (x.easy || []).length, 0), "matchups");
+for (const [key, x] of Object.entries(mx)) {
+  const [id, role] = key.split(":");
+  const base = (RA.champs || []).find((c) => c.id === id);
+  if (!base || (base.roles.indexOf(role) < 0 && !(RA.champRoles || {})[key])) { err(`matchups-extra ${key}: no guide for this champion and role`); continue; }
+  const ov = (RA.champRoles || {})[key];
+  const own = (ov && ov.matchups) || base.matchups || {};
+  const seen = new Set([].concat(own.hard || [], own.easy || []).map((m) => m.id));
+  for (const side of ["hard", "easy"]) for (const m of x[side] || []) {
+    if (!dd.champions[m.id]) err(`matchups-extra ${key}: unknown champion "${m.id}"`);
+    if (m.id === id) err(`matchups-extra ${key}: lists itself`);
+    if (seen.has(m.id)) warn(`matchups-extra ${key}: ${m.id} is already in the guide or listed twice`);
+    seen.add(m.id);
+    if (!m.tip) err(`matchups-extra ${key}: ${m.id} has no tip`);
+    if (m.wr && !/^\d{2}(\.\d)?%$/.test(m.wr)) err(`matchups-extra ${key}: bad win rate "${m.wr}"`);
+  }
+  tokensIn("matchups-extra " + key, x);
+}
+
 // Pre-rendered pages (tools/build-pages.js) should exist for every guide and champion.
 const missingPages = [];
 (RA.guides || []).forEach((g) => { if (!fs.existsSync(path.join(root, "guide", g.id, "index.html"))) missingPages.push("guide/" + g.id); });

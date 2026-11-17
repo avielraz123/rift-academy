@@ -132,7 +132,7 @@ RA.champAdapt["Galio:support"] = {
   ], tip: "Magic resist also feeds your passive, so you get tankier and hit harder." },
   healing: { items: [
     { item: "Thornmail", why: "Already in your core; buy it second when they rely on healing, since attackers who hit you get 40% Wounds." }
-  ], tip: "Thornmail only applies Wounds to enemies who attack you, so stand where their healers' teammates will hit you." },
+  ], tip: "Thornmail only applies Wounds to champions who attack you, so it works best against healing fighters and marksmen who hit you with basic attacks." },
   cc: { items: [
     { item: "Mercury's Treads", replaces: "Plated Steelcaps", why: "30% Tenacity shortens stuns and roots so you can still use your taunt and ultimate." },
     { item: "Mikael's Blessing", why: "Its active removes crowd control (except knock-ups and suppression) from an ally and heals them." }
@@ -157,7 +157,7 @@ RA.champAdapt["Irelia:mid"] = {
   ] },
   cc: { items: [
     { item: "Sterak's Gage", why: "Adds Tenacity and health, and shields you when you drop below 30% Health while locked down." }
-  ], tip: "Mercury's Treads already gives Tenacity; time your W to soak damage while you wait out crowd control." }
+  ], tip: "Mercury's Treads already gives Tenacity; you can't cast W while stunned, so save it to soak their burst once the crowd control ends." }
 };
 
 RA.champAdapt["Jinx:bot"] = {
@@ -284,7 +284,7 @@ RA.champAdapt["Sylas:support"] = {
     { item: "Banshee's Veil", replaces: "Shadowflame", why: "Similar Ability Power plus magic resist and a spell shield that blocks the next enemy ability." }
   ] },
   healing: { items: [
-    { item: "Morellonomicon", why: "Your magic damage applies 40% Wounds to cut their healing and shielding." }
+    { item: "Morellonomicon", why: "Your magic damage applies 40% Wounds to cut their healing." }
   ] },
   cc: { items: [
     { item: "Mercury's Treads", replaces: "Sorcerer's Shoes", why: "Magic resist and 30% Tenacity make their stuns and roots shorter." }
@@ -404,14 +404,14 @@ RA.champAdapt["Yasuo:top"] = {
     { item: "Lord Dominik's Regards", why: "Buy it fourth: armor penetration and bonus damage against high bonus Health." }
   ], tip: "Blade of The Ruined King already helps against tanks; wait for knock-ups so you can ultimate the carries." },
   squishy: { items: [
-    { item: "The Collector", replaces: "Lord Dominik's Regards", why: "Against low-armor targets its Lethality and execute below 5% Health do more than armor penetration." }
+    { item: "Bloodthirster", replaces: "Lord Dominik's Regards", why: "Against low-armor targets raw Attack Damage does more than armor penetration, and its life steal and shield keep you fighting." }
   ] },
   ad: { items: [
     { item: "Death's Dance", why: "Gives armor and delays part of the damage you take, which you can cleanse with takedowns." },
     { item: "Plated Steelcaps", replaces: "Berserker's Greaves", why: "Armor plus 10% less damage from attacks." }
   ] },
   ap: { items: [
-    { item: "Maw of Malmortius", why: "Magic resist plus a magic shield when magic damage drops you below 30% Health." }
+    { item: "Mercurial Scimitar", why: "Magic resist plus an active that removes crowd control (except knock-ups), so a mage can't lock you down and burst you." }
   ], tip: "Use Wind Wall to block their key projectile spells." },
   healing: { items: [
     { item: "Mortal Reminder", why: "Your physical damage applies 40% Wounds, and it adds armor penetration." }

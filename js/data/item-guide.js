@@ -19,7 +19,7 @@ RA.itemGuide = {
     goodOn: ["Ahri", "Syndra", "Orianna", "Viktor", "Lux", "Ziggs"]
   },
   "Dark Seal": {
-    what: "A cheap starting item that gives more ability power each time you get a kill or assist, but loses half its stacks when you die.",
+    what: "A cheap starting item that gives more ability power each time you get a kill or assist, but loses 5 of them when you die.",
     buyWhen: "Start with it or buy it early on mages and assassins who expect to get kills, then upgrade it to {{item:Mejai's Soulstealer}}.",
     goodOn: ["Kassadin", "Katarina", "Ekko", "Leblanc"],
     avoid: "Don't buy it if you are dying a lot; each death costs you 5 Glory."
@@ -44,7 +44,7 @@ RA.itemGuide = {
   "Gustwalker Hatchling": {
     what: "A jungle starting pet that helps you kill monsters and, once grown, gives you move speed when you enter a brush.",
     buyWhen: "Pick it as a jungler who wants to move around the map quickly and surprise lanes from the brush.",
-    goodOn: ["Rengar", "Khazix", "LeeSin", "Nidalee", "Evelynn"],
+    goodOn: ["Rengar", "Khazix", "LeeSin", "Nidalee", "Evelynn", "Talon"],
     avoid: "Only buy a jungle pet if you take Smite and play jungle."
   },
   "Mosstomper Seedling": {
@@ -55,8 +55,8 @@ RA.itemGuide = {
   },
   "Doran's Helm": {
     what: "A starting item with a lot of health plus a little armor and magic resist, so you survive both kinds of damage.",
-    buyWhen: "Start with it on tanks and durable top laners who want to survive the early lane and scale later.",
-    goodOn: ["Ornn", "Malphite", "Sion", "Chogath", "KSante"],
+    buyWhen: "Start with it on tanks and durable top laners who want to survive the early lane and scale later. Some marksmen, like {{champ:Jhin}}, also start it for a safer lane.",
+    goodOn: ["Ornn", "Malphite", "Sion", "Chogath", "KSante", "Jhin"],
     avoid: "If you want to win early trades, a damage starter like {{item:Doran's Blade}} fits better."
   },
   "Shurelya's Battlesong": {
@@ -67,7 +67,7 @@ RA.itemGuide = {
   "Overlord's Bloodmail": {
     what: "A fighter item with attack damage and lots of health that turns some of your bonus health into damage and hits harder when you are low.",
     buyWhen: "Buy it on attack-damage fighters who stay in long fights and like having more health.",
-    goodOn: ["Darius", "Garen", "Sett", "Aatrox", "Illaoi"],
+    goodOn: ["Sett", "Illaoi"],
     avoid: "Marksmen and assassins get more from pure damage items."
   },
   "Unending Despair": {
@@ -83,18 +83,18 @@ RA.itemGuide = {
   "Kaenic Rookern": {
     what: "A defensive item with health and a lot of magic resist that gives you a shield against magic damage if you haven't taken any for 15 seconds.",
     buyWhen: "Buy it on tanks and fighters when the enemy team has strong mages who burst you with magic damage.",
-    goodOn: ["Galio", "Garen", "Sion", "Ornn", "Sett"],
+    goodOn: ["Galio", "Sion", "Ornn", "Leona"],
     avoid: "Skip it if the enemy deals mostly physical damage."
   },
   "Dusk and Dawn": {
     what: "A hybrid item with health, ability power and attack speed: after you use an ability, your next attack deals bonus magic damage, heals you and triggers on-hit effects twice.",
     buyWhen: "Buy it on ability-power melee champions who mix abilities with basic attacks.",
-    goodOn: ["Diana", "Ekko", "Gwen"]
+    goodOn: ["Diana", "Ekko", "Gwen", "Kayle"]
   },
   "Fiendhunter Bolts": {
     what: "A crit item with attack speed and lower ultimate cooldown: after you use your ultimate, your next 3 attacks get faster and deal critical damage.",
     buyWhen: "Buy it on marksmen whose ultimate is a big part of their damage, so they get to use it more often.",
-    goodOn: ["Jhin", "MissFortune", "Ashe", "Kaisa", "Xayah"]
+    goodOn: ["Twitch"]
   },
   "Endless Hunger": {
     what: "An attack-damage item with omnivamp and tenacity (shorter crowd control on you) that also lowers your cooldowns based on your bonus attack damage.",
@@ -115,7 +115,7 @@ RA.itemGuide = {
   "Hexoptics C44": {
     what: "A crit item with attack damage that deals up to 10% more damage to far-away targets and gives extra attack range after a kill.",
     buyWhen: "Buy it on long-range marksmen who can hit enemies from a safe distance.",
-    goodOn: ["Ashe", "Caitlyn", "Draven", "Jinx", "Jhin"],
+    goodOn: ["Ashe", "Caitlyn", "Draven", "Jinx"],
     avoid: "Champions who fight up close won't get the range bonus."
   },
   "Bandlepipes": {
@@ -142,19 +142,19 @@ RA.itemGuide = {
   "Berserker's Greaves": {
     what: "Boots that give attack speed along with move speed.",
     buyWhen: "Buy them on marksmen and other champions who deal most of their damage with fast basic attacks.",
-    goodOn: ["Jinx", "Ashe", "Kaisa", "Vayne", "Yasuo", "Yone"],
+    goodOn: ["Jinx", "Ashe", "Kaisa", "Vayne", "Yasuo", "Yone", "Garen"],
     avoid: "If the enemy has lots of crowd control or burst, defensive boots may keep you alive longer."
   },
   "Gluttonous Greaves": {
     what: "Boots with omnivamp (healing from all damage you deal) that give more omnivamp each time you get a kill or assist, up to 10 times.",
     buyWhen: "Buy them on fighters and damage dealers who stay in fights and want extra healing, especially when you are getting kills.",
-    goodOn: [],
+    goodOn: ["Smolder", "Xayah", "Sivir", "Tristana"],
     avoid: "Against heavy crowd control or burst, {{item:Mercury's Treads}} or {{item:Plated Steelcaps}} usually help more."
   },
   "Boots of Swiftness": {
     what: "Boots with the most move speed of the basic options that also make slows on you 25% weaker.",
     buyWhen: "Buy them when the enemy team has a lot of slows, or when your champion needs to move around the map a lot.",
-    goodOn: ["Jhin", "MissFortune", "TwistedFate"]
+    goodOn: ["Jhin", "MissFortune", "TwistedFate", "Kayle", "Talon"]
   },
   "Sorcerer's Shoes": {
     what: "Boots for mages with magic penetration, which makes your magic damage hit harder.",
@@ -176,12 +176,12 @@ RA.itemGuide = {
   "Yun Tal Wildarrows": {
     what: "A marksman item with attack damage and attack speed that slowly gains up to 25% crit chance as you attack and gives a burst of attack speed when you hit champions.",
     buyWhen: "Buy it as a first item on attack-speed marksmen who will keep attacking in fights.",
-    goodOn: ["Xayah", "Tristana", "Jinx", "Sivir", "Twitch"]
+    goodOn: ["Xayah", "Tristana", "Sivir", "Twitch"]
   },
   "Mortal Reminder": {
     what: "A crit item with armor penetration whose physical damage puts 40% Wounds on enemy champions (Wounds reduce their healing).",
-    buyWhen: "Buy it on marksmen when the enemy team heals a lot, for example champions with life steal, self-healing or healing supports.",
-    goodOn: ["Ashe", "Draven", "Jinx", "MissFortune", "Yasuo"],
+    buyWhen: "Buy it on marksmen and other crit users when the enemy team heals a lot, for example champions with life steal, self-healing or healing supports.",
+    goodOn: ["Ashe", "Draven", "Jinx", "MissFortune", "Yasuo", "Garen"],
     avoid: "If the enemy barely heals, {{item:Lord Dominik's Regards}} gives more damage."
   },
   "Lord Dominik's Regards": {
@@ -198,7 +198,7 @@ RA.itemGuide = {
   "Phantom Dancer": {
     what: "A crit item with a lot of attack speed and move speed that lets you walk through other units (Ghosted).",
     buyWhen: "Buy it on marksmen and attack-speed champions who need to move around while attacking in fights.",
-    goodOn: ["Ashe", "Jhin", "Kaisa", "Yasuo", "Yone"]
+    goodOn: ["Ashe", "Jhin", "Kaisa", "Garen"]
   },
   "Plated Steelcaps": {
     what: "Boots with armor that reduce damage from basic attacks by 10%.",
@@ -209,7 +209,7 @@ RA.itemGuide = {
   "Zeke's Convergence": {
     what: "A tank support item with health and both resistances: using your ultimate creates a storm that damages and slows nearby enemy champions for 5 seconds.",
     buyWhen: "Buy it as a tank support whose ultimate puts you in the middle of the enemy team.",
-    goodOn: ["Leona", "Nautilus", "Rell", "Alistar", "Braum"]
+    goodOn: ["Nautilus", "Rell", "Alistar", "Braum"]
   },
   "Sterak's Gage": {
     what: "A fighter item with health, tenacity and bonus attack damage that gives you a big shield when you drop below 30% health.",
@@ -235,7 +235,7 @@ RA.itemGuide = {
   "Black Cleaver": {
     what: "A fighter item with attack damage, health and ability haste that lowers the armor of champions you hit and gives you move speed.",
     buyWhen: "Buy it on attack-damage fighters who hit enemies many times, especially when the enemy has tanks with armor.",
-    goodOn: ["Darius", "Smolder", "Aatrox", "Jayce", "Renekton", "Vi"]
+    goodOn: ["Sett", "Smolder", "Aatrox", "Jayce", "Renekton", "Vi"]
   },
   "Bloodthirster": {
     what: "A marksman item with a lot of attack damage and 15% life steal; healing beyond your max health becomes a shield.",
@@ -266,23 +266,23 @@ RA.itemGuide = {
   "Warmog's Armor": {
     what: "A tank item with 1000 health that rapidly heals you out of combat once you have 2000 bonus health.",
     buyWhen: "Buy it late on tanks who already have lots of health and want to recover quickly between fights.",
-    goodOn: ["DrMundo", "Sion", "Chogath", "Zac"],
+    goodOn: ["DrMundo", "Sion", "Chogath", "Zac", "Sett"],
     avoid: "It gives no armor or magic resist, so it's a poor answer to one damage type."
   },
   "Heartsteel": {
     what: "A tank item with lots of health whose charged attacks on nearby champions deal extra damage and give you max health permanently.",
     buyWhen: "Buy it early on tanks in lanes where you can hit the enemy often, so it keeps stacking health all game.",
-    goodOn: ["Sion", "Chogath", "Ornn", "Zac", "TahmKench", "Sett"]
+    goodOn: ["Sion", "Chogath", "Zac", "TahmKench"]
   },
   "Runaan's Hurricane": {
     what: "A crit item with attack speed whose attacks also fire bolts at 2 more enemies near your target.",
     buyWhen: "Buy it on marksmen who want to clear minion waves faster and hit several enemies in teamfights.",
-    goodOn: ["Jinx", "Twitch", "KogMaw", "Sivir"]
+    goodOn: ["Jinx", "Twitch", "KogMaw"]
   },
   "Statikk Shiv": {
     what: "A hybrid item with attack damage, ability power and attack speed whose charged attacks fire chain lightning at nearby enemies.",
     buyWhen: "Buy it on champions who use both attack damage and ability power and want faster wave clear.",
-    goodOn: ["Kaisa", "Kayle", "Varus"]
+    goodOn: ["Kaisa", "Varus"]
   },
   "Rabadon's Deathcap": {
     what: "A mage item with the most ability power in the game that also increases your total ability power by 30%.",
@@ -303,7 +303,7 @@ RA.itemGuide = {
   "Stormrazor": {
     what: "A crit item with attack damage and attack speed whose charged attack deals bonus magic damage and gives a short burst of move speed.",
     buyWhen: "Buy it on marksmen who want extra burst on their first attack and a way to reposition in fights.",
-    goodOn: ["Jhin", "Caitlyn", "Smolder"]
+    goodOn: ["Jhin"]
   },
   "Lich Bane": {
     what: "A mage item with a lot of ability power and move speed: after you use an ability, your next attack deals bonus magic damage.",
@@ -324,7 +324,7 @@ RA.itemGuide = {
   "Knight's Vow": {
     what: "A tank support item: you link to one ally, take part of the damage they receive and heal from the damage they deal to champions.",
     buyWhen: "Buy it as a tank support when your marksman or main carry is fed and the enemy keeps diving them.",
-    goodOn: ["Braum", "Taric", "Alistar", "Rell", "Galio"]
+    goodOn: ["Braum", "Taric", "Alistar", "Rell", "Galio", "Leona"]
   },
   "Frozen Heart": {
     what: "An armor item with mana and ability haste that slows the attack speed of nearby enemy champions by 20%.",
@@ -334,7 +334,7 @@ RA.itemGuide = {
   "Mercury's Treads": {
     what: "Boots with magic resist and 30% tenacity, which makes stuns, slows and other crowd control on you shorter.",
     buyWhen: "Buy them when the enemy team has lots of crowd control or deals mostly magic damage.",
-    goodOn: ["Irelia", "Galio", "Diana", "Akali", "Sylas", "Yasuo"],
+    goodOn: ["Irelia", "Galio", "Diana", "Akali", "Sylas", "Ekko"],
     avoid: "Against mostly basic attacks, {{item:Plated Steelcaps}} is better."
   },
   "Nashor's Tooth": {
@@ -355,12 +355,12 @@ RA.itemGuide = {
   "Winter's Approach": {
     what: "A tank item with health and mana that gives more health based on your mana and grows as you land attacks and abilities, then turns into Fimbulwinter.",
     buyWhen: "Buy it on tanks that use mana and cast abilities often; buy {{item:Tear of the Goddess}} early so it starts growing.",
-    goodOn: ["Malphite", "Sejuani", "Ornn", "Galio"]
+    goodOn: ["Malphite", "Sejuani", "Galio"]
   },
   "Guinsoo's Rageblade": {
     what: "An on-hit item (on-hit means it triggers every time your attack lands) with attack damage, ability power and attack speed that stacks attack speed, and every third attack applies on-hit effects twice when fully stacked.",
     buyWhen: "Buy it on champions who deal damage with fast basic attacks and other on-hit items.",
-    goodOn: ["Kaisa", "Vayne", "KogMaw", "Varus", "Kayle"]
+    goodOn: ["Kaisa", "Vayne", "KogMaw", "Varus"]
   },
   "Void Staff": {
     what: "A mage item with ability power and 40% magic penetration, which lets your magic damage ignore part of the enemy's magic resist.",
@@ -380,18 +380,18 @@ RA.itemGuide = {
   },
   "Youmuu's Ghostblade": {
     what: "A lethality item (lethality ignores some of the enemy's armor) with move speed out of combat and an active that gives move speed and lets you walk through units.",
-    buyWhen: "Buy it on attack-damage assassins who roam the map and need to reach squishy targets.",
-    goodOn: ["Talon", "Pyke", "Qiyana", "Rengar", "Khazix", "Naafiri"]
+    buyWhen: "Buy it on attack-damage assassins who roam the map and need to reach squishy targets. Some fighters, like {{champ:Darius}}, also rush it to run enemies down.",
+    goodOn: ["Darius", "Garen", "Talon", "Pyke", "Qiyana", "Rengar", "Naafiri"]
   },
   "Randuin's Omen": {
-    what: "A tank item with health and a lot of armor that makes you take 30% less damage from critical strikes.",
+    what: "A tank item with health and a lot of armor that makes you take 30% less damage from critical strikes; its active slows nearby enemies.",
     buyWhen: "Buy it on tanks when the enemy has a fed crit marksman or other crit champions.",
     goodOn: ["Malphite", "Rammus", "Ornn", "Sejuani", "Leona", "Zac"]
   },
   "Hextech Gunblade": {
     what: "A hybrid item with ability power, attack damage and omnivamp whose active shocks an enemy champion for magic damage and slows them.",
     buyWhen: "Buy it on champions who use both attack damage and ability power and want healing and a slow to catch targets.",
-    goodOn: ["Akali", "Kayle", "Diana"]
+    goodOn: ["Akali"]
   },
   "Hextech Rocketbelt": {
     what: "A mage item with ability power and health whose active dashes you forward and fires missiles that deal magic damage.",
@@ -406,7 +406,7 @@ RA.itemGuide = {
   "Maw of Malmortius": {
     what: "An attack-damage item with magic resist that shields you from magic damage when it would drop you below 30% health.",
     buyWhen: "Buy it on attack-damage champions when an enemy mage or assassin keeps bursting you with magic damage.",
-    goodOn: ["Ezreal", "Yasuo", "Riven", "Jayce", "Talon", "Renekton"]
+    goodOn: ["Ezreal", "Aatrox", "Riven", "Jayce", "Renekton"]
   },
   "Zhonya's Hourglass": {
     what: "A mage item with ability power and armor whose active puts you in stasis for 2.5 seconds (you can't act, but you can't be hurt or targeted).",
@@ -416,7 +416,7 @@ RA.itemGuide = {
   "Ionian Boots of Lucidity": {
     what: "Cheap boots with ability haste (lower ability cooldowns) and summoner spell haste (Flash and others come back sooner).",
     buyWhen: "Buy them on champions who want to cast abilities more often, and when the enemy has no threat that needs defensive boots.",
-    goodOn: ["Ezreal", "Sylas", "Taliyah", "Zed", "Zoe", "Lux"]
+    goodOn: ["Ezreal", "Sylas", "Taliyah", "Zed", "Zoe", "Hwei"]
   },
   "Spear of Shojin": {
     what: "A fighter item with attack damage and health that lowers basic ability cooldowns and increases your ability damage as you keep hitting with abilities.",
@@ -437,17 +437,17 @@ RA.itemGuide = {
   "Swiftmarch": {
     what: "The upgrade of {{item:Boots of Swiftness}} with even more move speed, weaker slows on you, and bonus damage based on your move speed.",
     buyWhen: "Mid laners get this upgrade free when they complete the mid role quest with Boots of Swiftness; it's worth it if you roam a lot or the enemy slows you often.",
-    goodOn: []
+    goodOn: ["TwistedFate"]
   },
   "Crimson Lucidity": {
     what: "The upgrade of {{item:Ionian Boots of Lucidity}} with more ability haste and summoner spell haste, plus move speed when you hit enemies or help allies with abilities.",
     buyWhen: "Mid laners get this upgrade free when they complete the mid role quest with Ionian Boots; it's worth it on champions who cast a lot of abilities.",
-    goodOn: ["Sylas", "Taliyah", "Zoe", "Hwei", "Orianna"]
+    goodOn: ["Sylas", "Taliyah", "Hwei", "Orianna"]
   },
   "Gunmetal Greaves": {
     what: "The upgrade of {{item:Berserker's Greaves}} with more attack speed and some life steal.",
     buyWhen: "Mid laners get this upgrade free when they complete the mid role quest with Berserker's Greaves; it's worth it on champions who fight with basic attacks.",
-    goodOn: ["Yasuo", "Yone", "Kayle"]
+    goodOn: ["Yasuo", "Yone"]
   },
   "Chainlaced Crushers": {
     what: "The upgrade of {{item:Mercury's Treads}} with more magic resist and a magic shield after an enemy champion hits you with magic damage.",
@@ -457,7 +457,7 @@ RA.itemGuide = {
   "Armored Advance": {
     what: "The upgrade of {{item:Plated Steelcaps}} with more armor and a physical shield after an enemy champion hits you with physical damage.",
     buyWhen: "Mid laners get this upgrade free when they complete the mid role quest with Plated Steelcaps; it's worth it when the enemy has lots of basic attackers.",
-    goodOn: ["Galio", "Irelia", "Diana"]
+    goodOn: ["Galio", "Irelia"]
   },
   "Spellslinger's Shoes": {
     what: "The upgrade of {{item:Sorcerer's Shoes}} with more magic penetration, so your magic damage hits even harder.",
@@ -498,17 +498,17 @@ RA.itemGuide = {
   "Essence Reaver": {
     what: "A crit item with attack damage and ability haste: after you use an ability your next attack hits harder and gives back mana.",
     buyWhen: "Buy it on attack-damage champions who use a lot of mana and attack between abilities.",
-    goodOn: ["Smolder", "Ezreal", "Gangplank"]
+    goodOn: ["Smolder", "Ezreal", "Gangplank", "Xayah", "Sivir"]
   },
   "Dead Man's Plate": {
     what: "A tank item with health, armor and move speed that builds up speed while you move and makes slows on you 15% weaker; your next attack uses that speed for bonus damage.",
     buyWhen: "Buy it on tanks and fighters who need to run at the enemy team or move around the map a lot.",
-    goodOn: ["Sion", "Hecarim", "Skarner", "Udyr", "Nautilus", "Poppy"]
+    goodOn: ["Darius", "Garen", "Sion", "Hecarim", "Skarner", "Udyr", "Nautilus", "Poppy"]
   },
   "Titanic Hydra": {
     what: "A fighter item with attack damage and lots of health whose attacks hit enemies behind your target, with an empowered hit for extra damage.",
     buyWhen: "Buy it on fighters and tanks who build health and want better wave clear and damage.",
-    goodOn: ["Sett", "Sion", "DrMundo", "Nasus", "Volibear"]
+    goodOn: ["Sion", "DrMundo", "Nasus", "Volibear"]
   },
   "Edge of Night": {
     what: "A lethality item with health that blocks the next enemy ability that would hit you.",
@@ -539,12 +539,12 @@ RA.itemGuide = {
   "Solstice Sleigh": {
     what: "A final support item: slowing or stunning an enemy champion near allies heals and speeds up you and a nearby ally; its active places wards.",
     buyWhen: "Pick it as a support with crowd control who wants to catch enemies and roam with an ally.",
-    goodOn: ["Rakan", "Bard", "Thresh", "Blitzcrank", "Rell"]
+    goodOn: ["Rakan", "Bard", "Thresh", "Blitzcrank", "Rell", "Leona"]
   },
   "Bloodsong": {
     what: "A final support item: after you use an ability your next attack deals bonus damage and makes the champion take more damage for 4 seconds; its active places wards.",
     buyWhen: "Pick it as a support who often attacks right after landing an ability, to help your team burst that target.",
-    goodOn: ["Senna", "Pyke", "Thresh", "Blitzcrank", "Leona"]
+    goodOn: ["Senna", "Pyke", "Thresh", "Blitzcrank"]
   },
   "Imperial Mandate": {
     what: "A support item with ability power that lowers cooldowns of your immobilizing abilities and makes enemies you immobilize take 7% more damage for 4 seconds.",
@@ -554,7 +554,7 @@ RA.itemGuide = {
   "Force of Nature": {
     what: "A defensive item with health and magic resist that gives a lot more magic resist and some move speed after you take magic damage from champions 8 times.",
     buyWhen: "Buy it on tanks and fighters when the enemy has several sources of magic damage in long fights.",
-    goodOn: ["Ornn", "Sion", "Chogath", "Zac", "Sejuani"],
+    goodOn: ["Darius", "Ornn", "Sion", "Chogath", "Zac", "Sejuani"],
     avoid: "Against one burst mage, {{item:Kaenic Rookern}} or {{item:Maw of Malmortius}} reacts faster."
   },
   "Horizon Focus": {
@@ -585,28 +585,28 @@ RA.itemGuide = {
   "Death's Dance": {
     what: "A fighter item with attack damage and armor that delays part of the damage you take over 3 seconds, and removes that delayed damage if you get a takedown.",
     buyWhen: "Buy it on attack-damage fighters when the enemy has physical burst, so you survive long enough to fight back.",
-    goodOn: ["Irelia", "Yasuo", "Yone", "Jax", "Riven"]
+    goodOn: ["Irelia", "Yasuo", "Yone", "Darius", "Aatrox", "Jax", "Riven"]
   },
   "Chempunk Chainsword": {
     what: "A fighter item with attack damage, health and ability haste whose physical damage puts 40% Wounds on enemy champions (Wounds reduce their healing).",
     buyWhen: "Buy it on attack-damage fighters and junglers when the enemy team heals a lot.",
-    goodOn: ["Darius", "Renekton", "Pantheon", "Riven", "Rengar"],
+    goodOn: ["Renekton", "Pantheon", "Riven", "Rengar"],
     avoid: "If the enemy barely heals, another damage item is better."
   },
   "Sundered Sky": {
     what: "A fighter item with attack damage and health whose first attack against a champion is a critical strike that heals you.",
     buyWhen: "Buy it on melee fighters who jump in and out of fights and want healing during short trades.",
-    goodOn: ["LeeSin", "Riven", "Fiora", "Camille", "Darius"]
+    goodOn: ["Aatrox", "LeeSin", "Riven", "Fiora", "Camille"]
   },
   "Staff of Flowing Water": {
     what: "A support item: healing or shielding an ally gives you both 40 ability power and 15 ability haste for 6 seconds.",
     buyWhen: "Buy it as an enchanter support when your team has mages or other ability-power damage dealers.",
-    goodOn: ["Soraka", "Nami", "Sona", "Lulu", "Yuumi", "Milio"]
+    goodOn: ["Soraka", "Nami", "Sona", "Yuumi", "Milio"]
   },
   "Moonstone Renewer": {
     what: "A support item with health and ability haste: your heals and shields on an ally also jump to another ally at reduced strength.",
     buyWhen: "Buy it as an enchanter support who heals or shields often in long teamfights.",
-    goodOn: ["Soraka", "Sona", "Yuumi", "Nami", "Seraphine"]
+    goodOn: ["Lulu", "Soraka", "Sona", "Yuumi", "Nami", "Seraphine"]
   },
   "Echoes of Helia": {
     what: "A support item: damaging enemy champions stores charges, and your next heal or shield on an ally uses them to restore extra health.",
@@ -621,7 +621,7 @@ RA.itemGuide = {
   "Stridebreaker": {
     what: "A fighter item with attack damage, attack speed and health whose attacks hit nearby enemies, and its active damages and slows enemies around you and speeds you up.",
     buyWhen: "Buy it on melee fighters who have trouble catching mobile enemies.",
-    goodOn: ["Darius", "Hecarim", "Olaf", "Trundle", "Sett"]
+    goodOn: ["Darius", "Garen", "Sett", "Hecarim", "Olaf", "Trundle"]
   },
   "Liandry's Torment": {
     what: "A mage item with ability power and health whose damaging abilities burn enemies for 2% of their max health per second, and you deal more damage the longer you fight.",
@@ -642,10 +642,10 @@ RA.itemGuide = {
   "Iceborn Gauntlet": {
     what: "A tank item with health, armor and ability haste: after you use an ability your next attack deals bonus damage and creates a slowing frost field.",
     buyWhen: "Buy it on tanks and fighters who attack between abilities and want to slow enemies, especially against physical damage.",
-    goodOn: ["Skarner", "Shen", "Ornn", "Malphite"]
+    goodOn: ["Skarner", "Shen", "Malphite"]
   },
   "Hollow Radiance": {
-    what: "A tank item with health and magic resist that burns nearby enemies after you deal or take damage, and enemies that die near you explode.",
+    what: "A tank item with health and magic resist that burns nearby enemies after you deal or take damage, and enemies you kill explode for magic damage around them.",
     buyWhen: "Buy it on tanks when the enemy has magic damage and you want to help clear minion waves.",
     goodOn: ["Galio", "Amumu", "Zac", "Sejuani", "Ornn"]
   },
@@ -657,7 +657,7 @@ RA.itemGuide = {
   "Kraken Slayer": {
     what: "An attack-speed item whose every third attack deals bonus damage, more against low-health targets.",
     buyWhen: "Buy it on attack-speed champions who need to take down tough enemies in one-on-one fights.",
-    goodOn: ["Irelia", "Kaisa", "Vayne", "KogMaw", "Varus"]
+    goodOn: ["Irelia", "Kaisa", "KogMaw", "Varus"]
   },
   "Immortal Shieldbow": {
     what: "A crit item with attack damage that gives you a shield when damage would drop you below 30% health.",
@@ -667,17 +667,17 @@ RA.itemGuide = {
   "Navori Flickerblade": {
     what: "A crit item with attack speed whose attacks lower the remaining cooldowns of your basic abilities by 15%.",
     buyWhen: "Buy it on attack-speed champions whose basic abilities are a big part of their damage or safety.",
-    goodOn: ["Yasuo", "Yone", "Tristana", "Xayah", "Samira"]
+    goodOn: ["Tristana", "Xayah", "Sivir", "Samira"]
   },
   "The Collector": {
     what: "A crit item with attack damage and lethality that kills champions instantly below 5% health and gives 25 extra gold per kill.",
     buyWhen: "Buy it on marksmen who want strong early damage to win fights and secure kills.",
-    goodOn: ["MissFortune", "Caitlyn", "Draven", "Jhin", "Tristana"]
+    goodOn: ["MissFortune", "Caitlyn", "Draven", "Jhin", "Tristana", "Twitch"]
   },
   "Eclipse": {
     what: "An attack-damage item with ability haste that gives you a short shield when you hit a champion with 2 attacks or abilities within 2 seconds.",
     buyWhen: "Buy it on attack-damage fighters and assassins who hit quickly with a combo of abilities.",
-    goodOn: ["Pantheon", "Qiyana", "Aatrox", "Riven", "Talon", "Jayce"]
+    goodOn: ["Aatrox", "Pantheon", "Qiyana", "Riven", "Jayce"]
   },
   "Serylda's Grudge": {
     what: "An attack-damage item with armor penetration and ability haste whose damaging abilities slow enemies below 50% health.",
@@ -693,17 +693,17 @@ RA.itemGuide = {
   "Axiom Arc": {
     what: "A lethality item with ability haste that refunds part of your ultimate cooldown when a champion you damaged dies.",
     buyWhen: "Buy it on attack-damage assassins whose ultimate helps them get kills, so they can use it again sooner.",
-    goodOn: ["Zed", "Pyke", "Talon", "Varus", "Khazix"]
+    goodOn: ["Zed", "Pyke", "Varus", "Khazix"]
   },
   "Hubris": {
     what: "A lethality item that gives you extra attack damage for 90 seconds when a champion you damaged dies.",
     buyWhen: "Buy it on attack-damage assassins and marksmen who expect to snowball by getting kills.",
-    goodOn: ["Jhin", "Zed", "Talon", "Naafiri", "Rengar", "Khazix"]
+    goodOn: ["Jhin", "Zed", "Naafiri", "Rengar", "Khazix"]
   },
   "Profane Hydra": {
     what: "A lethality item whose attacks hit nearby enemies, with an active that deals physical damage around you.",
     buyWhen: "Buy it on melee assassins who want faster wave clear and extra burst.",
-    goodOn: ["Talon", "Naafiri", "Khazix", "Rengar", "Kayn"]
+    goodOn: ["Naafiri", "Khazix", "Rengar", "Kayn"]
   },
   "Voltaic Cyclosword": {
     what: "A lethality item whose abilities trigger a charged attack that deals damage based on the target's current health and gives extra lethality for 4 seconds.",
@@ -718,6 +718,6 @@ RA.itemGuide = {
   "Abyssal Mask": {
     what: "A tank item with health and magic resist that makes nearby enemy champions take 12% more magic damage.",
     buyWhen: "Buy it on tanks when the enemy has magic damage and your own team has mages who can use the bonus.",
-    goodOn: ["Galio", "Amumu", "Sejuani", "Zac", "Maokai", "Leona"]
+    goodOn: ["Galio", "Amumu", "Sejuani", "Zac", "Maokai"]
   }
 };

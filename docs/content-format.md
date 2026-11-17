@@ -233,3 +233,15 @@ RA.champAdapt["Ziggs:mid"] = {
 
 `RA.compTags.healing` and `RA.compTags.cc` list champion ids with strong healing/shielding and heavy crowd control. Damage
 type and tankiness come from Riot's ratings (`RA.dd.champions[id][3..5]` = attack, magic, defense) and our guides' `damage`.
+
+## Extra matchups — `js/data/matchups-extra-*.js`
+
+Researched matchups added after a guide's own `matchups` (same keys as `RA.builds`). Shown on the champion page and
+used by the Matchup Lookup, Game Plan Builder, Pool Builder and Champion Comparison. `wr` is the guide champion's win
+rate in that matchup from `source` (or "" when it comes from general knowledge). Don't repeat opponents the guide
+already lists.
+
+```js
+RA.matchupsExtra["Ziggs:mid"] = { source: "op.gg Emerald+, patch 26.22",
+  hard: [{ id: "Fizz", wr: "46.9%", tip: "One or two sentences." }], easy: [{ id: "Galio", wr: "53.1%", tip: "…" }] };
+```
