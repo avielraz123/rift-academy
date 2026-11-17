@@ -681,3 +681,15 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* ---------- duo finder & share image ---------- */
+.duo-picker label { display: grid; gap: 6px; font-weight: 700; max-width: 420px; }
+.duo-picker label span { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.duo-picker select { width: 100%; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); font: 600 .95rem var(--font); }
+#duoResult { margin-top: 16px; }
+.duo-me { display: flex; gap: 16px; align-items: center; }
+.duo-me img { width: 72px; height: 72px; border-radius: 14px; flex: none; }
+.duo-me h3 { margin: 0 0 6px; }
+.duo-me p { margin: 0 0 6px; }
+.share-card p { color: var(--muted); }
+.share-preview { display: block; width: 100%; max-width: 720px; margin-top: 14px; border-radius: 12px; border: 1px solid var(--line); }

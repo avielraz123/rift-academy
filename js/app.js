@@ -1004,6 +1004,93 @@
       "</article></div>";
   });
 
+  /* ---------- patch share image (drawn in the browser from RA.patchChanges) ---------- */
+  function loadImg(src) {
+    return new Promise(function (ok) {
+      var im = new Image();
+      im.crossOrigin = "anonymous"; // Data Dragon allows this, so the canvas can be saved
+      im.onload = function () { ok(im); };
+      im.onerror = function () { ok(null); };
+      im.src = src;
+    });
+  }
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  function fitText(ctx, text, maxW) {
+    if (ctx.measureText(text).width <= maxW) return text;
+    while (text.length > 3 && ctx.measureText(text + "…").width > maxW) text = text.slice(0, -1);
+    return text.replace(/[\s,.;:]+$/, "") + "…";
+  }
+  RA.drawPatchImage = function (canvas) {
+    var pc = RA.patchChanges, W = 1200, H = 630, ctx = canvas.getContext("2d");
+    canvas.width = W; canvas.height = H;
+    // Champions with guides first, then reworks, then the rest alphabetically.
+    var rank = function (c) { return (hasGuide(c.id) ? 2 : 0) + (c.change === "new" ? 1 : 0); };
+    var champs = (pc.champions || []).slice().sort(function (a, b) { return rank(b) - rank(a) || champName(a.id).localeCompare(champName(b.id)); }).slice(0, 8);
+    var COL = { buff: "#4fd18b", nerf: "#ff5c6c", adjust: "#f2b84b", "new": "#4a9eff" };
+    var fontsReady = document.fonts && document.fonts.load ? Promise.all([document.fonts.load('700 40px "Cinzel"'), document.fonts.load('700 20px "Inter"'), document.fonts.load('400 20px "Inter"')]).catch(function () {}) : Promise.resolve();
+    return Promise.all([fontsReady].concat(champs.map(function (c) { return loadImg(img.champ(c.id)); }))).then(function (res) {
+      var icons = res.slice(1);
+      var g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, "#0a1018"); g.addColorStop(1, "#131f2c");
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = "#c8aa6e"; ctx.fillRect(0, H - 8, W, 8);
+      // logo + title
+      ctx.save(); ctx.translate(56, 44); ctx.scale(1.6, 1.6); ctx.strokeStyle = "#c8aa6e"; ctx.lineWidth = 1.6;
+      ctx.stroke(new Path2D("M16 2 29 9.5v13L16 30 3 22.5v-13z")); ctx.fillStyle = "#c8aa6e"; ctx.fill(new Path2D("M16 8 22 19H10z")); ctx.restore();
+      ctx.fillStyle = "#e6edf4"; ctx.font = '700 30px "Cinzel", Georgia, serif'; ctx.fillText("Rift Academy", 120, 82);
+      ctx.fillStyle = "#f0d595"; ctx.font = '700 54px "Cinzel", Georgia, serif'; ctx.fillText("Patch " + pc.patch, 56, 160);
+      ctx.fillStyle = "#9aabbd"; ctx.font = '600 24px "Inter", system-ui, sans-serif'; ctx.fillText("What changed, in plain words", 56, 198);
+      // champion grid: 2 columns x 4 rows
+      champs.forEach(function (c, i) {
+        var x = 56 + (i % 2) * 552, y = 232 + Math.floor(i / 2) * 84;
+        ctx.fillStyle = "rgba(255,255,255,0.04)"; roundRect(ctx, x, y, 532, 72, 12); ctx.fill();
+        if (icons[i]) { ctx.save(); roundRect(ctx, x + 10, y + 10, 52, 52, 10); ctx.clip(); ctx.drawImage(icons[i], x + 10, y + 10, 52, 52); ctx.restore(); }
+        ctx.fillStyle = "#e6edf4"; ctx.font = '700 22px "Inter", system-ui, sans-serif'; ctx.fillText(champName(c.id), x + 76, y + 31);
+        var label = (CHANGE_NAMES[c.change] || c.change).toUpperCase(), nw = ctx.measureText(champName(c.id)).width;
+        ctx.font = '800 13px "Inter", system-ui, sans-serif';
+        var lw = ctx.measureText(label).width + 16, lx = x + 86 + nw;
+        ctx.strokeStyle = COL[c.change] || "#9aabbd"; ctx.lineWidth = 1.5; roundRect(ctx, lx, y + 14, lw, 22, 11); ctx.stroke();
+        ctx.fillStyle = COL[c.change] || "#9aabbd"; ctx.fillText(label, lx + 8, y + 30);
+        ctx.fillStyle = "#9aabbd"; ctx.font = '400 17px "Inter", system-ui, sans-serif';
+        ctx.fillText(fitText(ctx, c.summary, 440), x + 76, y + 57);
+      });
+      var more = (pc.champions || []).length - champs.length;
+      ctx.fillStyle = "#9aabbd"; ctx.font = '600 20px "Inter", system-ui, sans-serif';
+      var foot = (more > 0 ? "+" + more + " more champions" : "") + ((pc.items || []).length ? (more > 0 ? " · " : "") + pc.items.length + " item change" + (pc.items.length === 1 ? "" : "s") : "");
+      ctx.fillText(foot, 56, 594);
+      ctx.textAlign = "right"; ctx.fillStyle = "#c8aa6e"; ctx.font = '700 20px "Inter", system-ui, sans-serif';
+      ctx.fillText(ROOT.replace(/^https?:\/\//, "").replace(/^file:.*/, "Rift Academy") + "patch", W - 56, 594);
+      ctx.textAlign = "left";
+      return canvas;
+    });
+  };
+  function wireShare(app) {
+    var btn = $("#shareMake", app);
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var box = $("#shareBox", app), canvas = document.createElement("canvas");
+      btn.disabled = true; btn.textContent = "Drawing…";
+      RA.drawPatchImage(canvas).then(function () {
+        var url;
+        try { url = canvas.toDataURL("image/png"); } catch (e) { box.innerHTML = "<p>Couldn't create the image in this browser.</p>"; return; }
+        var name = "rift-academy-patch-" + RA.patchChanges.patch + ".png";
+        box.innerHTML = '<img class="share-preview" src="' + url + '" alt="Patch ' + esc(RA.patchChanges.patch) + ' summary image">' +
+          '<div class="btn-row" style="margin-top:12px"><a class="btn" href="' + url + '" download="' + name + '">Download image</a>' +
+          (navigator.canShare ? '<button class="btn ghost" id="shareNative">Share…</button>' : "") + "</div>";
+        var sn = $("#shareNative", box);
+        if (sn) sn.addEventListener("click", function () {
+          canvas.toBlob(function (blob) {
+            var file = new File([blob], name, { type: "image/png" });
+            if (navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: "Patch " + RA.patchChanges.patch + " changes", text: "What changed in patch " + RA.patchChanges.patch + ": " + location.href }).catch(function () {});
+          });
+        });
+        btn.textContent = "Make it again"; btn.disabled = false;
+      });
+    });
+  }
+
   /* ---------- what changed this patch ---------- */
   var CHANGE_NAMES = { buff: "Buffed", nerf: "Nerfed", adjust: "Adjusted", "new": "Reworked" };
   function changeBadge(ch) { return '<span class="badge chg-' + esc(ch) + '">' + esc(CHANGE_NAMES[ch] || ch) + "</span>"; }
@@ -1045,7 +1132,10 @@
         return '<div class="card change-card"><h3>' + esc(x.title) + "</h3><p>" + esc(x.summary) + "</p>" +
           (x.details && x.details.length ? (x.details.length > 6 ? "<details><summary>All " + x.details.length + " changes</summary>" + list(x.details.map(esc), "change-list") + "</details>" : list(x.details.map(esc), "change-list")) : "") + "</div>";
       }).join("") + "</div></section>" : "") +
+      '<section class="section card share-card"><h2 style="margin-top:0">Share this patch</h2><p>Make a picture of the biggest changes to post on Discord or social media. It always shows the latest patch.</p>' +
+        '<button class="btn" id="shareMake">📷 Make share image</button><div id="shareBox"></div></section>' +
       '<p class="patch-note">Why it matters: a buff or nerf of a few points rarely changes how you play a champion, but it can change which champions are strong. Check this page each patch, then look at the <a href="#/tierlist">tier list</a>.</p>';
+    wireShare(app);
   });
 
   /* ---------- tier list ---------- */
