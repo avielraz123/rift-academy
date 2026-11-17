@@ -47,6 +47,9 @@ Note: the `tools/` folder holds both the build scripts (`tools/*.js`) and the pr
    lists, and update the JSON files in `research/` (shape documented at the top of `tools/gen-builds.js`).
    Then run `node tools/gen-builds.js research/research-*.json`.
 3. Update `js/data/patch.js` (patch number, `updated`, timers, facts) if anything changed.
+   Then refresh the 16 guides in `js/data/matchups-extra-*.js` whose `source` patch is oldest (all 64 rotate over
+   four patches): new win rates from op.gg, move or replace matchups that flipped, keep about 8 hard and 8 easy, fix
+   tips that no longer fit, and set `source` to the new patch.
 4. If items or runes changed, update `js/data/item-guide.js` / `rune-guide.js` (check-content warns about missing or
    removed ones) and fix `js/data/champ-adapt-*.js` entries that name removed items or no longer match the build.
 5. Rewrite `js/data/patch-changes.js` from the official patch notes on leagueoflegends.com (shape in
